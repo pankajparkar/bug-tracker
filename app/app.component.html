@@ -2,5 +2,14 @@
     <h1> Hello World</h1>
     <a class="btn btn-primary" routerLink="/demo">Demo</a> | 
     <a class="btn btn-primary" routerLink="/test">Test</a> 
-    <router-outlet></router-outlet>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <sidebar></sidebar>
+            </div>
+            <div class="col-sm-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
 </div>
