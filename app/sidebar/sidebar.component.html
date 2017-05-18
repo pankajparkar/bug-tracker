@@ -1,5 +1,9 @@
 <div class="card">
-  <div class="card-block">
-    <h1>This is Sidear Component</h1>
+  <div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of list">
+        {{item.name}}
+      </li>
+    </ul>
   </div>
 </div>

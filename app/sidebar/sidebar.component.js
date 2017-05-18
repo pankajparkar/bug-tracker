@@ -13,13 +13,19 @@ var core_1 = require("@angular/core");
 var SidebarComponent = (function () {
     function SidebarComponent() {
     }
-    SidebarComponent.prototype.ngOnInit = function () { };
+    SidebarComponent.prototype.ngOnInit = function () {
+        this.list = [
+            { name: 'Tickets', url: '/tickets' },
+            { name: 'Comments', url: '/comments' },
+            { name: 'Work Log', url: '/worklog' },
+        ];
+    };
     return SidebarComponent;
 }());
 SidebarComponent = __decorate([
     core_1.Component({
         selector: 'sidebar',
-        templateUrl: './../app/test/test.component.html'
+        templateUrl: './../app/sidebar/sidebar.component.html'
     }),
     __metadata("design:paramtypes", [])
 ], SidebarComponent);
