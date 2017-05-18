@@ -14,7 +14,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot()],
     declarations: [AppComponent, DemoComponent, TestComponent, SidebarComponent],
     bootstrap: [AppComponent]
-})l
+})
 export class AppModule{
     name: string = 'Title';
 }
