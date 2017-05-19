@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var TestComponent = (function () {
-    function TestComponent() {
+var TicketComponent = (function () {
+    function TicketComponent() {
     }
-    TestComponent.prototype.ngOnInit = function () { };
-    return TestComponent;
+    TicketComponent.prototype.ngOnInit = function () { };
+    return TicketComponent;
 }());
-TestComponent = __decorate([
+TicketComponent = __decorate([
     core_1.Component({
-        selector: 'test',
-        templateUrl: './../app/test/test.component.html'
+        selector: 'ticket',
+        templateUrl: './../app/ticket/ticket.component.html'
     }),
     __metadata("design:paramtypes", [])
-], TestComponent);
-exports.TestComponent = TestComponent;
-//# sourceMappingURL=test.component.js.map
+], TicketComponent);
+exports.TicketComponent = TicketComponent;
+//# sourceMappingURL=ticket.component.js.map

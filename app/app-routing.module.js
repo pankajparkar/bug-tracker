@@ -9,10 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var demo_component_1 = require("./demo/demo.component");
-var test_component_1 = require("./test/test.component");
+var ticket_component_1 = require("./ticket/ticket.component");
 var routes = [
     { path: 'demo', component: demo_component_1.DemoComponent },
-    { path: 'test', component: test_component_1.TestComponent },
+    { path: 'ticket', component: ticket_component_1.TicketComponent },
     { path: '', redirectTo: "demo", pathMatch: 'full' },
 ];
 var AppRoutingModule = (function () {

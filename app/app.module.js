@@ -12,8 +12,8 @@ var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var app_component_1 = require("./app.component");
 var demo_component_1 = require("./demo/demo.component");
 var app_routing_module_1 = require("./app-routing.module");
-var test_component_1 = require("./test/test.component");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
+var ticket_component_1 = require("./ticket/ticket.component");
 var navbar_component_1 = require("./navbar/navbar.component");
 var AppModule = (function () {
     function AppModule() {
@@ -24,7 +24,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot()],
-        declarations: [app_component_1.AppComponent, demo_component_1.DemoComponent, test_component_1.TestComponent, sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent],
+        declarations: [app_component_1.AppComponent, demo_component_1.DemoComponent, ticket_component_1.TicketComponent, sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
