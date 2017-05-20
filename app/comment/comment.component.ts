@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'ticket',
-    templateUrl: './ticket.component.html',
+    selector: 'comment',
+    templateUrl: './comment.component.html',
     moduleId: module.id
 })
 
-export class TicketComponent implements OnInit {
+export class CommentComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }

@@ -10,19 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var NavbarComponent = (function () {
-    function NavbarComponent() {
+var CommentComponent = (function () {
+    function CommentComponent() {
     }
-    NavbarComponent.prototype.ngOnInit = function () { };
-    return NavbarComponent;
+    CommentComponent.prototype.ngOnInit = function () { };
+    return CommentComponent;
 }());
-NavbarComponent = __decorate([
+CommentComponent = __decorate([
     core_1.Component({
-        selector: 'navbar',
-        templateUrl: './navbar.component.html',
+        selector: 'comment',
+        templateUrl: './comment.component.html',
         moduleId: module.id
     }),
     __metadata("design:paramtypes", [])
-], NavbarComponent);
-exports.NavbarComponent = NavbarComponent;
-//# sourceMappingURL=navbar.component.js.map
+], CommentComponent);
+exports.CommentComponent = CommentComponent;
+//# sourceMappingURL=comment.component.js.map

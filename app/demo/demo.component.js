@@ -19,7 +19,8 @@ var DemoComponent = (function () {
 DemoComponent = __decorate([
     core_1.Component({
         selector: 'demo',
-        templateUrl: './../app/demo/demo.component.html'
+        templateUrl: './demo.component.html',
+        moduleId: module.id
     }),
     __metadata("design:paramtypes", [])
 ], DemoComponent);

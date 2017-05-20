@@ -9,11 +9,12 @@ import { DemoComponent } from './demo/demo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot()],
-    declarations: [AppComponent, DemoComponent, TicketComponent, SidebarComponent, NavbarComponent],
+    declarations: [AppComponent, DemoComponent, TicketComponent, SidebarComponent, NavbarComponent, CommentComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule{

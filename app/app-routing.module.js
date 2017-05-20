@@ -10,9 +10,11 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var demo_component_1 = require("./demo/demo.component");
 var ticket_component_1 = require("./ticket/ticket.component");
+var comment_component_1 = require("./comment/comment.component");
 var routes = [
     { path: 'demo', component: demo_component_1.DemoComponent },
     { path: 'ticket', component: ticket_component_1.TicketComponent },
+    { path: 'comment', component: comment_component_1.CommentComponent },
     { path: '', redirectTo: "demo", pathMatch: 'full' },
 ];
 var AppRoutingModule = (function () {

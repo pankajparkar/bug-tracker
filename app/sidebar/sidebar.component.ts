@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'sidebar',
-    templateUrl: './../app/sidebar/sidebar.component.html'
+    templateUrl: './sidebar.component.html',
+    moduleId: module.id
 })
 
 export class SidebarComponent implements OnInit {
