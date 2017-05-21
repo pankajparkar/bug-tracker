@@ -13,13 +13,14 @@ import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorklogComponent } from './worklog/worklog.component';
 import { FilterByNameComponent } from './filter-by-name/filter-by-name.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot()],
     declarations: [
         AppComponent, DemoComponent, TicketComponent, 
         SidebarComponent, NavbarComponent, CommentComponent, 
-        WorklogComponent, FilterByNameComponent
+        WorklogComponent, FilterByNameComponent, DashboardComponent
     ],
     bootstrap: [AppComponent]
 })
