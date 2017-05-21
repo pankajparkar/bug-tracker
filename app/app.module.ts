@@ -12,10 +12,15 @@ import { TicketComponent } from './ticket/ticket.component';
 import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorklogComponent } from './worklog/worklog.component';
+import { FilterByNameComponent } from './filter-by-name/filter-by-name.component';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot()],
-    declarations: [AppComponent, DemoComponent, TicketComponent, SidebarComponent, NavbarComponent, CommentComponent, WorklogComponent],
+    declarations: [
+        AppComponent, DemoComponent, TicketComponent, 
+        SidebarComponent, NavbarComponent, CommentComponent, 
+        WorklogComponent, FilterByNameComponent
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule{
