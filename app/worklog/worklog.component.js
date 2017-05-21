@@ -10,25 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var SidebarComponent = (function () {
-    function SidebarComponent() {
+var WorklogComponent = (function () {
+    function WorklogComponent() {
     }
-    SidebarComponent.prototype.ngOnInit = function () {
-        this.list = [
-            { name: 'Tickets', url: 'ticket' },
-            { name: 'Comments', url: 'comment' },
-            { name: 'Work Log', url: 'worklog' },
-        ];
-    };
-    return SidebarComponent;
+    WorklogComponent.prototype.ngOnInit = function () { };
+    return WorklogComponent;
 }());
-SidebarComponent = __decorate([
+WorklogComponent = __decorate([
     core_1.Component({
-        selector: 'sidebar',
-        templateUrl: './sidebar.component.html',
+        selector: 'worklog',
+        templateUrl: './worklog.component.html',
         moduleId: module.id
     }),
     __metadata("design:paramtypes", [])
-], SidebarComponent);
-exports.SidebarComponent = SidebarComponent;
-//# sourceMappingURL=sidebar.component.js.map
+], WorklogComponent);
+exports.WorklogComponent = WorklogComponent;
+//# sourceMappingURL=worklog.component.js.map

@@ -12,9 +12,9 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() { 
         this.list = [
-            {name: 'Tickets', url: '/tickets'},
-            {name: 'Comments', url: '/comments'},
-            {name: 'Work Log', url: '/worklog'},
+            {name: 'Tickets', url: 'ticket'},
+            {name: 'Comments', url: 'comment'},
+            {name: 'Work Log', url: 'worklog'},
         ]
     }
 }

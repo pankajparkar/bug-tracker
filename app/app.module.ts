@@ -11,10 +11,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { WorklogComponent } from './worklog/worklog.component';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot()],
-    declarations: [AppComponent, DemoComponent, TicketComponent, SidebarComponent, NavbarComponent, CommentComponent],
+    declarations: [AppComponent, DemoComponent, TicketComponent, SidebarComponent, NavbarComponent, CommentComponent, WorklogComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule{
