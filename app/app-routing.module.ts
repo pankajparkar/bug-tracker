@@ -6,6 +6,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { CommentComponent } from './comment/comment.component';
 import { WorklogComponent } from './worklog/worklog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { 
@@ -17,10 +18,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'ticket', pathMatch: "full" }
     ]
   },
+  { path: 'profile', component: ProfileComponent },
   { path: 'demo', component: DemoComponent },
-  { path: 'ticket', component: TicketComponent },
-  { path: 'comment', component: CommentComponent },
-  { path: 'worklog', component: WorklogComponent },
   { path: '', redirectTo: "dashboard", pathMatch: 'full' },
 ];
 
