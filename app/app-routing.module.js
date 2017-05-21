@@ -14,7 +14,15 @@ var comment_component_1 = require("./comment/comment.component");
 var worklog_component_1 = require("./worklog/worklog.component");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var routes = [
-    { path: 'dashboard', component: dashboard_component_1.DashboardComponent },
+    {
+        path: 'dashboard', component: dashboard_component_1.DashboardComponent,
+        children: [
+            { path: 'ticket', component: ticket_component_1.TicketComponent },
+            { path: 'comment', component: comment_component_1.CommentComponent },
+            { path: 'worklog', component: worklog_component_1.WorklogComponent },
+            { path: '', redirectTo: 'ticket', pathMatch: "full" }
+        ]
+    },
     { path: 'demo', component: demo_component_1.DemoComponent },
     { path: 'ticket', component: ticket_component_1.TicketComponent },
     { path: 'comment', component: comment_component_1.CommentComponent },
