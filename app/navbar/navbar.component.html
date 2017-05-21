@@ -6,11 +6,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="'demo'" routeLinkActive="active">Demo <span class="sr-only">(current)</span></a>
+      <li class="nav-item" [ngClass]="{ 'active': rla1.isActive }">
+        <a class="nav-link" routerLinkActive [routerLink]="'dashboard'" #rla1="routerLinkActive">Dashboard</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="'ticket'" routeLinkActive="active">Ticket</a>
+      <li class="nav-item" [ngClass]="{ 'active': rla2.isActive }">
+        <a class="nav-link" routerLinkActive [routerLink]="'ticket'" #rla2="routerLinkActive">Ticket</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
