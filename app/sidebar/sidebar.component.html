@@ -1,7 +1,7 @@
 <div class="card">
   <div>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of list" [routerLink]="item.url">
+      <li class="list-group-item" *ngFor="let item of list" [routerLink]="item.url" routerLinkActive="active">
         {{item.name}}
       </li>
     </ul>
