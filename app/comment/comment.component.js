@@ -13,6 +13,9 @@ var core_1 = require("@angular/core");
 var CommentComponent = (function () {
     function CommentComponent() {
     }
+    CommentComponent.prototype.getCommentList = function () {
+        return;
+    };
     CommentComponent.prototype.ngOnInit = function () { };
     return CommentComponent;
 }());

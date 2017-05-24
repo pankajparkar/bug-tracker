@@ -13,6 +13,8 @@ var core_1 = require("@angular/core");
 var TicketComponent = (function () {
     function TicketComponent() {
     }
+    TicketComponent.prototype.ticketList = function () {
+    };
     TicketComponent.prototype.ngOnInit = function () { };
     return TicketComponent;
 }());

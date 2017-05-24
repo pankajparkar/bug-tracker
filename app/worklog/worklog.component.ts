@@ -9,5 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class WorklogComponent implements OnInit {
     constructor() { }
 
+    woklogList(){
+        
+    }
+
     ngOnInit() { }
 }

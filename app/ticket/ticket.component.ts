@@ -9,5 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class TicketComponent implements OnInit {
     constructor() { }
 
+    ticketList(){
+        
+    }
+
     ngOnInit() { }
 }

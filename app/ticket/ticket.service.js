@@ -10,21 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var WorklogComponent = (function () {
-    function WorklogComponent() {
+var CommentService = (function () {
+    function CommentService() {
     }
-    WorklogComponent.prototype.woklogList = function () {
+    CommentService.prototype.getTicketList = function () {
+        return [
+            { id: 1, name: "Pankaj", Comment: "This is test 1" },
+            { id: 2, name: "Pankaj", Comment: "This is test 2" },
+            { id: 3, name: "Pankaj", Comment: "This is test 3" },
+            { id: 4, name: "Pankaj", Comment: "This is test 4" },
+            { id: 5, name: "Pankaj", Comment: "This is test 5" },
+        ];
     };
-    WorklogComponent.prototype.ngOnInit = function () { };
-    return WorklogComponent;
+    return CommentService;
 }());
-WorklogComponent = __decorate([
-    core_1.Component({
-        selector: 'worklog',
-        templateUrl: './worklog.component.html',
-        moduleId: module.id
-    }),
+CommentService = __decorate([
+    core_1.Injectable(),
     __metadata("design:paramtypes", [])
-], WorklogComponent);
-exports.WorklogComponent = WorklogComponent;
-//# sourceMappingURL=worklog.component.js.map
+], CommentService);
+exports.CommentService = CommentService;
+//# sourceMappingURL=ticket.service.js.map

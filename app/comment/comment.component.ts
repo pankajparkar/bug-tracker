@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 @Component({
     selector: 'comment',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 
 export class CommentComponent implements OnInit {
     constructor() { }
+    getCommentList(){
+        return 
+    }
 
     ngOnInit() { }
 }
