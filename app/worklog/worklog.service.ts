@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 
-export class CommentService {
+export class WorklogService {
     constructor() { }
-    getCommentList(){
+    getWorklogList(){
         return [
             {id: 1, name: "Pankaj", Comment: "This is test 1"},
             {id: 2, name: "Pankaj", Comment: "This is test 2"},

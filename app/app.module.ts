@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { CommentComponent } from './comment/comment.component';
-import { CommentService } from './comment/comment.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorklogComponent } from './worklog/worklog.component';
 import { FilterByNameComponent } from './filter-by-name/filter-by-name.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TicketService } from './ticket/ticket.service';
+import { CommentService } from './comment/comment.service';
+import { WorklogService } from './worklog/worklog.service';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
@@ -26,7 +28,7 @@ import { ProfileComponent } from './profile/profile.component';
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent
     ],
-    providers: [CommentService],
+    providers: [CommentService, TicketService, WorklogService],
     bootstrap: [AppComponent]
 })
 export class AppModule{

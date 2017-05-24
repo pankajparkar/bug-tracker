@@ -8,9 +8,9 @@ import { HttpModule } from '@angular/http';
 })
 
 export class CommentComponent implements OnInit {
-    constructor() { }
+    constructor(private http: HttpModule) { }
     getCommentList(){
-        return 
+        return this.http.ge();
     }
 
     ngOnInit() { }

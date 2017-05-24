@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var CommentComponent = (function () {
-    function CommentComponent() {
+    function CommentComponent(http) {
+        this.http = http;
     }
     CommentComponent.prototype.getCommentList = function () {
-        return;
+        return this.http.ge();
     };
     CommentComponent.prototype.ngOnInit = function () { };
     return CommentComponent;
@@ -25,7 +27,7 @@ CommentComponent = __decorate([
         templateUrl: './comment.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [http_1.HttpModule])
 ], CommentComponent);
 exports.CommentComponent = CommentComponent;
 //# sourceMappingURL=comment.component.js.map

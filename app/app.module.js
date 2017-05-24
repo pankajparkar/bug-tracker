@@ -16,12 +16,14 @@ var app_routing_module_1 = require("./app-routing.module");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
 var ticket_component_1 = require("./ticket/ticket.component");
 var comment_component_1 = require("./comment/comment.component");
-var comment_service_1 = require("./comment/comment.service");
 var navbar_component_1 = require("./navbar/navbar.component");
 var worklog_component_1 = require("./worklog/worklog.component");
 var filter_by_name_component_1 = require("./filter-by-name/filter-by-name.component");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
+var ticket_service_1 = require("./ticket/ticket.service");
+var comment_service_1 = require("./comment/comment.service");
+var worklog_service_1 = require("./worklog/worklog.service");
 var AppModule = (function () {
     function AppModule() {
         this.name = 'Title';
@@ -37,7 +39,7 @@ AppModule = __decorate([
             worklog_component_1.WorklogComponent, filter_by_name_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent,
             profile_component_1.ProfileComponent
         ],
-        providers: [comment_service_1.CommentService],
+        providers: [comment_service_1.CommentService, ticket_service_1.TicketService, worklog_service_1.WorklogService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

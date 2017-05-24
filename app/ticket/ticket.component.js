@@ -10,12 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var ticket_service_1 = require("./ticket.service");
 var TicketComponent = (function () {
-    function TicketComponent() {
+    function TicketComponent(ticketService) {
+        this.ticketService = ticketService;
     }
     TicketComponent.prototype.ticketList = function () {
+        this.tickets = this.ticketService.getTicketList();
     };
-    TicketComponent.prototype.ngOnInit = function () { };
+    TicketComponent.prototype.ngOnInit = function () {
+        this.ticketList();
+    };
     return TicketComponent;
 }());
 TicketComponent = __decorate([
@@ -24,7 +29,7 @@ TicketComponent = __decorate([
         templateUrl: './ticket.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [ticket_service_1.TicketService])
 ], TicketComponent);
 exports.TicketComponent = TicketComponent;
 //# sourceMappingURL=ticket.component.js.map

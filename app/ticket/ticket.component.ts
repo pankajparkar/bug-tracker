@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TicketService } from './ticket.service'
+
 @Component({
     selector: 'ticket',
     templateUrl: './ticket.component.html',
@@ -7,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class TicketComponent implements OnInit {
-    constructor() { }
+    tickets: any[];
+
+    constructor(private ticketService: TicketService) { }
 
     ticketList(){
-        
+        this.tickets = this.ticketService.getTicketList();
     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.ticketList();
+    }
 }

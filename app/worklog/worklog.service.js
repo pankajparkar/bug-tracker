@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var CommentService = (function () {
-    function CommentService() {
+var WorklogService = (function () {
+    function WorklogService() {
     }
-    CommentService.prototype.getCommentList = function () {
+    WorklogService.prototype.getWorklogList = function () {
         return [
             { id: 1, name: "Pankaj", Comment: "This is test 1" },
             { id: 2, name: "Pankaj", Comment: "This is test 2" },
@@ -22,11 +22,11 @@ var CommentService = (function () {
             { id: 5, name: "Pankaj", Comment: "This is test 5" },
         ];
     };
-    return CommentService;
+    return WorklogService;
 }());
-CommentService = __decorate([
+WorklogService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [])
-], CommentService);
-exports.CommentService = CommentService;
+], WorklogService);
+exports.WorklogService = WorklogService;
 //# sourceMappingURL=worklog.service.js.map
