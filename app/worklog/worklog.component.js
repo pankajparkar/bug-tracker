@@ -10,12 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var worklog_service_1 = require("./worklog.service");
 var WorklogComponent = (function () {
-    function WorklogComponent() {
+    function WorklogComponent(worklogService) {
+        this.worklogService = worklogService;
     }
     WorklogComponent.prototype.woklogList = function () {
+        this.worklogs = this.worklogService.getWorklogList();
     };
-    WorklogComponent.prototype.ngOnInit = function () { };
+    WorklogComponent.prototype.ngOnInit = function () {
+        this.woklogList();
+    };
     return WorklogComponent;
 }());
 WorklogComponent = __decorate([
@@ -24,7 +29,7 @@ WorklogComponent = __decorate([
         templateUrl: './worklog.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [worklog_service_1.WorklogService])
 ], WorklogComponent);
 exports.WorklogComponent = WorklogComponent;
 //# sourceMappingURL=worklog.component.js.map

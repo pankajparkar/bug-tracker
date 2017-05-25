@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { WorklogService } from './worklog.service'
+
 @Component({
     selector: 'worklog',
     templateUrl: './worklog.component.html',
@@ -7,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class WorklogComponent implements OnInit {
-    constructor() { }
+    worklogs: any[];
+    constructor(private worklogService: WorklogService) { }
 
     woklogList(){
-        
+        this.worklogs = this.worklogService.getWorklogList();
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.woklogList();
+     }
 }

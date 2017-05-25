@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
+import { CommentService } from './comment.service'
+
 @Component({
     selector: 'comment',
     templateUrl: './comment.component.html',
@@ -8,10 +10,15 @@ import { HttpModule } from '@angular/http';
 })
 
 export class CommentComponent implements OnInit {
-    constructor(private http: HttpModule) { }
+    comments: any[];
+
+    constructor(private commentService: CommentService) { }
+
     getCommentList(){
-        return this.http.ge();
+        this.comments = this.commentService.getCommentList();
     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this.getCommentList();
+    }
 }
