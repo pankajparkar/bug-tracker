@@ -7,7 +7,7 @@ export class UtilityService{
         let propertiesUniqueArray: any[] = [];
         collection.forEach((item)=> {
             let val = item[prop];
-            if(propertiesUniqueArray.indexOf(val) > -1)
+            if(propertiesUniqueArray.indexOf(val) === -1)
                 propertiesUniqueArray.push(val);
         });
         var groupedBy = propertiesUniqueArray.map((propVal)=>{
