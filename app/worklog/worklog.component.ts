@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WorklogService } from './worklog.service'
+import { WorklogService } from './worklog.service';
+import { UtilityService } from '../shared/utility.service';
 
 @Component({
     selector: 'worklog',
@@ -10,10 +11,13 @@ import { WorklogService } from './worklog.service'
 
 export class WorklogComponent implements OnInit {
     worklogs: any[];
-    constructor(private worklogService: WorklogService) { }
+    filteredWorklogs: any[]=[];
+    constructor(private worklogService: WorklogService, private utilityService: UtilityService) { }
 
     woklogList(){
         this.worklogs = this.worklogService.getWorklogList();
+        this.filteredWorklogs = this.utilityService.groupBy(this.worklogs, 'name');
+        console.log(this.filteredWorklogs)
     }
 
     ngOnInit() {

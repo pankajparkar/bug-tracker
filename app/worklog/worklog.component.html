@@ -1,8 +1,13 @@
 <div class="card">
   <div class="card-block">
     <h1>This is Worklog Component</h1>
-    <div *ngFor="let log of worklogs">
-      {{log.description}}
+    <div class="card" *ngFor="let worklog of filteredWorklogs">
+      <h3 class="card-header">
+        {{worklog.key}}
+      </h3>
+      <div class="card-block" *ngFor="let val of worklog.values">
+        <p class="card-text">{{val.description}}</p>
+      </div>
     </div>
   </div>
 </div>

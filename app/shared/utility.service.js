@@ -17,7 +17,7 @@ var UtilityService = (function () {
         var propertiesUniqueArray = [];
         collection.forEach(function (item) {
             var val = item[prop];
-            if (propertiesUniqueArray.indexOf(val) > -1)
+            if (propertiesUniqueArray.indexOf(val) === -1)
                 propertiesUniqueArray.push(val);
         });
         var groupedBy = propertiesUniqueArray.map(function (propVal) {

@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TicketService } from './ticket/ticket.service';
 import { CommentService } from './comment/comment.service';
 import { WorklogService } from './worklog/worklog.service';
+import { UtilityService } from './shared/utility.service';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
@@ -28,7 +29,7 @@ import { WorklogService } from './worklog/worklog.service';
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent
     ],
-    providers: [CommentService, TicketService, WorklogService],
+    providers: [CommentService, TicketService, WorklogService, UtilityService],
     bootstrap: [AppComponent]
 })
 export class AppModule{
