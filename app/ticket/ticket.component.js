@@ -11,12 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ticket_service_1 = require("./ticket.service");
+var utility_service_1 = require("../shared/utility.service");
 var TicketComponent = (function () {
-    function TicketComponent(ticketService) {
+    function TicketComponent(ticketService, utilityService) {
         this.ticketService = ticketService;
+        this.utilityService = utilityService;
     }
     TicketComponent.prototype.ticketList = function () {
         this.tickets = this.ticketService.getTicketList();
+        this.filteredTickets = this.utilityService.groupBy(this.tickets, 'name');
     };
     TicketComponent.prototype.ngOnInit = function () {
         this.ticketList();
@@ -29,7 +32,8 @@ TicketComponent = __decorate([
         templateUrl: './ticket.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [ticket_service_1.TicketService])
+    __metadata("design:paramtypes", [ticket_service_1.TicketService,
+        utility_service_1.UtilityService])
 ], TicketComponent);
 exports.TicketComponent = TicketComponent;
 //# sourceMappingURL=ticket.component.js.map

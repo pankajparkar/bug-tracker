@@ -1,8 +1,13 @@
 <div class="card">
   <div class="card-block">
     <h1>This is Comment Component</h1>
-    <div *ngFor="let comment of comments">
-      {{comment.comment}}
+    <div class="card" *ngFor="let comment of filteredComments">
+      <h3 class="card-header">
+        {{comment.key}}
+      </h3>
+      <div class="card-block" *ngFor="let val of comment.values">
+        <p class="card-text">{{val.comment}}</p>
+      </div>
     </div>
   </div>
 </div>

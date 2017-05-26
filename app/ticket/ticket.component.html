@@ -1,8 +1,13 @@
 <div class="card">
   <div class="card-block">
-    <h1>This is Ticket Component</h1>
-    <div *ngFor="let ticket of tickets">
-      {{ticket.description}}
+    <h1>This is Tiket Component</h1>
+    <div class="card" *ngFor="let ticket of filteredTickets">
+      <h3 class="card-header">
+        {{ticket.key}}
+      </h3>
+      <div class="card-block" *ngFor="let val of ticket.values">
+        <p class="card-text">{{val.description}}</p>
+      </div>
     </div>
   </div>
 </div>

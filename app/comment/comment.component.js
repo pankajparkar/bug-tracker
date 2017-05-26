@@ -11,12 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var comment_service_1 = require("./comment.service");
+var utility_service_1 = require("../shared/utility.service");
 var CommentComponent = (function () {
-    function CommentComponent(commentService) {
+    function CommentComponent(commentService, utilityService) {
         this.commentService = commentService;
+        this.utilityService = utilityService;
     }
     CommentComponent.prototype.getCommentList = function () {
         this.comments = this.commentService.getCommentList();
+        this.filteredComments = this.utilityService.groupBy(this.comments, 'name');
     };
     CommentComponent.prototype.ngOnInit = function () {
         this.getCommentList();
@@ -29,7 +32,7 @@ CommentComponent = __decorate([
         templateUrl: './comment.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [comment_service_1.CommentService])
+    __metadata("design:paramtypes", [comment_service_1.CommentService, utility_service_1.UtilityService])
 ], CommentComponent);
 exports.CommentComponent = CommentComponent;
 //# sourceMappingURL=comment.component.js.map
