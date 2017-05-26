@@ -10,10 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var filter_by_name_service_1 = require("./filter-by-name.service");
 var FilterByNameComponent = (function () {
-    function FilterByNameComponent() {
+    function FilterByNameComponent(filterByNameService) {
+        this.filterByNameService = filterByNameService;
+        this.items = ["Pankaj", "Kamlesh", "Tom"];
     }
-    FilterByNameComponent.prototype.ngOnInit = function () { };
+    FilterByNameComponent.prototype.setFilter = function (val) {
+        this.filterByNameService.emitValue(val);
+    };
+    FilterByNameComponent.prototype.ngOnInit = function () {
+        this.obs$ = this.filterByNameService.filterWatch();
+        this.obs$.subscribe(function (data) { return console.log('Test', data); });
+    };
     return FilterByNameComponent;
 }());
 FilterByNameComponent = __decorate([
@@ -22,7 +31,7 @@ FilterByNameComponent = __decorate([
         templateUrl: './filter-by-name.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [filter_by_name_service_1.FilterByNameService])
 ], FilterByNameComponent);
 exports.FilterByNameComponent = FilterByNameComponent;
 //# sourceMappingURL=filter-by-name.component.js.map

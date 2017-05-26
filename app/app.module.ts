@@ -14,6 +14,7 @@ import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorklogComponent } from './worklog/worklog.component';
 import { FilterByNameComponent } from './filter-by-name/filter-by-name.component';
+import { FilterByNameService } from './filter-by-name/filter-by-name.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TicketService } from './ticket/ticket.service';
@@ -29,7 +30,7 @@ import { UtilityService } from './shared/utility.service';
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent
     ],
-    providers: [CommentService, TicketService, WorklogService, UtilityService],
+    providers: [CommentService, TicketService, WorklogService, UtilityService, FilterByNameService],
     bootstrap: [AppComponent]
 })
 export class AppModule{
