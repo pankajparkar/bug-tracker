@@ -21,7 +21,6 @@ var WorklogComponent = (function () {
     }
     WorklogComponent.prototype.woklogList = function () {
         this.worklogs = this.worklogService.getWorklogList();
-        console.log(this.filteredWorklogs);
     };
     WorklogComponent.prototype.ngOnInit = function () {
         this.filter$ = this.filterByNameService.filterWatch();

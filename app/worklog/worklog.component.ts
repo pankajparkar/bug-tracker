@@ -22,7 +22,6 @@ export class WorklogComponent implements OnInit {
 
     woklogList(){
         this.worklogs = this.worklogService.getWorklogList();
-        console.log(this.filteredWorklogs)
     }
 
     ngOnInit() {
