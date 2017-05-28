@@ -12,7 +12,6 @@ import { FilterByNameService } from './../filter-by-name/filter-by-name.service'
 
 export class TicketComponent implements OnInit {
     tickets: any[];
-    filteredTickets: any[]
     filter$: any;
 
     constructor(private ticketService: TicketService, 
@@ -22,7 +21,6 @@ export class TicketComponent implements OnInit {
 
     ticketList(){
         this.tickets = this.ticketService.getTicketList();
-        this.filteredTickets = this.utilityService.groupBy(this.tickets, 'name');
     }
 
     ngOnInit() { 

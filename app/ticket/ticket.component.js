@@ -21,7 +21,6 @@ var TicketComponent = (function () {
     }
     TicketComponent.prototype.ticketList = function () {
         this.tickets = this.ticketService.getTicketList();
-        this.filteredTickets = this.utilityService.groupBy(this.tickets, 'name');
     };
     TicketComponent.prototype.ngOnInit = function () {
         this.filter$ = this.filterByNameService.filterWatch();

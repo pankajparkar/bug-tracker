@@ -18,11 +18,9 @@ var WorklogComponent = (function () {
         this.worklogService = worklogService;
         this.utilityService = utilityService;
         this.filterByNameService = filterByNameService;
-        this.filteredWorklogs = [];
     }
     WorklogComponent.prototype.woklogList = function () {
         this.worklogs = this.worklogService.getWorklogList();
-        this.filteredWorklogs = this.utilityService.groupBy(this.worklogs, 'name');
         console.log(this.filteredWorklogs);
     };
     WorklogComponent.prototype.ngOnInit = function () {

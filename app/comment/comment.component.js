@@ -24,7 +24,6 @@ var CommentComponent = (function () {
     };
     CommentComponent.prototype.ngOnInit = function () {
         this.getCommentList();
-        this.filteredComments = this.utilityService.groupBy(this.comments, 'name');
     };
     return CommentComponent;
 }());

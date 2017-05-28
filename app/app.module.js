@@ -26,6 +26,7 @@ var ticket_service_1 = require("./ticket/ticket.service");
 var comment_service_1 = require("./comment/comment.service");
 var worklog_service_1 = require("./worklog/worklog.service");
 var utility_service_1 = require("./shared/utility.service");
+var group_by_pipe_1 = require("./shared/group-by.pipe");
 var AppModule = (function () {
     function AppModule() {
         this.name = 'Title';
@@ -39,7 +40,7 @@ AppModule = __decorate([
             app_component_1.AppComponent, demo_component_1.DemoComponent, ticket_component_1.TicketComponent,
             sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, comment_component_1.CommentComponent,
             worklog_component_1.WorklogComponent, filter_by_name_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent,
-            profile_component_1.ProfileComponent
+            profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
         ],
         providers: [
             comment_service_1.CommentService, ticket_service_1.TicketService, worklog_service_1.WorklogService,

@@ -12,7 +12,6 @@ import { FilterByNameService } from './../filter-by-name/filter-by-name.service'
 
 export class WorklogComponent implements OnInit {
     worklogs: any[];
-    filteredWorklogs: any[]=[];
     filter$: any;
 
     constructor(
@@ -23,7 +22,6 @@ export class WorklogComponent implements OnInit {
 
     woklogList(){
         this.worklogs = this.worklogService.getWorklogList();
-        this.filteredWorklogs = this.utilityService.groupBy(this.worklogs, 'name');
         console.log(this.filteredWorklogs)
     }
 

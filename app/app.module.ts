@@ -29,7 +29,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
         AppComponent, DemoComponent, TicketComponent, 
         SidebarComponent, NavbarComponent, CommentComponent, 
         WorklogComponent, FilterByNameComponent, DashboardComponent,
-        ProfileComponent
+        ProfileComponent, GroupByPipe
     ],
     providers: [
         CommentService, TicketService, WorklogService,
