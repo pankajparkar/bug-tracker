@@ -21,6 +21,7 @@ import { TicketService } from './ticket/ticket.service';
 import { CommentService } from './comment/comment.service';
 import { WorklogService } from './worklog/worklog.service';
 import { UtilityService } from './shared/utility.service';
+import { GroupByPipe } from './shared/group-by.pipe';
 
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
@@ -30,7 +31,10 @@ import { UtilityService } from './shared/utility.service';
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent
     ],
-    providers: [CommentService, TicketService, WorklogService, UtilityService, FilterByNameService],
+    providers: [
+        CommentService, TicketService, WorklogService,
+        UtilityService, FilterByNameService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule{

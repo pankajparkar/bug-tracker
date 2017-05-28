@@ -5,15 +5,8 @@
       <h3 class="card-header">
         {{worklog.key}}
       </h3>
-      <div class="card-block">
-        <div class="card-block" *ngFor="let val of worklog.values">
-          <p class="card-text">{{val.description}}</p>
-        </div>
-        <!--<ul class="list-group">
-          <li class="list-group-item" *ngFor="let item of list">
-            {{item.name}}
-          </li>
-        </ul>-->
+      <div class="card-block" *ngFor="let val of worklog.values">
+        <p class="card-text">{{val.description}}</p>
     </div>
   </div>
 </div>

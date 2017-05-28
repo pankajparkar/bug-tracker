@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { WorklogService } from './worklog.service';
 import { UtilityService } from '../shared/utility.service';
+import { FilterByNameService } from './../filter-by-name/filter-by-name.service';
 
 @Component({
     selector: 'worklog',
@@ -12,7 +13,13 @@ import { UtilityService } from '../shared/utility.service';
 export class WorklogComponent implements OnInit {
     worklogs: any[];
     filteredWorklogs: any[]=[];
-    constructor(private worklogService: WorklogService, private utilityService: UtilityService) { }
+    filter$: any;
+
+    constructor(
+        private worklogService: WorklogService, 
+        private utilityService: UtilityService, 
+        private filterByNameService:FilterByNameService
+    ) { }
 
     woklogList(){
         this.worklogs = this.worklogService.getWorklogList();
@@ -21,6 +28,7 @@ export class WorklogComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.filter$ = this.filterByNameService.filterWatch();
         this.woklogList();
      }
 }

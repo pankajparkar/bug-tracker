@@ -41,7 +41,10 @@ AppModule = __decorate([
             worklog_component_1.WorklogComponent, filter_by_name_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent,
             profile_component_1.ProfileComponent
         ],
-        providers: [comment_service_1.CommentService, ticket_service_1.TicketService, worklog_service_1.WorklogService, utility_service_1.UtilityService, filter_by_name_service_1.FilterByNameService],
+        providers: [
+            comment_service_1.CommentService, ticket_service_1.TicketService, worklog_service_1.WorklogService,
+            utility_service_1.UtilityService, filter_by_name_service_1.FilterByNameService
+        ],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
