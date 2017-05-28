@@ -10,8 +10,10 @@ var core_1 = require("@angular/core");
 var GroupByPipe = (function () {
     function GroupByPipe() {
     }
-    GroupByPipe.prototype.transform = function (collection, prop) {
+    GroupByPipe.prototype.transform = function (collection, prop, filterBy) {
         var propertiesUniqueArray = [];
+        if (filterBy)
+            collection = collection.filter(function (item) { return item[prop] === filterBy; });
         collection.forEach(function (item) {
             var val = item[prop];
             if (propertiesUniqueArray.indexOf(val) === -1)
