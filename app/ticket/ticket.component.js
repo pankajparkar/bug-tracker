@@ -14,16 +14,16 @@ var ticket_service_1 = require("./ticket.service");
 var utility_service_1 = require("../shared/utility.service");
 var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var TicketComponent = (function () {
-    function TicketComponent(ticketService, utilityService, FilterByService) {
+    function TicketComponent(ticketService, utilityService, filterByService) {
         this.ticketService = ticketService;
         this.utilityService = utilityService;
-        this.FilterByService = FilterByService;
+        this.filterByService = filterByService;
     }
     TicketComponent.prototype.ticketList = function () {
         this.tickets = this.ticketService.getTicketList();
     };
     TicketComponent.prototype.ngOnInit = function () {
-        this.filterName$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.filterByService.filterNameObservable();
         this.ticketList();
     };
     return TicketComponent;

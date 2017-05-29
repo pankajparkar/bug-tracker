@@ -17,7 +17,7 @@ export class WorklogComponent implements OnInit {
     constructor(
         private worklogService: WorklogService, 
         private utilityService: UtilityService, 
-        private FilterByService:FilterByService
+        private filterByService:FilterByService
     ) { }
 
     woklogList(){
@@ -25,7 +25,7 @@ export class WorklogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.filterName$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.filterByService.filterNameObservable();
         this.woklogList();
      }
 }

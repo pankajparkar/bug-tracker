@@ -16,7 +16,7 @@ export class TicketComponent implements OnInit {
 
     constructor(private ticketService: TicketService, 
         private utilityService: UtilityService,
-        private FilterByService: FilterByService
+        private filterByService: FilterByService
     ) { }
 
     ticketList(){
@@ -24,7 +24,7 @@ export class TicketComponent implements OnInit {
     }
 
     ngOnInit() { 
-        this.filterName$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.filterByService.filterNameObservable();
         this.ticketList();
     }
 }

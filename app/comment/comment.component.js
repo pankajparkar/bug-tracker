@@ -14,17 +14,17 @@ var comment_service_1 = require("./comment.service");
 var utility_service_1 = require("../shared/utility.service");
 var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var CommentComponent = (function () {
-    function CommentComponent(commentService, utilityService, FilterByService) {
+    function CommentComponent(commentService, utilityService, filterByService) {
         this.commentService = commentService;
         this.utilityService = utilityService;
-        this.FilterByService = FilterByService;
+        this.filterByService = filterByService;
     }
     CommentComponent.prototype.getCommentList = function () {
         this.comments = this.commentService.getCommentList();
     };
     CommentComponent.prototype.ngOnInit = function () {
         this.getCommentList();
-        this.filterName$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.filterByService.filterNameObservable();
     };
     return CommentComponent;
 }());

@@ -12,15 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var filter_by_service_1 = require("./filter-by.service");
 var FilterByNameComponent = (function () {
-    function FilterByNameComponent(FilterByService) {
-        this.FilterByService = FilterByService;
-        this.items = ["Pankaj", "Kamlesh", "Tom"];
+    function FilterByNameComponent(filterByService) {
+        this.filterByService = filterByService;
+        this.items = [{ name: "Pankaj" }, { name: "Kamlesh" }, { name: "Tom" }];
     }
-    FilterByNameComponent.prototype.setFilter = function (val) {
-        this.FilterByService.emitFilterNameValue(val);
+    FilterByNameComponent.prototype.setFilter = function (item) {
+        this.items.forEach(function (i) { return i.active = false; });
+        item.active = true;
+        this.filterByService.emitFilterNameValue(item.name);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
-        this.obs$ = this.FilterByService.filterNameObservable();
+        this.obs$ = this.filterByService.filterNameObservable();
         this.obs$.subscribe(function (data) { return console.log('Test', data); });
     };
     return FilterByNameComponent;

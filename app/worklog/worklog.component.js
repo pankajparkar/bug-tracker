@@ -14,16 +14,16 @@ var worklog_service_1 = require("./worklog.service");
 var utility_service_1 = require("../shared/utility.service");
 var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var WorklogComponent = (function () {
-    function WorklogComponent(worklogService, utilityService, FilterByService) {
+    function WorklogComponent(worklogService, utilityService, filterByService) {
         this.worklogService = worklogService;
         this.utilityService = utilityService;
-        this.FilterByService = FilterByService;
+        this.filterByService = filterByService;
     }
     WorklogComponent.prototype.woklogList = function () {
         this.worklogs = this.worklogService.getWorklogList();
     };
     WorklogComponent.prototype.ngOnInit = function () {
-        this.filterName$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.filterByService.filterNameObservable();
         this.woklogList();
     };
     return WorklogComponent;

@@ -18,7 +18,7 @@ export class CommentComponent implements OnInit {
     constructor(
         private commentService: CommentService, 
         private utilityService:UtilityService,
-        private FilterByService:FilterByService
+        private filterByService:FilterByService
     ) { }
 
     getCommentList(){
@@ -27,6 +27,6 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() { 
         this.getCommentList();
-        this.filterName$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.filterByService.filterNameObservable();
     }
 }
