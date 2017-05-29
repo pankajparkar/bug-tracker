@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-block">
-    <div class="card" *ngFor="let worklog of worklogs | groupBy: 'name': (filterName$ | async)">
+    <div class="card" *ngFor="let groupedWorklog of worklogs | groupBy: 'name': (filterName$ | async)">
       <h3 class="card-header" *ngIf="!(filterName$ | async)">
-        {{worklog.key}}
+        {{groupedWorklog.key}}
       </h3>
-      <div class="card-block" *ngFor="let val of worklog.values">
-        <p class="card-text">{{val.description}}</p>
-    </div>
+      <ul class="list-group" *ngFor="let val of groupedWorklog.values">
+        <li class="list-group-item">{{val.description}}</li>
+      </ul>
   </div>
 </div>

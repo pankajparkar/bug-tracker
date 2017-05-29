@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-block">
-    <div class="card" *ngFor="let comment of comments | groupBy: 'name': (filterName$ | async)">
+    <div class="card" *ngFor="let groupedComment of comments | groupBy: 'name': (filterName$ | async)">
       <h3 class="card-header" *ngIf="!(filterName$ | async)">
-        {{comment.key}}
+        {{groupedComment.key}}
       </h3>
-      <div class="card-block" *ngFor="let val of comment.values">
-        <p class="card-text">{{val.comment}}</p>
-      </div>
+      <ul class="list-group" *ngFor="let val of groupedComment.values">
+        <li class="list-group-item">{{val.comment}}</li>
+      </ul>
     </div>
   </div>
 </div>
