@@ -1,12 +1,17 @@
-<div class="card">
-  <div class="card-block">
-    <div class="card" *ngFor="let groupedComment of comments | groupBy: 'name': (filterName$ | async)">
-      <h3 class="card-header" *ngIf="!(filterName$ | async)">
-        {{groupedComment.key}}
-      </h3>
-      <ul class="list-group" *ngFor="let val of groupedComment.values">
-        <li class="list-group-item">{{val.comment}}</li>
-      </ul>
-    </div>
+<div class="panel panel-info" *ngFor="let groupedComment of comments | groupBy: 'name': (filterName$ | async)">
+  <div class="panel-heading" *ngIf="!(filterName$ | async)">
+    <h3 class="panel-title" >
+      <i clas="glyphicon" 
+        [ngClass]="{'glyphicon-chevron-up': groupedComment.isActive, 'glyphicon-chevron-down': !groupedComment.isActive}">
+      </i>
+      {{groupedComment.key}}
+    </h3>
+  </div>
+  <div class="panel-body" >
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let val of groupedComment.values">
+        {{val.comment}}
+      </li>
+    </ul>
   </div>
 </div>

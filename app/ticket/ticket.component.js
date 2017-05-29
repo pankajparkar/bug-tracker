@@ -21,6 +21,7 @@ var TicketComponent = (function () {
     }
     TicketComponent.prototype.ticketList = function () {
         this.tickets = this.ticketService.getTicketList();
+        console.log(module.id);
     };
     TicketComponent.prototype.ngOnInit = function () {
         this.filterName$ = this.filterByService.filterNameObservable();

@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GroupByPipe implements PipeTransform {
     transform(collection: any[], prop: string, filterBy: string){
         let propertiesUniqueArray: any[] = [];
+        if(!collection) collection = [];
         if(filterBy) collection = collection.filter(item => item[prop] === filterBy);
         collection.forEach((item)=> {
             let val = item[prop];

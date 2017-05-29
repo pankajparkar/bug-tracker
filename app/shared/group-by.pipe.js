@@ -12,6 +12,8 @@ var GroupByPipe = (function () {
     }
     GroupByPipe.prototype.transform = function (collection, prop, filterBy) {
         var propertiesUniqueArray = [];
+        if (!collection)
+            collection = [];
         if (filterBy)
             collection = collection.filter(function (item) { return item[prop] === filterBy; });
         collection.forEach(function (item) {

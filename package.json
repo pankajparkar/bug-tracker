@@ -2,7 +2,7 @@
   "name": "angular-kickstart",
   "version": "1.0.0",
   "scripts": {
-    "dev": "lite-server"
+    "start": "lite-server"
   },
   "dependencies": {
     "@angular/common": "~4.1.0",
@@ -15,7 +15,7 @@
     "@angular/router": "~4.1.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.25",
     "angular-in-memory-web-api": "~0.3.0",
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "3.3.7",
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
