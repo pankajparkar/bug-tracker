@@ -10,10 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var Subject_1 = require("rxjs/Subject");
+var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var FilterByNameService = (function () {
     function FilterByNameService() {
-        this.filterName$ = new Subject_1.Subject();
+        this.filterName$ = new BehaviorSubject_1.BehaviorSubject(null);
     }
     FilterByNameService.prototype.emitValue = function (selectedName) {
         this.filterName$.next(selectedName);

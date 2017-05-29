@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { publishLast } from 'rxjs/operator/publishLast';
+import { publish } from 'rxjs/operator/publish';
 
 @Injectable()
 export class FilterByNameService {
-    private filterName$ = new Subject<string>();
+    private filterName$ = new BehaviorSubject<string>(null);
 
     constructor() { }
 
