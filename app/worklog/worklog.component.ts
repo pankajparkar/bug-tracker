@@ -12,7 +12,7 @@ import { FilterByService } from './../filter-by/filter-by.service';
 
 export class WorklogComponent implements OnInit {
     worklogs: any[];
-    filter$: any;
+    filterName$: any;
 
     constructor(
         private worklogService: WorklogService, 
@@ -25,7 +25,7 @@ export class WorklogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.filter$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.FilterByService.filterNameObservable();
         this.woklogList();
      }
 }

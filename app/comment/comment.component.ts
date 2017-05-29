@@ -13,7 +13,7 @@ import { FilterByService } from './../filter-by/filter-by.service';
 
 export class CommentComponent implements OnInit {
     comments: any[];
-    filter$: any;
+    filterName$: any;
 
     constructor(
         private commentService: CommentService, 
@@ -27,6 +27,6 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() { 
         this.getCommentList();
-        this.filter$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.FilterByService.filterNameObservable();
     }
 }

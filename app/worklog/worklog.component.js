@@ -23,7 +23,7 @@ var WorklogComponent = (function () {
         this.worklogs = this.worklogService.getWorklogList();
     };
     WorklogComponent.prototype.ngOnInit = function () {
-        this.filter$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.FilterByService.filterNameObservable();
         this.woklogList();
     };
     return WorklogComponent;

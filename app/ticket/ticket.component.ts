@@ -12,7 +12,7 @@ import { FilterByService } from './../filter-by/filter-by.service';
 
 export class TicketComponent implements OnInit {
     tickets: any[];
-    filter$: any;
+    filterName$: any;
 
     constructor(private ticketService: TicketService, 
         private utilityService: UtilityService,
@@ -24,7 +24,7 @@ export class TicketComponent implements OnInit {
     }
 
     ngOnInit() { 
-        this.filter$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.FilterByService.filterNameObservable();
         this.ticketList();
     }
 }

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-block">
-    <div class="card" *ngFor="let comment of comments | groupBy: 'name': (filter$ | async)">
-      <h3 class="card-header" *ngIf="!(filter$ | async)">
+    <div class="card" *ngFor="let comment of comments | groupBy: 'name': (filterName$ | async)">
+      <h3 class="card-header" *ngIf="!(filterName$ | async)">
         {{comment.key}}
       </h3>
       <div class="card-block" *ngFor="let val of comment.values">

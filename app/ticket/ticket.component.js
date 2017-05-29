@@ -23,7 +23,7 @@ var TicketComponent = (function () {
         this.tickets = this.ticketService.getTicketList();
     };
     TicketComponent.prototype.ngOnInit = function () {
-        this.filter$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.FilterByService.filterNameObservable();
         this.ticketList();
     };
     return TicketComponent;

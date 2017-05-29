@@ -24,7 +24,7 @@ var CommentComponent = (function () {
     };
     CommentComponent.prototype.ngOnInit = function () {
         this.getCommentList();
-        this.filter$ = this.FilterByService.filterNameObservable();
+        this.filterName$ = this.FilterByService.filterNameObservable();
     };
     return CommentComponent;
 }());
