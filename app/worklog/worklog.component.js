@@ -12,18 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var worklog_service_1 = require("./worklog.service");
 var utility_service_1 = require("../shared/utility.service");
-var filter_by_name_service_1 = require("./../filter-by-name/filter-by-name.service");
+var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var WorklogComponent = (function () {
-    function WorklogComponent(worklogService, utilityService, filterByNameService) {
+    function WorklogComponent(worklogService, utilityService, FilterByService) {
         this.worklogService = worklogService;
         this.utilityService = utilityService;
-        this.filterByNameService = filterByNameService;
+        this.FilterByService = FilterByService;
     }
     WorklogComponent.prototype.woklogList = function () {
         this.worklogs = this.worklogService.getWorklogList();
     };
     WorklogComponent.prototype.ngOnInit = function () {
-        this.filter$ = this.filterByNameService.filterWatch();
+        this.filter$ = this.FilterByService.filterNameObservable();
         this.woklogList();
     };
     return WorklogComponent;
@@ -36,7 +36,7 @@ WorklogComponent = __decorate([
     }),
     __metadata("design:paramtypes", [worklog_service_1.WorklogService,
         utility_service_1.UtilityService,
-        filter_by_name_service_1.FilterByNameService])
+        filter_by_service_1.FilterByService])
 ], WorklogComponent);
 exports.WorklogComponent = WorklogComponent;
 //# sourceMappingURL=worklog.component.js.map

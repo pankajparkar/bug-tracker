@@ -13,8 +13,8 @@ import { TicketComponent } from './ticket/ticket.component';
 import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorklogComponent } from './worklog/worklog.component';
-import { FilterByNameComponent } from './filter-by-name/filter-by-name.component';
-import { FilterByNameService } from './filter-by-name/filter-by-name.service';
+import { FilterByNameComponent } from './filter-by/filter-by.component';
+import { FilterByService } from './filter-by/filter-by.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TicketService } from './ticket/ticket.service';
@@ -33,7 +33,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
     ],
     providers: [
         CommentService, TicketService, WorklogService,
-        UtilityService, FilterByNameService
+        UtilityService, FilterByService
     ],
     bootstrap: [AppComponent]
 })

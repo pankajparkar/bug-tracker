@@ -5,16 +5,25 @@ import { publishLast } from 'rxjs/operator/publishLast';
 import { publish } from 'rxjs/operator/publish';
 
 @Injectable()
-export class FilterByNameService {
+export class FilterByService {
     private filterName$ = new BehaviorSubject<string>(null);
+    private filterStatus$ = new BehaviorSubject<string>(null);
 
     constructor() { }
 
-    emitValue(selectedName: string){
+    emitFilterNameValue(selectedName: string){
         this.filterName$.next(selectedName);
     }
 
-    filterWatch(): Observable<string> {
+    emitStatusValue(selectedName: string){
+        this.filterStatus$.next(selectedName);
+    }
+
+    filterNameObservable(): Observable<string> {
         return this.filterName$.asObservable();
+    }
+
+    filterStatusObservable(): Observable<string> {
+        return this.filterStatus$.asObservable();
     }
 }

@@ -12,19 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var comment_service_1 = require("./comment.service");
 var utility_service_1 = require("../shared/utility.service");
-var filter_by_name_service_1 = require("./../filter-by-name/filter-by-name.service");
+var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var CommentComponent = (function () {
-    function CommentComponent(commentService, utilityService, filterByNameService) {
+    function CommentComponent(commentService, utilityService, FilterByService) {
         this.commentService = commentService;
         this.utilityService = utilityService;
-        this.filterByNameService = filterByNameService;
+        this.FilterByService = FilterByService;
     }
     CommentComponent.prototype.getCommentList = function () {
         this.comments = this.commentService.getCommentList();
     };
     CommentComponent.prototype.ngOnInit = function () {
         this.getCommentList();
-        this.filter$ = this.filterByNameService.filterWatch();
+        this.filter$ = this.FilterByService.filterNameObservable();
     };
     return CommentComponent;
 }());
@@ -36,7 +36,7 @@ CommentComponent = __decorate([
     }),
     __metadata("design:paramtypes", [comment_service_1.CommentService,
         utility_service_1.UtilityService,
-        filter_by_name_service_1.FilterByNameService])
+        filter_by_service_1.FilterByService])
 ], CommentComponent);
 exports.CommentComponent = CommentComponent;
 //# sourceMappingURL=comment.component.js.map

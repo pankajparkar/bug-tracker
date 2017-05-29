@@ -12,18 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ticket_service_1 = require("./ticket.service");
 var utility_service_1 = require("../shared/utility.service");
-var filter_by_name_service_1 = require("./../filter-by-name/filter-by-name.service");
+var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var TicketComponent = (function () {
-    function TicketComponent(ticketService, utilityService, filterByNameService) {
+    function TicketComponent(ticketService, utilityService, FilterByService) {
         this.ticketService = ticketService;
         this.utilityService = utilityService;
-        this.filterByNameService = filterByNameService;
+        this.FilterByService = FilterByService;
     }
     TicketComponent.prototype.ticketList = function () {
         this.tickets = this.ticketService.getTicketList();
     };
     TicketComponent.prototype.ngOnInit = function () {
-        this.filter$ = this.filterByNameService.filterWatch();
+        this.filter$ = this.FilterByService.filterNameObservable();
         this.ticketList();
     };
     return TicketComponent;
@@ -36,7 +36,7 @@ TicketComponent = __decorate([
     }),
     __metadata("design:paramtypes", [ticket_service_1.TicketService,
         utility_service_1.UtilityService,
-        filter_by_name_service_1.FilterByNameService])
+        filter_by_service_1.FilterByService])
 ], TicketComponent);
 exports.TicketComponent = TicketComponent;
 //# sourceMappingURL=ticket.component.js.map

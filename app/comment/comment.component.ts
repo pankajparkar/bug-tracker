@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 
 import { CommentService } from './comment.service';
 import { UtilityService } from '../shared/utility.service';
-import { FilterByNameService } from './../filter-by-name/filter-by-name.service';
+import { FilterByService } from './../filter-by/filter-by.service';
 
 @Component({
     selector: 'comment',
@@ -18,7 +18,7 @@ export class CommentComponent implements OnInit {
     constructor(
         private commentService: CommentService, 
         private utilityService:UtilityService,
-        private filterByNameService:FilterByNameService
+        private FilterByService:FilterByService
     ) { }
 
     getCommentList(){
@@ -27,6 +27,6 @@ export class CommentComponent implements OnInit {
 
     ngOnInit() { 
         this.getCommentList();
-        this.filter$ = this.filterByNameService.filterWatch();
+        this.filter$ = this.FilterByService.filterNameObservable();
     }
 }

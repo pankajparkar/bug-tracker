@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FilterByNameService } from './filter-by-name.service'
+import { FilterByService } from './filter-by.service'
 
 @Component({
-    selector: 'filter-by-name',
-    templateUrl: './filter-by-name.component.html',
+    selector: 'filter-by',
+    templateUrl: './filter-by.component.html',
     moduleId: module.id
 })
 
 export class FilterByNameComponent implements OnInit {
     obs$: any;
     items: any[] = ["Pankaj", "Kamlesh", "Tom"]
-    constructor(private filterByNameService: FilterByNameService) { }
+    constructor(private FilterByService: FilterByService) { }
 
     setFilter(val: string){
-        this.filterByNameService.emitValue(val);        
+        this.FilterByService.emitFilterNameValue(val);        
     }
 
     ngOnInit() { 
-        this.obs$ = this.filterByNameService.filterWatch();
+        this.obs$ = this.FilterByService.filterNameObservable();
         this.obs$.subscribe(
             (data: any) => console.log('Test', data)
         )

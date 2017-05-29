@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { WorklogService } from './worklog.service';
 import { UtilityService } from '../shared/utility.service';
-import { FilterByNameService } from './../filter-by-name/filter-by-name.service';
+import { FilterByService } from './../filter-by/filter-by.service';
 
 @Component({
     selector: 'worklog',
@@ -17,7 +17,7 @@ export class WorklogComponent implements OnInit {
     constructor(
         private worklogService: WorklogService, 
         private utilityService: UtilityService, 
-        private filterByNameService:FilterByNameService
+        private FilterByService:FilterByService
     ) { }
 
     woklogList(){
@@ -25,7 +25,7 @@ export class WorklogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.filter$ = this.filterByNameService.filterWatch();
+        this.filter$ = this.FilterByService.filterNameObservable();
         this.woklogList();
      }
 }

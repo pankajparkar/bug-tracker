@@ -11,21 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
-var FilterByNameService = (function () {
-    function FilterByNameService() {
+var FilterByService = (function () {
+    function FilterByService() {
         this.filterName$ = new BehaviorSubject_1.BehaviorSubject(null);
+        this.filterStatus$ = new BehaviorSubject_1.BehaviorSubject(null);
     }
-    FilterByNameService.prototype.emitValue = function (selectedName) {
+    FilterByService.prototype.emitFilterNameValue = function (selectedName) {
         this.filterName$.next(selectedName);
     };
-    FilterByNameService.prototype.filterWatch = function () {
+    FilterByService.prototype.emitStatusValue = function (selectedName) {
+        this.filterStatus$.next(selectedName);
+    };
+    FilterByService.prototype.filterNameObservable = function () {
         return this.filterName$.asObservable();
     };
-    return FilterByNameService;
+    FilterByService.prototype.filterStatusObservable = function () {
+        return this.filterStatus$.asObservable();
+    };
+    return FilterByService;
 }());
-FilterByNameService = __decorate([
+FilterByService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [])
-], FilterByNameService);
-exports.FilterByNameService = FilterByNameService;
-//# sourceMappingURL=filter-by-name.service.js.map
+], FilterByService);
+exports.FilterByService = FilterByService;
+//# sourceMappingURL=filter-by.service.js.map

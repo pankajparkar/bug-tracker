@@ -10,28 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var filter_by_name_service_1 = require("./filter-by-name.service");
+var filter_by_service_1 = require("./filter-by.service");
 var FilterByNameComponent = (function () {
-    function FilterByNameComponent(filterByNameService) {
-        this.filterByNameService = filterByNameService;
+    function FilterByNameComponent(FilterByService) {
+        this.FilterByService = FilterByService;
         this.items = ["Pankaj", "Kamlesh", "Tom"];
     }
     FilterByNameComponent.prototype.setFilter = function (val) {
-        this.filterByNameService.emitValue(val);
+        this.FilterByService.emitFilterNameValue(val);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
-        this.obs$ = this.filterByNameService.filterWatch();
+        this.obs$ = this.FilterByService.filterNameObservable();
         this.obs$.subscribe(function (data) { return console.log('Test', data); });
     };
     return FilterByNameComponent;
 }());
 FilterByNameComponent = __decorate([
     core_1.Component({
-        selector: 'filter-by-name',
-        templateUrl: './filter-by-name.component.html',
+        selector: 'filter-by',
+        templateUrl: './filter-by.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [filter_by_name_service_1.FilterByNameService])
+    __metadata("design:paramtypes", [filter_by_service_1.FilterByService])
 ], FilterByNameComponent);
 exports.FilterByNameComponent = FilterByNameComponent;
-//# sourceMappingURL=filter-by-name.component.js.map
+//# sourceMappingURL=filter-by.component.js.map
