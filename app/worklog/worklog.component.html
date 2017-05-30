@@ -1,13 +1,14 @@
 <div class="panel panel-info" *ngFor="let groupedWorklog of worklogs | groupBy: 'name': (filterName$ | async)">
   <div class="panel-heading" *ngIf="!(filterName$ | async)">
-    <h3 class="panel-title" >
-      <i clas="glyphicon" 
+    <h3 class="panel-title" (click)="groupedWorklog.isActive = !groupedWorklog.isActive">
+      <span class="glyphicon" aria-hidden="true"
         [ngClass]="{'glyphicon-chevron-up': groupedWorklog.isActive, 'glyphicon-chevron-down': !groupedWorklog.isActive}">
-      </i>
+      </span>
       {{groupedWorklog.key}}
+      <span class="badge">{{groupedWorklog.values.length}}</span>
     </h3>
   </div>
-  <div class="panel-body" >
+  <div class="panel-body" [ngClass]="{hide: groupedWorklog.isActive}">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let val of groupedWorklog.values">
         {{val.description}}
