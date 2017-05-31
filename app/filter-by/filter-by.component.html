@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> By name
     <div class="btn-group" role="group" align="left">
       <button *ngFor="let item of items" type="button" [ngClass]="{active: item.active}" 
-        class="btn btn-primary" (click)="setFilter(item)">
+        class="btn btn-primary" (click)="setFilterName(item)">
           {{item.name}}
       </button>
     </div>
@@ -11,9 +11,9 @@
   <div class="col-sm-6 center">
     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> By status
     <div class="btn-group" role="group" align="right">
-      <button *ngFor="let item of items" type="button" [ngClass]="{active: item.active}" 
-        class="btn btn-primary" (click)="setFilter(item)">
-          {{item.name}}
+      <button *ngFor="let status of statuses" type="button" [ngClass]="{active: status.active}" 
+        class="btn btn-primary" (click)="setFilterStatus(status)">
+          {{status.name}}
       </button>
     </div>
   </div>

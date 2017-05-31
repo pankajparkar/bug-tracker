@@ -9,20 +9,26 @@ import { FilterByService } from './filter-by.service'
 })
 
 export class FilterByNameComponent implements OnInit {
-    obs$: any;
+    filterName$: any;
+    filterStatus$: any;
     items: any[] = [{name: "Pankaj"},{name: "Kamlesh"},{name: "Tom"}];
+    statuses: any[] = [{name: "Todo"},{name: "InProgress"},{name: "Completed"}];
     constructor(private filterByService: FilterByService) { }
 
-    setFilter(item: any){
+    setFilterName(item: any){
         this.items.forEach(i => i.active = false);
         item.active = true;
         this.filterByService.emitFilterNameValue(item.name);        
     }
 
+    setFilterStatus(status: any){
+        this.statuses.forEach(i => i.active = false);
+        status.active = true;
+        this.filterByService.emitStatusValue(status.name);        
+    }
+
     ngOnInit() { 
-        this.obs$ = this.filterByService.filterNameObservable();
-        this.obs$.subscribe(
-            (data: any) => console.log('Test', data)
-        )
+        this.filterName$ = this.filterByService.filterNameObservable();
+        this.filterStatus$ = this.filterByService.filterStatusObservable();
     }
 }

@@ -15,15 +15,21 @@ var FilterByNameComponent = (function () {
     function FilterByNameComponent(filterByService) {
         this.filterByService = filterByService;
         this.items = [{ name: "Pankaj" }, { name: "Kamlesh" }, { name: "Tom" }];
+        this.statuses = [{ name: "Todo" }, { name: "InProgress" }, { name: "Completed" }];
     }
-    FilterByNameComponent.prototype.setFilter = function (item) {
+    FilterByNameComponent.prototype.setFilterName = function (item) {
         this.items.forEach(function (i) { return i.active = false; });
         item.active = true;
         this.filterByService.emitFilterNameValue(item.name);
     };
+    FilterByNameComponent.prototype.setFilterStatus = function (status) {
+        this.statuses.forEach(function (i) { return i.active = false; });
+        status.active = true;
+        this.filterByService.emitStatusValue(status.name);
+    };
     FilterByNameComponent.prototype.ngOnInit = function () {
-        this.obs$ = this.filterByService.filterNameObservable();
-        this.obs$.subscribe(function (data) { return console.log('Test', data); });
+        this.filterName$ = this.filterByService.filterNameObservable();
+        this.filterStatus$ = this.filterByService.filterStatusObservable();
     };
     return FilterByNameComponent;
 }());
