@@ -21,7 +21,6 @@ export class TicketComponent implements OnInit {
 
     ticketList(){
         this.tickets = this.ticketService.getTicketList();
-        console.log(module.id)
     }
 
     ngOnInit() { 

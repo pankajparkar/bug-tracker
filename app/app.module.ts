@@ -10,6 +10,8 @@ import { DemoComponent } from './demo/demo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
+import { TicketDetailsService } from './ticket-details/ticket-details.service';
 import { CommentComponent } from './comment/comment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorklogComponent } from './worklog/worklog.component';
@@ -27,14 +29,14 @@ import { GroupByPipe } from './shared/group-by.pipe';
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
     declarations: [
-        AppComponent, DemoComponent, TicketComponent, WelcomeComponent,
+        AppComponent, DemoComponent, TicketComponent, WelcomeComponent, TicketDetailsComponent,
         SidebarComponent, NavbarComponent, CommentComponent, 
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent, GroupByPipe
     ],
     providers: [
         CommentService, TicketService, WorklogService,
-        UtilityService, FilterByService
+        UtilityService, FilterByService, TicketDetailsService
     ],
     bootstrap: [AppComponent]
 })

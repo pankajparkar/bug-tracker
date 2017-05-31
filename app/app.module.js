@@ -15,6 +15,8 @@ var demo_component_1 = require("./demo/demo.component");
 var app_routing_module_1 = require("./app-routing.module");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
 var ticket_component_1 = require("./ticket/ticket.component");
+var ticket_details_component_1 = require("./ticket-details/ticket-details.component");
+var ticket_details_service_1 = require("./ticket-details/ticket-details.service");
 var comment_component_1 = require("./comment/comment.component");
 var navbar_component_1 = require("./navbar/navbar.component");
 var worklog_component_1 = require("./worklog/worklog.component");
@@ -38,14 +40,14 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
         declarations: [
-            app_component_1.AppComponent, demo_component_1.DemoComponent, ticket_component_1.TicketComponent, welcome_component_1.WelcomeComponent,
+            app_component_1.AppComponent, demo_component_1.DemoComponent, ticket_component_1.TicketComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent,
             sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, comment_component_1.CommentComponent,
             worklog_component_1.WorklogComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent,
             profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
         ],
         providers: [
             comment_service_1.CommentService, ticket_service_1.TicketService, worklog_service_1.WorklogService,
-            utility_service_1.UtilityService, filter_by_service_1.FilterByService
+            utility_service_1.UtilityService, filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

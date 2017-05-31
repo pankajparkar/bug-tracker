@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var demo_component_1 = require("./demo/demo.component");
 var ticket_component_1 = require("./ticket/ticket.component");
+var ticket_details_component_1 = require("./ticket-details/ticket-details.component");
 var comment_component_1 = require("./comment/comment.component");
 var worklog_component_1 = require("./worklog/worklog.component");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
@@ -21,6 +22,7 @@ var routes = [
         path: 'dashboard', component: dashboard_component_1.DashboardComponent,
         children: [
             { path: 'ticket', component: ticket_component_1.TicketComponent },
+            { path: 'ticket-details/:ticketId', component: ticket_details_component_1.TicketDetailsComponent },
             { path: 'comment', component: comment_component_1.CommentComponent },
             { path: 'worklog', component: worklog_component_1.WorklogComponent },
             { path: '', redirectTo: 'ticket', pathMatch: "full" },
@@ -29,7 +31,6 @@ var routes = [
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'demo', component: demo_component_1.DemoComponent },
     { path: '', redirectTo: "welcome", pathMatch: 'full' },
-    { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

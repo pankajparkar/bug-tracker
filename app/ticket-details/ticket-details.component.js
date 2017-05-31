@@ -10,33 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ticket_service_1 = require("./ticket.service");
+var router_1 = require("@angular/router");
+var ticket_details_service_1 = require("./ticket-details.service");
 var utility_service_1 = require("../shared/utility.service");
-var filter_by_service_1 = require("./../filter-by/filter-by.service");
-var TicketComponent = (function () {
-    function TicketComponent(ticketService, utilityService, filterByService) {
+var TicketDetailsComponent = (function () {
+    function TicketDetailsComponent(ticketService, utilityService, activatedRoute) {
         this.ticketService = ticketService;
         this.utilityService = utilityService;
-        this.filterByService = filterByService;
+        this.activatedRoute = activatedRoute;
     }
-    TicketComponent.prototype.ticketList = function () {
-        this.tickets = this.ticketService.getTicketList();
+    TicketDetailsComponent.prototype.ngOnInit = function () {
+        this.ticketId = this.activatedRoute.snapshot.params['ticketId'];
+        //We will make an service/API call to retrieve correct ticket.
     };
-    TicketComponent.prototype.ngOnInit = function () {
-        this.filterName$ = this.filterByService.filterNameObservable();
-        this.ticketList();
-    };
-    return TicketComponent;
+    return TicketDetailsComponent;
 }());
-TicketComponent = __decorate([
+TicketDetailsComponent = __decorate([
     core_1.Component({
-        selector: 'ticket',
-        templateUrl: './ticket.component.html',
+        selector: 'ticket-details',
+        templateUrl: './ticket-details.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [ticket_service_1.TicketService,
+    __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
         utility_service_1.UtilityService,
-        filter_by_service_1.FilterByService])
-], TicketComponent);
-exports.TicketComponent = TicketComponent;
-//# sourceMappingURL=ticket.component.js.map
+        router_1.ActivatedRoute])
+], TicketDetailsComponent);
+exports.TicketDetailsComponent = TicketDetailsComponent;
+//# sourceMappingURL=ticket-details.component.js.map
