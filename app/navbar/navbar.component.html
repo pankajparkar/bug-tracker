@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -14,6 +14,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li [ngClass]="{ 'active': rla3.isActive }">
+          <a routerLinkActive [routerLink]="'welcome'" #rla3="routerLinkActive">Welcome</a>
+        </li>
         <li [ngClass]="{ 'active': rla1.isActive }">
           <a routerLinkActive [routerLink]="'dashboard'" #rla1="routerLinkActive">Dashboard</a>
         </li>
@@ -28,5 +31,6 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+  </div><!-- /.container -->
 </nav>
+

@@ -11,7 +11,7 @@
   <div class="panel-body" [ngClass]="{hide: groupedTicket.isActive}">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let val of groupedTicket.values">
-        <a [routerLink]="['../', 'ticket-details', val.id]">{{val.description}}</a>
+        <a [routerLink]="['../ticket-details', val.id]">{{val.description}}</a>
       </li>
     </ul>
   </div>
