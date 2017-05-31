@@ -14,19 +14,22 @@ var comment_component_1 = require("./comment/comment.component");
 var worklog_component_1 = require("./worklog/worklog.component");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
+var welcome_component_1 = require("./welcome/welcome.component");
 var routes = [
+    { path: 'welcome', component: welcome_component_1.WelcomeComponent },
     {
         path: 'dashboard', component: dashboard_component_1.DashboardComponent,
         children: [
             { path: 'ticket', component: ticket_component_1.TicketComponent },
             { path: 'comment', component: comment_component_1.CommentComponent },
             { path: 'worklog', component: worklog_component_1.WorklogComponent },
-            { path: '', redirectTo: 'ticket', pathMatch: "full" }
+            { path: '', redirectTo: 'ticket', pathMatch: "full" },
         ]
     },
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'demo', component: demo_component_1.DemoComponent },
-    { path: '', redirectTo: "dashboard", pathMatch: 'full' },
+    { path: '', redirectTo: "welcome", pathMatch: 'full' },
+    { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -35,8 +38,9 @@ var AppRoutingModule = (function () {
 }());
 AppRoutingModule = __decorate([
     core_1.NgModule({
-        imports: [router_1.RouterModule.forRoot(routes, { useHash: true
-            })],
+        imports: [
+            router_1.RouterModule.forRoot(routes, { useHash: true })
+        ],
         exports: [router_1.RouterModule]
     })
 ], AppRoutingModule);

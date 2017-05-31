@@ -17,6 +17,7 @@ import { FilterByNameComponent } from './filter-by/filter-by.component';
 import { FilterByService } from './filter-by/filter-by.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 import { TicketService } from './ticket/ticket.service';
 import { CommentService } from './comment/comment.service';
 import { WorklogService } from './worklog/worklog.service';
@@ -26,7 +27,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
     declarations: [
-        AppComponent, DemoComponent, TicketComponent, 
+        AppComponent, DemoComponent, TicketComponent, WelcomeComponent,
         SidebarComponent, NavbarComponent, CommentComponent, 
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent, GroupByPipe

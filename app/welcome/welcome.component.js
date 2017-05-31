@@ -10,26 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var SidebarComponent = (function () {
-    function SidebarComponent() {
+var WelcomeComponent = (function () {
+    function WelcomeComponent() {
     }
-    SidebarComponent.prototype.ngOnInit = function () {
-        this.list = [
-            { name: 'Welcome', url: 'welcome' },
-            { name: 'Ticket', url: ['dashboard', 'ticket'] },
-            { name: 'Comment', url: ['dashboard', 'comment'] },
-            { name: 'Work Log', url: ['dashboard', 'worklog'] },
-        ];
+    WelcomeComponent.prototype.ngOnInit = function () {
     };
-    return SidebarComponent;
+    return WelcomeComponent;
 }());
-SidebarComponent = __decorate([
+WelcomeComponent = __decorate([
     core_1.Component({
-        selector: 'sidebar',
-        templateUrl: './sidebar.component.html',
+        selector: 'welcome',
+        templateUrl: './welcome.component.html',
         moduleId: module.id
     }),
     __metadata("design:paramtypes", [])
-], SidebarComponent);
-exports.SidebarComponent = SidebarComponent;
-//# sourceMappingURL=sidebar.component.js.map
+], WelcomeComponent);
+exports.WelcomeComponent = WelcomeComponent;
+//# sourceMappingURL=welcome.component.js.map
