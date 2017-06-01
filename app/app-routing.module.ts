@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'demo', component: DemoComponent },
   { path: '', redirectTo: "welcome", pathMatch: 'full' },
-  //{ path: '**', redirectTo: 'welcome', pathMatch: "full" }
+  { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
 
 @NgModule({

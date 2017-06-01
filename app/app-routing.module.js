@@ -31,6 +31,7 @@ var routes = [
     { path: 'profile', component: profile_component_1.ProfileComponent },
     { path: 'demo', component: demo_component_1.DemoComponent },
     { path: '', redirectTo: "welcome", pathMatch: 'full' },
+    { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
