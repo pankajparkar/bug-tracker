@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { TicketComponent } from './ticket/ticket.component';
+import { TicketListComponent } from './ticket/ticket-list.component';
+import { TicketKanbanComponent } from './ticket/ticket-kanban.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { TicketDetailsService } from './ticket-details/ticket-details.service';
 import { CommentComponent } from './comment/comment.component';
@@ -29,7 +30,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
     declarations: [
-        AppComponent, DemoComponent, TicketComponent, WelcomeComponent, TicketDetailsComponent,
+        AppComponent, DemoComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent,
         SidebarComponent, NavbarComponent, CommentComponent, 
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent, GroupByPipe

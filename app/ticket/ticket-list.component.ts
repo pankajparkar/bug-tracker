@@ -5,12 +5,12 @@ import { UtilityService } from '../shared/utility.service'
 import { FilterByService } from './../filter-by/filter-by.service';
 
 @Component({
-    selector: 'ticket',
-    templateUrl: './ticket.component.html',
+    selector: 'ticket-list',
+    templateUrl: './ticket-list.component.html',
     moduleId: module.id
 })
 
-export class TicketComponent implements OnInit {
+export class TicketListComponent implements OnInit {
     tickets: any[];
     filterName$: any;
 

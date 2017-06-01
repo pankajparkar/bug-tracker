@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DemoComponent } from './demo/demo.component';
-import { TicketComponent } from './ticket/ticket.component';
+import { TicketListComponent } from './ticket/ticket-list.component';
+import { TicketKanbanComponent } from './ticket/ticket-kanban.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { CommentComponent } from './comment/comment.component';
 import { WorklogComponent } from './worklog/worklog.component';
@@ -15,9 +16,9 @@ const routes: Routes = [
   { 
     path: 'dashboard', component: DashboardComponent, 
     children : [
-      { path: 'ticket', component: TicketComponent },
+      { path: 'ticket-list', component: TicketListComponent },
+      { path: 'ticket-kanban', component: TicketKanbanComponent },
       { path: 'ticket-details/:ticketId', component: TicketDetailsComponent },
-      { path: 'comment', component: CommentComponent },
       { path: 'worklog', component: WorklogComponent },
       { path: '', redirectTo: 'ticket', pathMatch: "full" },
     ]

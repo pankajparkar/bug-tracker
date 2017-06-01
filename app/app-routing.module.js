@@ -9,9 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var demo_component_1 = require("./demo/demo.component");
-var ticket_component_1 = require("./ticket/ticket.component");
+var ticket_list_component_1 = require("./ticket/ticket-list.component");
+var ticket_kanban_component_1 = require("./ticket/ticket-kanban.component");
 var ticket_details_component_1 = require("./ticket-details/ticket-details.component");
-var comment_component_1 = require("./comment/comment.component");
 var worklog_component_1 = require("./worklog/worklog.component");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
@@ -21,9 +21,9 @@ var routes = [
     {
         path: 'dashboard', component: dashboard_component_1.DashboardComponent,
         children: [
-            { path: 'ticket', component: ticket_component_1.TicketComponent },
+            { path: 'ticket-list', component: ticket_list_component_1.TicketListComponent },
+            { path: 'ticket-kanban', component: ticket_kanban_component_1.TicketKanbanComponent },
             { path: 'ticket-details/:ticketId', component: ticket_details_component_1.TicketDetailsComponent },
-            { path: 'comment', component: comment_component_1.CommentComponent },
             { path: 'worklog', component: worklog_component_1.WorklogComponent },
             { path: '', redirectTo: 'ticket', pathMatch: "full" },
         ]
