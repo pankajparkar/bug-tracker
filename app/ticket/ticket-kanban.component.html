@@ -1,18 +1,23 @@
-<div class="panel panel-info" *ngFor="let groupedTicket of tickets | groupBy: 'name': (filterName$ | async)">
-  <div class="panel-heading">
-    <h3 class="panel-title" (click)="groupedTicket.isActive = !groupedTicket.isActive">
-      <span class="glyphicon" aria-hidden="true"
-        [ngClass]="{'glyphicon-chevron-up': groupedTicket.isActive, 'glyphicon-chevron-down': !groupedTicket.isActive}">
-      </span>
-      {{groupedTicket.key}}
-      <span class="badge">{{groupedTicket.values.length}}</span>
-    </h3>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="row" *ngFor="let groupedTicket of tickets | groupBy: 'name': (filterName$ | async)">
+      <div class="col-sm-12" *ngFor="let val of groupedTicket.values">
+        <div class="well well-sm">Test</div>
+      </div>
+    </div>
   </div>
-  <div class="panel-body">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let val of groupedTicket.values">
-        <a [routerLink]="['../ticket-details', val.id]">{{val.description}}</a>
-      </li>
-    </ul>
+  <div class="col-sm-4">
+    <div class="row" *ngFor="let groupedTicket of tickets | groupBy: 'name': (filterName$ | async)">
+      <div class="col-sm-12" *ngFor="let val of groupedTicket.values">
+        <div class="well well-sm">Test</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="row" *ngFor="let groupedTicket of tickets | groupBy: 'name': (filterName$ | async)">
+      <div class="col-sm-12" *ngFor="let val of groupedTicket.values">
+        <div class="well well-sm">Test</div>
+      </div>
+    </div>
   </div>
 </div>
