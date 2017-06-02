@@ -14,7 +14,7 @@ var filter_by_service_1 = require("./filter-by.service");
 var FilterByNameComponent = (function () {
     function FilterByNameComponent(filterByService) {
         this.filterByService = filterByService;
-        this.items = [{ name: "Pankaj" }, { name: "Kamlesh" }, { name: "Tom" }];
+        this.items = [{ name: "Alex" }, { name: "John" }, { name: "Tom" }];
     }
     FilterByNameComponent.prototype.setFilterName = function (item) {
         this.items.forEach(function (i) { return i.active = false; });

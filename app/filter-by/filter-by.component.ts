@@ -10,7 +10,7 @@ import { FilterByService } from './filter-by.service'
 
 export class FilterByNameComponent implements OnInit {
     filterName$: any;
-    items: any[] = [{name: "Pankaj"},{name: "Kamlesh"},{name: "Tom"}];
+    items: any[] = [{name: "Alex"},{name: "John"},{name: "Tom"}];
     constructor(private filterByService: FilterByService) { }
 
     setFilterName(item: any){
