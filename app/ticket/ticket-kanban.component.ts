@@ -12,16 +12,29 @@ import { FilterByService } from './../filter-by/filter-by.service';
 
 export class TicketKanbanComponent implements OnInit {
     tickets: any[];
+    todoItems: any[];
+    inProgressItems: any[];
+    completedItems: any[];
     filterName$: any;
+    statuses: any[] = [{Id: 1, Name: "Todo"}, {Id: 2, Name: "In Progress"}, { Id: 3, Name: "Complete"}]
 
     constructor(private ticketService: TicketService, 
         private utilityService: UtilityService,
         private filterByService: FilterByService
     ) { }
 
+    filterTicketsByStatus(){
+        this.todoItems = this.tickets.filter(ticket => ticket.Status === 1);
+        this.inProgressItems = this.tickets.filter(ticket => ticket.Status === 2);
+        this.completedItems = this.tickets.filter(ticket => ticket.Status === 3);
+    }
+
     ticketList(){
         this.ticketService.getTicketList().subscribe(
-            tickets => this.tickets = tickets
+            tickets => {
+                this.tickets = tickets;
+                this.filterTicketsByStatus();
+            }
         );
     }
 

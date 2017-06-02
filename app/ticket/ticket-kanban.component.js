@@ -18,10 +18,19 @@ var TicketKanbanComponent = (function () {
         this.ticketService = ticketService;
         this.utilityService = utilityService;
         this.filterByService = filterByService;
+        this.statuses = [{ Id: 1, Name: "Todo" }, { Id: 2, Name: "In Progress" }, { Id: 3, Name: "Complete" }];
     }
+    TicketKanbanComponent.prototype.filterTicketsByStatus = function () {
+        this.todoItems = this.tickets.filter(function (ticket) { return ticket.Status === 1; });
+        this.inProgressItems = this.tickets.filter(function (ticket) { return ticket.Status === 2; });
+        this.completedItems = this.tickets.filter(function (ticket) { return ticket.Status === 3; });
+    };
     TicketKanbanComponent.prototype.ticketList = function () {
         var _this = this;
-        this.ticketService.getTicketList().subscribe(function (tickets) { return _this.tickets = tickets; });
+        this.ticketService.getTicketList().subscribe(function (tickets) {
+            _this.tickets = tickets;
+            _this.filterTicketsByStatus();
+        });
     };
     TicketKanbanComponent.prototype.ngOnInit = function () {
         this.filterName$ = this.filterByService.filterNameObservable();
