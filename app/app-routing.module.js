@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var demo_component_1 = require("./demo/demo.component");
 var ticket_list_component_1 = require("./ticket/ticket-list.component");
 var ticket_kanban_component_1 = require("./ticket/ticket-kanban.component");
 var ticket_details_component_1 = require("./ticket-details/ticket-details.component");
@@ -29,7 +28,6 @@ var routes = [
         ]
     },
     { path: 'profile', component: profile_component_1.ProfileComponent },
-    { path: 'demo', component: demo_component_1.DemoComponent },
     { path: '', redirectTo: "welcome", pathMatch: 'full' },
     { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];

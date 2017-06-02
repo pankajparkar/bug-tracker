@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { DemoComponent } from './demo/demo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TicketListComponent } from './ticket/ticket-list.component';
@@ -30,7 +29,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
 @NgModule({
     imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
     declarations: [
-        AppComponent, DemoComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent,
+        AppComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent,
         SidebarComponent, NavbarComponent, CommentComponent, 
         WorklogComponent, FilterByNameComponent, DashboardComponent,
         ProfileComponent, GroupByPipe

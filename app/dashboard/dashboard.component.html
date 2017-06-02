@@ -1,9 +1,18 @@
-<div class="card">
-  <div class="card-block">
-    <div class="text-center">
-      <filter-by></filter-by>
+<div class="row">
+  <div class="col-sm-2">
+      <sidebar></sidebar>
+  </div>
+  <div class="col-sm-10">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <filter-by></filter-by>
+        <br>
+        <br>
+      </div>
+      <br/>
+      <div class="col-sm-12">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-    <br/>
-    <router-outlet></router-outlet>
   </div>
 </div>

@@ -11,7 +11,6 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var app_component_1 = require("./app.component");
-var demo_component_1 = require("./demo/demo.component");
 var app_routing_module_1 = require("./app-routing.module");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
 var ticket_list_component_1 = require("./ticket/ticket-list.component");
@@ -41,7 +40,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
         declarations: [
-            app_component_1.AppComponent, demo_component_1.DemoComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent,
+            app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent,
             sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, comment_component_1.CommentComponent,
             worklog_component_1.WorklogComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent,
             profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe

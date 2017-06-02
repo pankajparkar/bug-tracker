@@ -15,8 +15,8 @@ var SidebarComponent = (function () {
     }
     SidebarComponent.prototype.ngOnInit = function () {
         this.list = [
-            { name: 'List View', url: ['dashboard', 'ticket-list'] },
-            { name: 'Kanban View', url: ['dashboard', 'ticket-kanban'] }
+            { name: 'List View', url: ['/dashboard', 'ticket-list'] },
+            { name: 'Kanban View', url: ['/dashboard', 'ticket-kanban'] }
         ];
     };
     return SidebarComponent;

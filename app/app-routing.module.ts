@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DemoComponent } from './demo/demo.component';
 import { TicketListComponent } from './ticket/ticket-list.component';
 import { TicketKanbanComponent } from './ticket/ticket-kanban.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
     ]
   },
   { path: 'profile', component: ProfileComponent },
-  { path: 'demo', component: DemoComponent },
   { path: '', redirectTo: "welcome", pathMatch: 'full' },
   { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
