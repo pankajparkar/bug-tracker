@@ -17,17 +17,13 @@ var ticket_list_component_1 = require("./ticket/ticket-list.component");
 var ticket_kanban_component_1 = require("./ticket/ticket-kanban.component");
 var ticket_details_component_1 = require("./ticket-details/ticket-details.component");
 var ticket_details_service_1 = require("./ticket-details/ticket-details.service");
-var comment_component_1 = require("./comment/comment.component");
 var navbar_component_1 = require("./navbar/navbar.component");
-var worklog_component_1 = require("./worklog/worklog.component");
 var filter_by_component_1 = require("./filter-by/filter-by.component");
 var filter_by_service_1 = require("./filter-by/filter-by.service");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
 var ticket_service_1 = require("./ticket/ticket.service");
-var comment_service_1 = require("./comment/comment.service");
-var worklog_service_1 = require("./worklog/worklog.service");
 var utility_service_1 = require("./shared/utility.service");
 var group_by_pipe_1 = require("./shared/group-by.pipe");
 var AppModule = (function () {
@@ -41,13 +37,11 @@ AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
         declarations: [
             app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent,
-            sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, comment_component_1.CommentComponent,
-            worklog_component_1.WorklogComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent,
-            profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
+            sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
         ],
         providers: [
-            comment_service_1.CommentService, ticket_service_1.TicketService, worklog_service_1.WorklogService,
-            utility_service_1.UtilityService, filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService
+            ticket_service_1.TicketService, utility_service_1.UtilityService,
+            filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

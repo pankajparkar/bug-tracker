@@ -7,7 +7,7 @@
         </h4>
       </div>
       <div class="col-sm-12">
-        <div class="alert alert-info" *ngIf="!todoItems.length">
+        <div class="alert alert-info" *ngIf="!todoItems?.length">
           No todo Item(s)
         </div>
       </div>
@@ -38,7 +38,7 @@
         </h4>
       </div>
       <div class="col-sm-12">
-        <div class="alert alert-info" *ngIf="!inProgressItems.length">
+        <div class="alert alert-info" *ngIf="!inProgressItems?.length">
           No In Progress Item(s)
         </div>
       </div>
@@ -69,7 +69,7 @@
         </h4>
       </div>
       <div class="col-sm-12">
-        <div class="alert alert-info" *ngIf="!completedItems.length">
+        <div class="alert alert-info" *ngIf="!completedItems?.length">
           No Completed Item(s)
         </div>
       </div>

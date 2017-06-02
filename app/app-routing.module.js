@@ -11,7 +11,6 @@ var router_1 = require("@angular/router");
 var ticket_list_component_1 = require("./ticket/ticket-list.component");
 var ticket_kanban_component_1 = require("./ticket/ticket-kanban.component");
 var ticket_details_component_1 = require("./ticket-details/ticket-details.component");
-var worklog_component_1 = require("./worklog/worklog.component");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
@@ -23,8 +22,7 @@ var routes = [
             { path: 'ticket-list', component: ticket_list_component_1.TicketListComponent },
             { path: 'ticket-kanban', component: ticket_kanban_component_1.TicketKanbanComponent },
             { path: 'ticket-details/:ticketId', component: ticket_details_component_1.TicketDetailsComponent },
-            { path: 'worklog', component: worklog_component_1.WorklogComponent },
-            { path: '', redirectTo: 'ticket-list', pathMatch: "full" },
+            { path: '', redirectTo: 'ticket-list', pathMatch: "full" }
         ]
     },
     { path: 'profile', component: profile_component_1.ProfileComponent },
