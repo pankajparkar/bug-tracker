@@ -20,7 +20,8 @@ var TicketKanbanComponent = (function () {
         this.filterByService = filterByService;
     }
     TicketKanbanComponent.prototype.ticketList = function () {
-        this.tickets = this.ticketService.getTicketList();
+        var _this = this;
+        this.ticketService.getTicketList().subscribe(function (tickets) { return _this.tickets = tickets; });
     };
     TicketKanbanComponent.prototype.ngOnInit = function () {
         this.filterName$ = this.filterByService.filterNameObservable();

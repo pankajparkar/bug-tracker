@@ -1,8 +1,8 @@
 <div class="panel panel-info" *ngFor="let groupedTicket of tickets | groupBy: 'AssignedTo': (filterName$ | async)">
   <div class="panel-heading">
-    <h3 class="panel-title" (click)="groupedTicket.isActive = !groupedTicket.isActive">
+    <h3 class="panel-title" (click)="groupedTicket.IsActive = !groupedTicket.IsActive">
       <span class="glyphicon" aria-hidden="true"
-        [ngClass]="{'glyphicon-chevron-up': groupedTicket.isActive, 'glyphicon-chevron-down': !groupedTicket.isActive}">
+        [ngClass]="{'glyphicon-chevron-up': groupedTicket.IsActive, 'glyphicon-chevron-down': !groupedTicket.IsActive}">
       </span>
       {{groupedTicket.key}}
       <span class="badge">{{groupedTicket.values.length}}</span>
@@ -11,7 +11,18 @@
   <div class="panel-body">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let val of groupedTicket.values">
-        <a [routerLink]="['../ticket-details', val.Id]">{{val.Title}}</a>
+        <span class="glyphicon" [ngClass]="{
+            'glyphicon-tags': val.Type == 'Feature',
+            'glyphicon-flash': val.Type == 'Bug',
+            'glyphicon-arrow-down': val.Type == 'Minor'
+        }"></span>
+        <a [routerLink]="['../ticket-details', val.Id]">{{val.TicketNumber}}</a> {{val.Title}}
+        <span class="pull-right">
+          <small>
+            Priority
+          </small>
+            <span class="label label-default">{{val.Priority}}</span>
+        </span>
       </li>
     </ul>
   </div>

@@ -20,7 +20,9 @@ export class TicketKanbanComponent implements OnInit {
     ) { }
 
     ticketList(){
-        this.tickets = this.ticketService.getTicketList();
+        this.ticketService.getTicketList().subscribe(
+            tickets => this.tickets = tickets
+        );
     }
 
     ngOnInit() { 
