@@ -20,7 +20,8 @@ var TicketListComponent = (function () {
         this.filterByService = filterByService;
     }
     TicketListComponent.prototype.ticketList = function () {
-        this.tickets = this.ticketService.getTicketList();
+        var _this = this;
+        this.ticketService.getTicketList().subscribe(function (tickets) { return _this.tickets = tickets; });
     };
     TicketListComponent.prototype.ngOnInit = function () {
         this.filterName$ = this.filterByService.filterNameObservable();

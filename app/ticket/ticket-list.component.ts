@@ -20,7 +20,9 @@ export class TicketListComponent implements OnInit {
     ) { }
 
     ticketList(){
-        this.tickets = this.ticketService.getTicketList();
+        this.ticketService.getTicketList().subscribe(
+            (tickets:any) => this.tickets = tickets 
+        );
     }
 
     ngOnInit() { 
