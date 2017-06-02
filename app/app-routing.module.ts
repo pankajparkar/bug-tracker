@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'ticket-kanban', component: TicketKanbanComponent },
       { path: 'ticket-details/:ticketId', component: TicketDetailsComponent },
       { path: 'worklog', component: WorklogComponent },
-      { path: '', redirectTo: 'ticket', pathMatch: "full" },
+      { path: '', redirectTo: 'ticket-list', pathMatch: "full" },
     ]
   },
   { path: 'profile', component: ProfileComponent },

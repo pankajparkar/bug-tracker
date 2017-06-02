@@ -25,7 +25,7 @@ var routes = [
             { path: 'ticket-kanban', component: ticket_kanban_component_1.TicketKanbanComponent },
             { path: 'ticket-details/:ticketId', component: ticket_details_component_1.TicketDetailsComponent },
             { path: 'worklog', component: worklog_component_1.WorklogComponent },
-            { path: '', redirectTo: 'ticket', pathMatch: "full" },
+            { path: '', redirectTo: 'ticket-list', pathMatch: "full" },
         ]
     },
     { path: 'profile', component: profile_component_1.ProfileComponent },
