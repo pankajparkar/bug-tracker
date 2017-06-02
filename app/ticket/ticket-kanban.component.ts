@@ -18,7 +18,8 @@ export class TicketKanbanComponent implements OnInit {
     filterName$: any;
     statuses: any[] = [{Id: 1, Name: "Todo"}, {Id: 2, Name: "In Progress"}, { Id: 3, Name: "Complete"}]
 
-    constructor(private ticketService: TicketService, 
+    constructor(
+        private ticketService: TicketService, 
         private utilityService: UtilityService,
         private filterByService: FilterByService
     ) { }
@@ -29,10 +30,12 @@ export class TicketKanbanComponent implements OnInit {
         this.completedItems = this.tickets.filter(ticket => ticket.Status === 3);
     }
 
-    ticketList(){
+    ticketList(name: string){
+        console.log(name);
         this.ticketService.getTicketList().subscribe(
             tickets => {
                 this.tickets = tickets;
+                if(name) this.tickets = this.tickets.filter(ticket => ticket.AssignedTo === name);
                 this.filterTicketsByStatus();
             }
         );
@@ -40,6 +43,8 @@ export class TicketKanbanComponent implements OnInit {
 
     ngOnInit() { 
         this.filterName$ = this.filterByService.filterNameObservable();
-        this.ticketList();
+        this.filterName$.subscribe(
+            (name: any) => this.ticketList(name)
+        )
     }
 }

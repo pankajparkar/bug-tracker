@@ -25,16 +25,20 @@ var TicketKanbanComponent = (function () {
         this.inProgressItems = this.tickets.filter(function (ticket) { return ticket.Status === 2; });
         this.completedItems = this.tickets.filter(function (ticket) { return ticket.Status === 3; });
     };
-    TicketKanbanComponent.prototype.ticketList = function () {
+    TicketKanbanComponent.prototype.ticketList = function (name) {
         var _this = this;
+        console.log(name);
         this.ticketService.getTicketList().subscribe(function (tickets) {
             _this.tickets = tickets;
+            if (name)
+                _this.tickets = _this.tickets.filter(function (ticket) { return ticket.AssignedTo === name; });
             _this.filterTicketsByStatus();
         });
     };
     TicketKanbanComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.filterName$ = this.filterByService.filterNameObservable();
-        this.ticketList();
+        this.filterName$.subscribe(function (name) { return _this.ticketList(name); });
     };
     return TicketKanbanComponent;
 }());

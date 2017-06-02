@@ -2,3 +2,7 @@ body{
     margin: 0 auto;
     padding: 0;
 }
+
+.border-right{
+    border-right: 1px solid black;
+}
