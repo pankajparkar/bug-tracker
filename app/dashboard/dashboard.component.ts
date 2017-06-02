@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'dashboard',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DashboardComponent implements OnInit {
-    constructor() { }
-
+    constructor(
+        private router: Router, 
+        private location: Location
+    ) { }
+    isTicketDetailsRoute(): boolean{
+        //Find more better way to do it.
+        return this.location.path.toString().indexOf('/dashboard/ticket-details/') > -1;
+    }
     ngOnInit() { }
 }

@@ -10,9 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
+var router_1 = require("@angular/router");
 var DashboardComponent = (function () {
-    function DashboardComponent() {
+    function DashboardComponent(router, location) {
+        this.router = router;
+        this.location = location;
     }
+    DashboardComponent.prototype.isTicketDetailsRoute = function () {
+        //Find more better way to do it.
+        return this.location.path.toString().indexOf('/dashboard/ticket-details/') > -1;
+    };
     DashboardComponent.prototype.ngOnInit = function () { };
     return DashboardComponent;
 }());
@@ -22,7 +30,8 @@ DashboardComponent = __decorate([
         templateUrl: './dashboard.component.html',
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [router_1.Router,
+        common_1.Location])
 ], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
 //# sourceMappingURL=dashboard.component.js.map
