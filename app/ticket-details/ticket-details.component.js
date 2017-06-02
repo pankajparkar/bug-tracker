@@ -14,13 +14,15 @@ var router_1 = require("@angular/router");
 var ticket_details_service_1 = require("./ticket-details.service");
 var utility_service_1 = require("../shared/utility.service");
 var TicketDetailsComponent = (function () {
-    function TicketDetailsComponent(ticketService, utilityService, activatedRoute) {
-        this.ticketService = ticketService;
+    function TicketDetailsComponent(ticketDetailsService, utilityService, activatedRoute) {
+        this.ticketDetailsService = ticketDetailsService;
         this.utilityService = utilityService;
         this.activatedRoute = activatedRoute;
     }
     TicketDetailsComponent.prototype.ngOnInit = function () {
-        this.ticketId = this.activatedRoute.snapshot.params['ticketId'];
+        var _this = this;
+        var ticketId = this.activatedRoute.snapshot.params['ticketId'];
+        this.ticketDetailsService.getTicketDetails(ticketId).subscribe(function (tickets) { return _this.model = tickets.filter(function (t) { return t.Id === Number(ticketId); })[0]; });
         //We will make an service/API call to retrieve correct ticket.
     };
     return TicketDetailsComponent;

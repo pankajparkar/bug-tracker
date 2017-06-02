@@ -11,15 +11,19 @@ import { UtilityService } from '../shared/utility.service';
 })
 
 export class TicketDetailsComponent implements OnInit {
-    ticketId: number;
+    model:any;
 
-    constructor(private ticketService: TicketDetailsService, 
+    constructor(
+        private ticketDetailsService: TicketDetailsService, 
         private utilityService: UtilityService,
         private activatedRoute: ActivatedRoute
     ) { }
 
     ngOnInit() { 
-        this.ticketId = this.activatedRoute.snapshot.params['ticketId'];
+        let ticketId = this.activatedRoute.snapshot.params['ticketId'];
+        this.ticketDetailsService.getTicketDetails(ticketId).subscribe(
+            tickets => this.model = tickets.filter((t: any)=> t.Id === Number(ticketId))[0]
+        )
         //We will make an service/API call to retrieve correct ticket.
     }
 }

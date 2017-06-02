@@ -1,6 +1,11 @@
 <div class="row">
-  <div class="col-sm-4 border-right">
+  <div class="col-sm-4 kanban-view border-right">
     <div class="row">
+      <div class="col-sm-12">
+        <h4 class="text-center">
+          Todo
+        </h4>
+      </div>
       <div class="col-sm-12" *ngFor="let ticket of todoItems">
         <div class="well well-sm">
           <table width="100%">
@@ -20,8 +25,13 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4 border-right">
+  <div class="col-sm-4 kanban-view border-right">
     <div class="row">
+      <div class="col-sm-12">
+        <h4 class="text-center">
+          In Progress
+        </h4>
+      </div>
       <div class="col-sm-12" *ngFor="let ticket of inProgressItems">
         <div class="well well-sm">
           <table width="100%">
@@ -41,8 +51,13 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-4 kanban-view">
     <div class="row">
+      <div class="col-sm-12">
+        <h4 class="text-center">
+          Completed
+        </h4>
+      </div>
       <div class="col-sm-12" *ngFor="let ticket of completedItems">
         <div class="well well-sm">
           <table width="100%">

@@ -10,28 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/filter");
 var TicketDetailsService = (function () {
-    function TicketDetailsService() {
+    function TicketDetailsService(http) {
+        this.http = http;
     }
-    TicketDetailsService.prototype.getTicketDetailsList = function () {
-        return [
-            { id: 1, name: "Pankaj", title: "", description: "This is test 1" },
-            { id: 2, name: "Pankaj", title: "", description: "This is test 2" },
-            { id: 3, name: "Pankaj", title: "", description: "This is test 3" },
-            { id: 4, name: "Pankaj", title: "", description: "This is test 4" },
-            { id: 5, name: "Pankaj", title: "", description: "This is test 5" },
-            { id: 6, name: "Kamlesh", title: "", description: "This is test 5 Kamlesh" },
-            { id: 7, name: "Kamlesh", title: "", description: "This is test 5 Kamlesh" },
-            { id: 8, name: "Kamlesh", title: "", description: "This is test 5 Kamlesh" },
-            { id: 9, name: "Tom", title: "", description: "This is test 9" },
-            { id: 10, name: "Tom", title: "", description: "This is test 10" },
-        ];
+    TicketDetailsService.prototype.getTicketDetails = function (id) {
+        return this.http.get('/api/tickets.json')
+            .map(function (data) { return data.json(); });
     };
     return TicketDetailsService;
 }());
 TicketDetailsService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [http_1.Http])
 ], TicketDetailsService);
 exports.TicketDetailsService = TicketDetailsService;
 //# sourceMappingURL=ticket-details.service.js.map

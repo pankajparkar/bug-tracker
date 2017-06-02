@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'dashboard',
@@ -10,12 +9,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class DashboardComponent implements OnInit {
     constructor(
-        private router: Router, 
         private location: Location
     ) { }
     isTicketDetailsRoute(): boolean{
         //Find more better way to do it.
-        return this.location.path.toString().indexOf('/dashboard/ticket-details/') > -1;
+        return this.location.path().indexOf('/dashboard/ticket-details/') > -1;
     }
     ngOnInit() { }
 }
