@@ -6,6 +6,11 @@
           Todo
         </h4>
       </div>
+      <div class="col-sm-12">
+        <div class="alert alert-info" *ngIf="!todoItems.length">
+          No todo Item(s)
+        </div>
+      </div>
       <div class="col-sm-12" *ngFor="let ticket of todoItems">
         <div class="well well-sm">
           <table width="100%">
@@ -32,6 +37,11 @@
           In Progress
         </h4>
       </div>
+      <div class="col-sm-12">
+        <div class="alert alert-info" *ngIf="!inProgressItems.length">
+          No In Progress Item(s)
+        </div>
+      </div>
       <div class="col-sm-12" *ngFor="let ticket of inProgressItems">
         <div class="well well-sm">
           <table width="100%">
@@ -57,6 +67,11 @@
         <h4 class="text-center">
           Completed
         </h4>
+      </div>
+      <div class="col-sm-12">
+        <div class="alert alert-info" *ngIf="!completedItems.length">
+          No Completed Item(s)
+        </div>
       </div>
       <div class="col-sm-12" *ngFor="let ticket of completedItems">
         <div class="well well-sm">
