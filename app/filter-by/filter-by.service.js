@@ -14,19 +14,12 @@ var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var FilterByService = (function () {
     function FilterByService() {
         this.filterName$ = new BehaviorSubject_1.BehaviorSubject(null);
-        this.filterStatus$ = new BehaviorSubject_1.BehaviorSubject(null);
     }
     FilterByService.prototype.emitFilterNameValue = function (selectedName) {
         this.filterName$.next(selectedName);
     };
-    FilterByService.prototype.emitStatusValue = function (selectedName) {
-        this.filterStatus$.next(selectedName);
-    };
     FilterByService.prototype.filterNameObservable = function () {
         return this.filterName$.asObservable();
-    };
-    FilterByService.prototype.filterStatusObservable = function () {
-        return this.filterStatus$.asObservable();
     };
     return FilterByService;
 }());

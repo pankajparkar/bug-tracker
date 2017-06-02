@@ -7,7 +7,6 @@ import { publish } from 'rxjs/operator/publish';
 @Injectable()
 export class FilterByService {
     private filterName$ = new BehaviorSubject<string>(null);
-    private filterStatus$ = new BehaviorSubject<string>(null);
 
     constructor() { }
 
@@ -15,15 +14,7 @@ export class FilterByService {
         this.filterName$.next(selectedName);
     }
 
-    emitStatusValue(selectedName: string){
-        this.filterStatus$.next(selectedName);
-    }
-
     filterNameObservable(): Observable<string> {
         return this.filterName$.asObservable();
-    }
-
-    filterStatusObservable(): Observable<string> {
-        return this.filterStatus$.asObservable();
     }
 }
