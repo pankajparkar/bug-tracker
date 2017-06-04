@@ -6,8 +6,8 @@ import { FilterByService } from './../filter-by/filter-by.service';
 
 @Component({
     selector: 'ticket-list',
-    templateUrl: './ticket-list.component.html',
-    moduleId: module.id
+    templateUrl: '/app/ticket/ticket-list.component.html',
+    
 })
 
 export class TicketListComponent implements OnInit {

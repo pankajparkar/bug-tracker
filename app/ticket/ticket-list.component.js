@@ -32,8 +32,7 @@ var TicketListComponent = (function () {
 TicketListComponent = __decorate([
     core_1.Component({
         selector: 'ticket-list',
-        templateUrl: './ticket-list.component.html',
-        moduleId: module.id
+        templateUrl: '/app/ticket/ticket-list.component.html',
     }),
     __metadata("design:paramtypes", [ticket_service_1.TicketService,
         utility_service_1.UtilityService,

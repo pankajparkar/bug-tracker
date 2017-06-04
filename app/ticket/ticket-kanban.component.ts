@@ -6,8 +6,8 @@ import { FilterByService } from './../filter-by/filter-by.service';
 
 @Component({
     selector: 'ticket-kanban',
-    templateUrl: './ticket-kanban.component.html',
-    moduleId: module.id
+    templateUrl: '/app/ticket/ticket-kanban.component.html',
+    
 })
 
 export class TicketKanbanComponent implements OnInit {

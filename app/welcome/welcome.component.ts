@@ -3,8 +3,8 @@ import { HttpModule } from '@angular/http';
 
 @Component({
     selector: 'welcome',
-    templateUrl: './welcome.component.html',
-    moduleId: module.id
+    templateUrl: '/app/welcome/welcome.component.html',
+    
 })
 
 export class WelcomeComponent implements OnInit {

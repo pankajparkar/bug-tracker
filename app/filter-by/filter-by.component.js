@@ -29,8 +29,7 @@ var FilterByNameComponent = (function () {
 FilterByNameComponent = __decorate([
     core_1.Component({
         selector: 'filter-by',
-        templateUrl: './filter-by.component.html',
-        moduleId: module.id
+        templateUrl: '/app/filter-by/filter-by.component.html',
     }),
     __metadata("design:paramtypes", [filter_by_service_1.FilterByService])
 ], FilterByNameComponent);

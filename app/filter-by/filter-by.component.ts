@@ -4,8 +4,8 @@ import { FilterByService } from './filter-by.service'
 
 @Component({
     selector: 'filter-by',
-    templateUrl: './filter-by.component.html',
-    moduleId: module.id
+    templateUrl: '/app/filter-by/filter-by.component.html',
+    
 })
 
 export class FilterByNameComponent implements OnInit {

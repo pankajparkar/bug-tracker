@@ -19,8 +19,7 @@ var ProfileComponent = (function () {
 ProfileComponent = __decorate([
     core_1.Component({
         selector: 'profile',
-        templateUrl: './profile.component.html',
-        moduleId: module.id
+        templateUrl: '/app/profile/profile.component.html',
     }),
     __metadata("design:paramtypes", [])
 ], ProfileComponent);

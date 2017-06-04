@@ -45,8 +45,7 @@ var TicketKanbanComponent = (function () {
 TicketKanbanComponent = __decorate([
     core_1.Component({
         selector: 'ticket-kanban',
-        templateUrl: './ticket-kanban.component.html',
-        moduleId: module.id
+        templateUrl: '/app/ticket/ticket-kanban.component.html',
     }),
     __metadata("design:paramtypes", [ticket_service_1.TicketService,
         utility_service_1.UtilityService,

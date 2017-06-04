@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 
 @Component({
     selector: 'dashboard',
-    templateUrl: './dashboard.component.html',
-    moduleId: module.id
+    templateUrl: '/app/dashboard/dashboard.component.html'
+    
 })
 
 export class DashboardComponent implements OnInit {

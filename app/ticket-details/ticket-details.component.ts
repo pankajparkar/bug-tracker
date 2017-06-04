@@ -6,8 +6,8 @@ import { UtilityService } from '../shared/utility.service';
 
 @Component({
     selector: 'ticket-details',
-    templateUrl: './ticket-details.component.html',
-    moduleId: module.id
+    templateUrl: '/app/ticket-details/ticket-details.component.html',
+    
 })
 
 export class TicketDetailsComponent implements OnInit {

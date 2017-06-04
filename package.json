@@ -4,7 +4,9 @@
   "scripts": {
     "start": "lite-server",
     "tsc": "tsc",
-    "tsc:w": "tsc -w"
+    "tsc:w": "tsc -w",
+    "build_prod": "browserify -s main app/main.js > app/bundle.js && npm run minify",
+    "minify": "uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/bundle.min.js"
   },
   "dependencies": {
     "@angular/common": "~4.1.0",
