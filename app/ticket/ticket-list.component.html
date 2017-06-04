@@ -11,18 +11,7 @@
   <div class="panel-body" [ngClass]="{'hide': groupedTicket.IsActive}">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let val of groupedTicket.values">
-        <span class="glyphicon" [ngClass]="{
-            'glyphicon-tags': val.Type == 'Feature',
-            'glyphicon-flash': val.Type == 'Bug',
-            'glyphicon-arrow-down': val.Type == 'Minor'
-        }"></span>
-        <a [routerLink]="['../ticket-details', val.Id]">{{val.TicketNumber}}</a> {{val.Title}}
-        <span class="pull-right">
-          <small>
-            Priority
-          </small>
-            <span class="label label-default">{{val.Priority}}</span>
-        </span>
+        <ticket-item [ticket]="val"></ticket-item>
       </li>
     </ul>
   </div>
