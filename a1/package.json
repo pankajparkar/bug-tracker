@@ -1,33 +1,21 @@
 {
-  "name": "angular-kickstart",
+  "name": "bug-tracker.a1",
   "version": "1.0.0",
   "scripts": {
-    "start": "lite-server",
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
-    "build_prod": "browserify -s main app/main.js > app/bundle.js && npm run minify",
-    "minify": "uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/bundle.min.js"
+    "start": "concurrently \"npm run lite\" ",
+    "lite": "lite-server"
   },
+  "license": "TODO",
   "dependencies": {
-    "@angular/common": "~4.1.0",
-    "@angular/compiler": "~4.1.0",
-    "@angular/core": "~4.1.0",
-    "@angular/forms": "~4.1.0",
-    "@angular/http": "~4.1.0",
-    "@angular/platform-browser": "~4.1.0",
-    "@angular/platform-browser-dynamic": "~4.1.0",
-    "@angular/router": "~4.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.25",
-    "angular-in-memory-web-api": "~0.3.0",
-    "bootstrap": "3.3.7",
-    "core-js": "^2.4.1",
-    "rxjs": "5.0.1",
-    "systemjs": "0.19.40",
-    "zone.js": "^0.8.4"
+    "angular": "^1.6.3",
+    "angular-animate": "^1.6.3",
+    "angular-sanitize": "^1.6.3",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-ui-router": "^0.4.2",
+    "bootstrap": "^3.3.6"
   },
   "devDependencies": {
-    "typescript": "2.2.0",
-    "concurrently": "^3.2.0",
-    "lite-server": "^2.3.0"
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.2.0"
   }
 }
