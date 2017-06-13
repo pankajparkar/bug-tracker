@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h4>Task/Bug Tracker</h4>
+  </div>
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of list" [routerLink]="item.url" routerLinkActive="active">
+        {{item.name}}
+      </li>
+    </ul>
+  </div>
+</div>
