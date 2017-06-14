@@ -3,7 +3,7 @@
 
     function getStates(){
         return [
-            {name: 'welcome',component: 'welcome'},
+            {name: 'welcome', url: '/welcome', template: '<welcome></welcome>'},
         ]
     }
     function ConfigBlock($stateProvider, $urlRouterProvider){
