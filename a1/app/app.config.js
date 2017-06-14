@@ -4,18 +4,12 @@
     function getStates(){
         return [
             {name: 'welcome', url: '/welcome', component: 'welcome'},
-            // { 
-            //     path: 'dashboard', component: DashboardComponent, 
-            //     children : [
-            //     { path: 'ticket-list', component: TicketListComponent },
-            //     { path: 'ticket-kanban', component: TicketKanbanComponent },
-            //     { path: 'ticket-details/:ticketId', component: TicketDetailsComponent },
-            //     { path: '', redirectTo: 'ticket-list', pathMatch: "full" }
-            //     ]
-            // },
-            // { path: 'profile', component: ProfileComponent },
-            // { path: '', redirectTo: "welcome", pathMatch: 'full' },
-            // { path: '**', redirectTo: 'welcome', pathMatch: "full" }
+
+            { name: 'dashboard', url: '/dashboard', component: 'dashboard' },
+            { name: 'dashboard.ticket-list', url: '/ticket-list', component: 'ticketList'},
+            { name: 'dashboard.ticket-kanban', url: '/ticket-kanban', component: 'ticketKanban'},
+
+            { name: 'profile', url: '/profile', component: 'profile' },
         ]
     }
     function ConfigBlock($stateProvider, $urlRouterProvider){

@@ -1,10 +1,10 @@
 (function(window, angular, undefined){
-    filterByController.$inject = [];
+    FilterByController.$inject = [];
 
-    function DashboardController() {
+    function FilterByController() {
         var filterBy = this;
     }
 
     angular.module('bug-tracker')
-        .controller('filterByController', filterByController);
+        .controller('filterByController', FilterByController);
 })(window, angular);
