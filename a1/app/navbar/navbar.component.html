@@ -8,20 +8,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="'welcome'">Bug Tracker</a>
+      <a class="navbar-brand" ui-sref="welcome">Bug Tracker</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li [ngClass]="{ 'active': rla3.isActive }">
-          <a routerLinkActive [routerLink]="'welcome'" #rla3="routerLinkActive">Welcome</a>
+        <li ui-sref-active="active">
+          <a ui-sref="welcome">Welcome</a>
         </li>
-        <li [ngClass]="{ 'active': rla1.isActive }">
-          <a routerLinkActive [routerLink]="'dashboard'" #rla1="routerLinkActive">Dashboard</a>
+        <li ui-sref-active="active">
+          <a ui-sref="dashboard">Dashboard</a>
         </li>
-        <li [ngClass]="{ 'active': rla2.isActive }">
-          <a routerLinkActive [routerLink]="'profile'" #rla2="routerLinkActive">Profile</a>
+        <li ui-sref-active="active">
+          <a ui-sref="profile">Profile</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
