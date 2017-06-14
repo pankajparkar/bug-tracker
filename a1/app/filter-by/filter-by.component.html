@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-12 center">
+    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> 
+    Quick Filters
+    <div class="btn-group" role="group" align="left">
+      <button *ngFor="let item of items" type="button" [ngClass]="{active: item.name == (filterName$ | async)}" 
+        class="btn btn-primary" (click)="setFilterName(item)">
+          {{item.name}}
+      </button>
+      <button class="btn btn-secondary" *ngIf="(this.filterName$ | async)" (click)="setFilterName()">
+        Clear
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</div>

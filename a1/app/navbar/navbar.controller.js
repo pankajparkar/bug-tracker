@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+(function(window, angular, undefined){
+    NavbarController.$inject = [];
 
-@Component({
-    selector: 'navbar',
-    templateUrl: '/app/navbar/navbar.component.html',
-    
-})
+    function NavbarController() {
+        var navbar = this;
+    }
 
-export class NavbarComponent implements OnInit {
-    constructor() { }
-
-    ngOnInit() { }
-}
+    angular.module('bug-tracker')
+        .controller('navbarController', NavbarController);
+})(window, angular);
