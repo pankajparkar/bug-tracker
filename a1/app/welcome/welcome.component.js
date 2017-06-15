@@ -2,6 +2,7 @@
     angular.module('bug-tracker')
         .component('welcome', {
             templateUrl: '/app/welcome/welcome.component.html',
-            controller: 'welcomeController'
+            controller: 'welcomeController',
+            controllerAs: 'welcome'
         });
 })(window, angular);

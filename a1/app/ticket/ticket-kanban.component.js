@@ -2,6 +2,7 @@
     angular.module('bug-tracker')
         .component('ticketKanban', {
             templateUrl: '/app/ticket/ticket-kanban.component.html',
-            controller: 'ticketKanbanController'
+            controller: 'ticketKanbanController',
+            controllerAs: 'ticketKanban'
         });
 })(window, angular);

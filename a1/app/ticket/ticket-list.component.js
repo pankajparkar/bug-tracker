@@ -2,6 +2,7 @@
     angular.module('bug-tracker')
         .component('ticketList', {
             templateUrl: '/app/ticket/ticket-list.component.html',
-            controller: 'ticketListController'
+            controller: 'ticketListController',
+            controllerAs: 'ticketList'
         });
 })(window, angular);

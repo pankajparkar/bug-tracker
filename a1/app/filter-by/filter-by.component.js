@@ -2,6 +2,8 @@
     angular.module('bug-tracker')
         .component('filterBy', {
             templateUrl: '/app/filter-by/filter-by.component.html',
-            controller: 'filterByController'
+            controller: 'filterByController',
+            controllerAs: 'filterBy'
+
         });
 })(window, angular);
