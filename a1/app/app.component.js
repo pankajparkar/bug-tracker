@@ -3,6 +3,6 @@
         .component('mainApp', {
             templateUrl: '/app/app.component.html',
             controller: 'appController',
-            controller: 'main'
+            controllerAs: 'main'
         });
 })(window, angular);

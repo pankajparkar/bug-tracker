@@ -3,6 +3,6 @@
         .component('btNavbar', {
             templateUrl: '/app/navbar/navbar.component.html',
             controller: 'navbarController',
-            controller: 'navbar'
+            controllerAs: 'navbar'
         });
 })(window, angular);

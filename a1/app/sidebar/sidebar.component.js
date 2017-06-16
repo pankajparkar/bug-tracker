@@ -3,6 +3,6 @@
         .component('sidebar', {
             templateUrl: '/app/sidebar/sidebar.component.html',
             controller: 'sidebarController',
-            controller: 'sidebar'
+            controllerAs: 'sidebar'
         });
 })(window, angular);
