@@ -5,8 +5,12 @@
         var dashboard = this;
         dashboard.isTicketDetailsRoute = isTicketDetailsRoute;
 
+        dashboard.$onInit= function() {
+            if($state.current.name === "dashboard") $state.go('dashboard.ticket-list')
+        };
+
         function isTicketDetailsRoute(){
-            return $state.current.url.indexOf('/ticket-details');
+            return $state.current.url.indexOf('/ticket-details') > -1;
         };
     }
 

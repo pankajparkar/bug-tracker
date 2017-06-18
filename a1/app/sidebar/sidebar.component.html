@@ -4,7 +4,7 @@
   </div>
   <div class="col-sm-12">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of list" [routerLink]="item.url" routerLinkActive="active">
+      <li class="list-group-item" ng-repeat="item in sidebar.list" ui-sref="{{item.sref}}" ui-sref-active="active">
         {{item.name}}
       </li>
     </ul>
