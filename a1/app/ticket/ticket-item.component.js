@@ -1,8 +1,10 @@
 (function(window, angular, undefined){
     angular.module('bug-tracker')
         .component('ticketItem', {
-            //templateUrl: '/app/ticket-item/ticket-item.component.html',
-            template: "<span class=\"glyphicon\" [ngClass]=\"{'glyphicon-tags': ticket.Type == 'Feature','glyphicon-flash': ticket.Type == 'Bug','glyphicon-arrow-down': ticket.Type == 'Minor'}\"></span><a [routerLink]=\"['../ticket-details', ticket.Id]\">{{ticket.TicketNumber}}</a> {{ticket.Title}}<span class=\"pull-right\"><small>Priority</small><span class=\"label label-default\">{{ticket.Priority}}</span></span>",
+            bindings: {
+                ticket: '<'
+            },
+            template: "<span class=\"glyphicon\" ng-class=\"{'glyphicon-tags': ticketItem.ticket.Type == 'Feature','glyphicon-flash': ticketItem.ticket.Type == 'Bug','glyphicon-arrow-down': ticketItem.ticket.Type == 'Minor'}\"></span><a ui-sref=\"dashboard.ticket-details({ticketId: ticketItem.ticket.Id}})\">{{ticketItem.ticket.TicketNumber}}</a> {{ticketItem.ticket.Title}}<span class=\"pull-right\"><small>Priority</small><span class=\"label label-default\">{{ticketItem.ticket.Priority}}</span></span>",
             controller: 'ticketItemController',
             controllerAs: 'ticketItem'
         });

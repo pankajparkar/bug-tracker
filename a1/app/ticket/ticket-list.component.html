@@ -1,17 +1,17 @@
-<div class="panel panel-info" *ngFor="let groupedTicket of tickets | groupBy: 'AssignedTo': (filterName$ | async)">
+<div class="panel panel-info" ng-repeat="groupedTicket in ticketList.tickets | groupBy: 'AssignedTo'">
   <div class="panel-heading">
-    <h3 class="panel-title" (click)="groupedTicket.IsActive = !groupedTicket.IsActive">
+    <h3 class="panel-title" ng-click="groupedTicket.IsActive = !groupedTicket.IsActive">
       <span class="glyphicon" aria-hidden="true"
-        [ngClass]="{'glyphicon-chevron-up': groupedTicket.IsActive, 'glyphicon-chevron-down': !groupedTicket.IsActive}">
+        ng-class="{'glyphicon-chevron-up': groupedTicket.IsActive, 'glyphicon-chevron-down': !groupedTicket.IsActive}">
       </span>
       {{groupedTicket.key}}
       <span class="badge">{{groupedTicket.values.length}}</span>
     </h3>
   </div>
-  <div class="panel-body" [ngClass]="{'hide': groupedTicket.IsActive}">
+  <div class="panel-body" ng-lass="{'hide': groupedTicket.IsActive}">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let val of groupedTicket.values">
-        <ticket-item [ticket]="val"></ticket-item>
+      <li class="list-group-item" ng-repeat="val in groupedTicket.values">
+        <ticket-item ticket="val"></ticket-item>
       </li>
     </ul>
   </div>

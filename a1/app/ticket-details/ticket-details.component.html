@@ -1,38 +1,38 @@
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">
-      <b>{{model?.TicketNumber}}</b>: {{model?.Title}}
+      <b>{{ticketDetails.model.TicketNumber}}</b>: {{ticketDetails.model.Title}}
     </h3>
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-sm-6">
-        <label>Assign to: </label>{{model?.AssignedTo}}
+        <label>Assign to: </label>{{ticketDetails.model.AssignedTo}}
       </div> 
       <div class="col-sm-6">
-        <label>Status: </label>{{model?.Status}}
+        <label>Status: </label>{{ticketDetails.model.Status}}
       </div> 
       <div class="col-sm-6">
         <label>Type: </label>
         <span class="glyphicon" [ngClass]="{
-            'glyphicon-tags': model?.Type == 'Feature',
-            'glyphicon-flash': model?.Type == 'Bug',
-            'glyphicon-arrow-down': model?.Type == 'Minor'
+            'glyphicon-tags': ticketDetails.model.Type == 'Feature',
+            'glyphicon-flash': ticketDetails.model.Type == 'Bug',
+            'glyphicon-arrow-down': ticketDetails.model.Type == 'Minor'
         }"></span>
-        {{model?.Type}}
+        {{ticketDetails.model.Type}}
       </div> 
       <div class="col-sm-6">
-        <label>Priority: </label>{{model?.Priority}}
+        <label>Priority: </label>{{ticketDetails.model.Priority}}
       </div> 
       <div class="col-sm-6">
-        <label>Resolution: </label>{{model?.Resolution}}
+        <label>Resolution: </label>{{ticketDetails.model.Resolution}}
       </div> 
       <br>
       <br>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <label>Description: </label>{{model?.Description}}
+        <label>Description: </label>{{ticketDetails.model.Description}}
       </div> 
     </div>
     <div class="row">

@@ -8,6 +8,7 @@
             { name: 'dashboard', url: '/dashboard', component: 'dashboard' },
             { name: 'dashboard.ticket-list', url: '/ticket-list', component: 'ticketList'},
             { name: 'dashboard.ticket-kanban', url: '/ticket-kanban', component: 'ticketKanban'},
+            { name: 'dashboard.ticket-details', url: '/ticket-details/:ticketId', component: 'ticketDetails'},
 
             { name: 'profile', url: '/profile', component: 'profile' },
         ]
