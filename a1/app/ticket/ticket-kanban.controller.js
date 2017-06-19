@@ -9,9 +9,9 @@
         ticketKanban.$onInit = $onInit;
 
         function filterTicketsByStatus(){
-            ticketKanban.todoItems = this.tickets.filter(function(ticket) { return ticket.Status === 1; });
-            ticketKanban.inProgressItems = this.tickets.filter(function(ticket) { ticket.Status === 2; });
-            ticketKanban.completedItems = this.tickets.filter(function(ticket) { ticket.Status === 3; });
+            ticketKanban.todoItems = ticketKanban.tickets.filter(function(ticket) { return ticket.Status === 1; });
+            ticketKanban.inProgressItems = ticketKanban.tickets.filter(function(ticket) { return ticket.Status === 2; });
+            ticketKanban.completedItems = ticketKanban.tickets.filter(function(ticket) { return ticket.Status === 3; });
         }
 
         function ticketList(name){
@@ -26,6 +26,8 @@
 
         function $onInit() { 
             ticketList();
+
+            //TODO search based on filter change
             //ticketKanban.filterName = this.filterByService.filterNameObservable();
             // ticketKanban.filterName$.subscribe(
             //     (name) => ticketKanban.ticketList(name)

@@ -7,17 +7,17 @@
         </h4>
       </div>
       <div class="col-sm-12">
-        <div class="alert alert-info" ng-if="!todoItem.todoItems.length">
+        <div class="alert alert-info" ng-if="!ticketKanban.todoItems.length">
           No <b>Todo</b> Item(s)
         </div>
       </div>
-      <div class="col-sm-12" ng-repeat="ticket in todoItem.todoItems">
+      <div class="col-sm-12" ng-repeat="ticket in ticketKanban.todoItems">
         <div class="well well-sm">
           <table width="100%">
             <small>
               <tr>
                 <td width="40px">
-                  <a ui-sref="dashboard.ticket-details(ticket.Id)">{{ticket.TicketNumber}}</a>
+                  <a ui-sref="dashboard.ticket-details({tickedId: ticket.Id})">{{ticket.TicketNumber}}</a>
                   <span class="label label-default">{{ticket.AssignedTo}}</span>
                 </td>
                 <td>
@@ -69,7 +69,7 @@
         </h4>
       </div>
       <div class="col-sm-12">
-        <div class="alert alert-info" *ngIf="!ticketKanban.completedItems.length">
+        <div class="alert alert-info" ng-if="!ticketKanban.completedItems.length">
           No <b>Completed</b> Item(s)
         </div>
       </div>
