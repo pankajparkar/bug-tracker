@@ -8,13 +8,12 @@
         function getTickets(){
             ticketService.getTicketList().then(
                 function(tickets) { 
-                    ticketList.tickets = $filter('groupBy')(tickets, 'AssignedTo');
+                    ticketList.tickets = $filter('groupBy')(tickets, 'AssignedTo', filterByService.getSelectedName());
                 }
             );
         }
 
-        function $onInit() { 
-            //this.filterName$ = this.filterByService.filterNameObservable();
+        function $onInit() {
             getTickets();
         }
     }

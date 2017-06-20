@@ -1,20 +1,34 @@
 (function(window, angular, undefined){
-    FilterByController.$inject = [];
+    FilterByController.$inject = ['filterByService'];
 
-    function FilterByController() {
+    function FilterByController(filterByService) {
         var filterBy = this;
-        filterBy.filterName;
-        filterBy.items = [{name: "Alex"},{name: "John"},{name: "Tom"}];
 
         filterBy.setFilterName = setFilterName;
 
         function setFilterName(item){
-            this.items.forEach(i => i.active = false);
+            filterBy.names.forEach(i => i.active = false);
             let value = item? item.name: item;
-            //this.filterByService.emitFilterNameValue(value);        
+            filterByService.setSelectedName(value);        
+        }
+
+        function getFilterNames(){
+            return filterByService.getNames().then(function(names){
+                filterBy.names = names;
+            });
+        };
+
+        function selectAccurateFilters(){
+            var selectedName = filterByService.getSelectedName();
+            if(selectedName && filterBy.names){
+                filter.names.forEach(function(item){
+                    item.active = item.name === selectedName.name;
+                });
+            }
         }
 
         filterBy.$onInit = function() { 
+            getFilterNames().then(selectAccurateFilters);
             //this.filterName = this.filterByService.filterNameObservable();
         }
     }

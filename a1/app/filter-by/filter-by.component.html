@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> 
     Quick Filters
     <div class="btn-group" role="group" align="left">
-      <button ng-repeat="item in filterBy.items" type="button" ng-class="{active: item.name == filterName }" 
+      <button ng-repeat="item in filterBy.names" type="button" ng-class="{active: item.name == filterName }" 
         class="btn btn-primary" ng-click="filterBy.setFilterName(item)">
           {{item.name}}
       </button>
