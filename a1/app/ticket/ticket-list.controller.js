@@ -1,14 +1,14 @@
 (function(window, angular, undefined){
-    TicketListController.$inject = ['filterByService', 'ticketService'];
+    TicketListController.$inject = ['filterByService', 'ticketService', '$filter'];
 
-    function TicketListController(filterByService, ticketService) {
+    function TicketListController(filterByService, ticketService, $filter) {
         var ticketList = this;
         ticketList.$onInit = $onInit;
 
         function getTickets(){
             ticketService.getTicketList().then(
                 function(tickets) { 
-                    ticketList.tickets = tickets;
+                    ticketList.tickets = $filter('groupBy')(tickets, 'AssignedTo');
                 }
             );
         }

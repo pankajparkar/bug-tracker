@@ -4,7 +4,7 @@
             bindings: {
                 ticket: '<'
             },
-            template: "<span class=\"glyphicon\" ng-class=\"{'glyphicon-tags': ticketItem.ticket.Type == 'Feature','glyphicon-flash': ticketItem.ticket.Type == 'Bug','glyphicon-arrow-down': ticketItem.ticket.Type == 'Minor'}\"></span><a ui-sref=\"dashboard.ticket-details({ticketId: ticketItem.ticket.Id}})\">{{ticketItem.ticket.TicketNumber}}</a> {{ticketItem.ticket.Title}}<span class=\"pull-right\"><small>Priority</small><span class=\"label label-default\">{{ticketItem.ticket.Priority}}</span></span>",
+            templateUrl: "/app/ticket/ticket-item.component.html", 
             controller: 'ticketItemController',
             controllerAs: 'ticketItem'
         });

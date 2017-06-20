@@ -1,4 +1,4 @@
-<div class="panel panel-info" ng-repeat="groupedTicket in ticketList.tickets | groupBy: 'AssignedTo'">
+<div class="panel panel-info" ng-repeat="groupedTicket in ticketList.tickets">
   <div class="panel-heading">
     <h3 class="panel-title" ng-click="groupedTicket.IsActive = !groupedTicket.IsActive">
       <span class="glyphicon" aria-hidden="true"
@@ -8,7 +8,7 @@
       <span class="badge">{{groupedTicket.values.length}}</span>
     </h3>
   </div>
-  <div class="panel-body" ng-lass="{'hide': groupedTicket.IsActive}">
+  <div class="panel-body" ng-class="{'hide': groupedTicket.IsActive}">
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="val in groupedTicket.values">
         <ticket-item ticket="val"></ticket-item>
