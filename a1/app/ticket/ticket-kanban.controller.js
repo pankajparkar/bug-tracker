@@ -1,12 +1,13 @@
 (function(window, angular, undefined){
-    TicketKanbanController.$inject = ['ticketService'];
+    TicketKanbanController.$inject = ['ticketService', 'filterByService', '$rootScope'];
 
-    function TicketKanbanController(ticketService) {
+    function TicketKanbanController(ticketService, filterByService, $rootScope) {
         var ticketKanban = this;
 
         ticketKanban.statuses = [{Id: 1, Name: "Todo"}, {Id: 2, Name: "In Progress"}, { Id: 3, Name: "Complete"}];
         ticketKanban.filterTicketsByStatus = filterTicketsByStatus;
         ticketKanban.$onInit = $onInit;
+        ticketKanban.$onDestroy = $onDestroy;
 
         function filterTicketsByStatus(){
             ticketKanban.todoItems = ticketKanban.tickets.filter(function(ticket) { return ticket.Status === 1; });
@@ -14,25 +15,31 @@
             ticketKanban.completedItems = ticketKanban.tickets.filter(function(ticket) { return ticket.Status === 3; });
         }
 
-        function ticketList(name){
+        function ticketList(item){
             ticketService.getTicketList().then(
                 function(tickets) {
                     ticketKanban.tickets = tickets;
-                    if(name) ticketKanban.tickets = ticketKanban.tickets.filter(ticket => ticket.AssignedTo === name);
+                    if(item) ticketKanban.tickets = ticketKanban.tickets.filter(ticket => ticket.AssignedTo === item.name);
                     filterTicketsByStatus();
                 }
             );
         }
 
-        function $onInit() { 
-            ticketList();
+        function registerEvent(){
+            filterChangedDeregister = $rootScope.$on('filterChanged', function(){
+                filterName = filterByService.getFilter().name;
+                ticketList(filterName);
+            });
+        };
 
-            //TODO search based on filter change
-            //ticketKanban.filterName = this.filterByService.filterNameObservable();
-            // ticketKanban.filterName$.subscribe(
-            //     (name) => ticketKanban.ticketList(name)
-            // )
+        function $onInit() { 
+            registerEvent();
+            ticketList();
         }
+
+        function $onDestroy(){
+            filterChangedDeregister();
+        };
     }
 
     angular.module('bug-tracker')

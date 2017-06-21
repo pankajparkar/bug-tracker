@@ -1,20 +1,23 @@
 (function(window, angular, undefined){
-    FilterByService.$inject = ['$http'];
+    FilterByService.$inject = ['$http', '$rootScope'];
 
-    function FilterByService($http) {
-        var filterByService = this, selectedName;
+    function FilterByService($http, $rootScope) {
+        var filterByService = this, filter = {
+            name: null
+        };
         filterByService.getNames = getNames;
-        filterByService.getSelectedName = getSelectedName;
+        filterByService.getFilter = getFilter;
         filterByService.setSelectedName = setSelectedName;
 
-        //getter over selected Name private variable
-        function getSelectedName() {
-            return selectedName;
+        //getter filter
+        function getFilter() {
+            return angular.copy(filter);
         };
 
-        //setter
+        //setter filter
         function setSelectedName(val) {
-            selectedName = val;
+            filter.name = val;
+            $rootScope.$emit('filterChanged')
         };
         
         function getNames(){

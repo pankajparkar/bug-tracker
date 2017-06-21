@@ -7,9 +7,8 @@
         filterBy.setFilterName = setFilterName;
 
         function setFilterName(item){
-            filterBy.names.forEach(i => i.active = false);
-            let value = item? item.name: item;
-            filterByService.setSelectedName(value);        
+            filterBy.names.forEach(i => i.active = item ? item.name: null === i.name);
+            filterByService.setSelectedName(item);        
         }
 
         function getFilterNames(){
@@ -19,7 +18,7 @@
         };
 
         function selectAccurateFilters(){
-            var selectedName = filterByService.getSelectedName();
+            var selectedName = filterByService.getFilter().name;
             if(selectedName && filterBy.names){
                 filter.names.forEach(function(item){
                     item.active = item.name === selectedName.name;
@@ -29,7 +28,6 @@
 
         filterBy.$onInit = function() { 
             getFilterNames().then(selectAccurateFilters);
-            //this.filterName = this.filterByService.filterNameObservable();
         }
     }
 
