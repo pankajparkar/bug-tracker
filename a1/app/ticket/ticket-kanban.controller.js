@@ -33,8 +33,9 @@
         };
 
         function $onInit() { 
+            filterName = filterByService.getFilter().name;
             registerEvent();
-            ticketList();
+            ticketList(filterName);
         }
 
         function $onDestroy(){
