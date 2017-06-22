@@ -7,7 +7,7 @@
         filterBy.setFilterName = setFilterName;
 
         function setFilterName(item){
-            filterBy.names.forEach(i => i.active = item ? item.name: null === i.name);
+            filterBy.names.forEach(i => i.active = (item ? item.name: null) === i.name);
             filterByService.setSelectedName(item);
             filterBy.selectedName = item;   
         }
@@ -20,7 +20,7 @@
 
         function selectAccurateFilters(){
             filterBy.selectedName = filterByService.getFilter().name;
-            if(selectedName && filterBy.names){
+            if(filterBy.selectedName && filterBy.selectedName.names){
                 filter.names.forEach(function(item){
                     item.active = item.name === selectedName.name;
                 });
