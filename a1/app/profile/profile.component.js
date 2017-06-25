@@ -3,6 +3,6 @@
         .component('profile', {
             templateUrl: '/app/profile/profile.component.html',
             controller: 'profileController',
-            controller: 'profile'
+            controllerAs: 'profile'
         });
 })(window, angular);

@@ -1,5 +1,5 @@
 (function(window, angular, undefined){
-    ConfigBlock.$inject = ['$stateProvider', '$urlRouterProvider'];
+    ConfigBlock.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
     function getStates(){
         return [
@@ -13,12 +13,13 @@
             { name: 'profile', url: '/profile', component: 'profile' },
         ]
     }
-    function ConfigBlock($stateProvider, $urlRouterProvider){
+    function ConfigBlock($stateProvider, $urlRouterProvider, $locationProvider){
         var states = getStates();
         states.forEach(function(state){
             $stateProvider.state(state);
         });
-        $urlRouterProvider.when('', '/welcome')
+        $urlRouterProvider.when('', '/welcome');
+        $locationProvider.hashPrefix('');
     }
     angular.module('bug-tracker')
         .config(ConfigBlock);
