@@ -4,6 +4,7 @@
     function TicektDetailsController($stateParams, ticketService, filterByService) {
         var ticektDetails = this;
         ticektDetails.$onInit = $onInit;
+        ticektDetails.edit = false;
 
         function $onInit() { 
             ticketList(Number($stateParams.ticketId));
