@@ -7,6 +7,7 @@
         ticektDetails.edit = false;
 
         function $onInit() { 
+            ticektDetails.edit = false;
             ticketList(Number($stateParams.ticketId));
         }
 
