@@ -10,31 +10,66 @@
   <div class="panel-body" ng-switch="ticketDetails.edit">
     <form class="row" name="detailsForm" ng-switch-when="true" ng-submit="ticketDetails.submit()">
       <div class="col-sm-6">
-        <label>Assign to: 
-          <input type="text" name="assignedTo" ng-model="ticketDetails.model.AssignTo"/>
-        </label>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label>Assign to:</label>
+          </div>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" name="assignedTo" ng-model="ticketDetails.model.Assigned" />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label>Status: </label>
+          </div>
+          <div class="col-sm-9">
+            <input class="form-control" name="status" type="text" ng-model="ticketDetails.model.Status"/>
+          </div>
+        </div>
       </div> 
       <div class="col-sm-6">
-        <label>Status: <input name="status" type="text" ng-model="ticketDetails.model.Status"/></label>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label>Type: </label>
+          </div>
+          <div class="col-sm-9">
+            <input name="type" class="form-control" type="text" ng-model="ticketDetails.model.Type"/>
+          </div>
+        </div>
       </div> 
       <div class="col-sm-6">
-        <label>Type: <input name="type" type="text" ng-model="ticketDetails.model.Type"/></label></label>
-      </div> 
-      <div class="col-sm-6">
-        <label>Priority: <input name="priority" type="text" ng-model="ticketDetails.model.Priority"/></label></label>
-      </div> 
-      <div class="col-sm-6">
-        <label>Resolution: <input name="resolution" type="text" ng-model="ticketDetails.model.Resolution"/></label></label>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label>Priority: </label>
+          </div>
+          <div class="col-sm-9">
+            <input class="form-control" name="priority" type="text" ng-model="ticketDetails.model.Priority"/>
+          </div>
+        </div>
       </div> 
       <br>
       <br>
       <div class="col-sm-12">
-        <label>
-          Description: <textarea name="assignedTo" class="form-control" type="text" ng-model="ticketDetails.model.Description"></textarea>
-        </label>
+        <div class="row form-group">
+          <div class="col-sm-2">
+            <label>Description:</label>
+          </div>
+          <div class="col-sm-10">
+            <textarea name="assignedTo" class="form-control" type="text" ng-model="ticketDetails.model.Description"></textarea>
+          </div>
+        </div>
       </div>
       <div class="col-sm-12">
-        <label>Attachement(s): </label>No Attachements
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label>Attachement(s): </label>
+          </div>
+          <div class="col-sm-9">
+            No Attachements
+          </div>
+        </div>
       </div> 
     </form>
     <div class="row" ng-switch-when="false">
@@ -55,10 +90,7 @@
       </div> 
       <div class="col-sm-6">
         <label>Priority: </label>{{ticketDetails.model.Priority}}
-      </div> 
-      <div class="col-sm-6">
-        <label>Resolution: </label>{{ticketDetails.model.Resolution}}
-      </div> 
+      </div>
       <br>
       <br>
       <div class="col-sm-12">
