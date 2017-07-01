@@ -2,37 +2,41 @@
   <div class="panel-heading">
     <h3 class="panel-title" style="height: 25px;">
       <b>{{ticketDetails.model.TicketNumber}}</b>: {{ticketDetails.model.Title}}
-      <button class="btn btn-primary btn-sm pull-right" ng-click="ticketDetails.edit = !ticketDetails.edit">Edit</button>
+      <button class="btn btn-primary btn-sm pull-right" ng-click="ticketDetails.edit = !ticketDetails.edit">
+        Edit 
+      </button>
     </h3>
   </div>
   <div class="panel-body" ng-switch="ticketDetails.edit">
-    <div class="row" ng-switch-when="true">
+    <form class="row" name="detailsForm" ng-switch-when="true" ng-submit="ticketDetails.submit()">
       <div class="col-sm-6">
-        <label>Assign to: </label>{{ticketDetails.model.AssignedTo}}
+        <label>Assign to: 
+          <input type="text" name="assignedTo" ng-model="ticketDetails.model.AssignTo"/>
+        </label>
       </div> 
       <div class="col-sm-6">
-        <label>Status: <input type="text" ng-model="ticketDetails.model.Status"/></label>
+        <label>Status: <input name="status" type="text" ng-model="ticketDetails.model.Status"/></label>
       </div> 
       <div class="col-sm-6">
-        <label>Type: <input type="text" ng-model="ticketDetails.model.Type"/></label></label>
+        <label>Type: <input name="type" type="text" ng-model="ticketDetails.model.Type"/></label></label>
       </div> 
       <div class="col-sm-6">
-        <label>Priority: <input type="text" ng-model="ticketDetails.model.Priority"/></label></label>
+        <label>Priority: <input name="priority" type="text" ng-model="ticketDetails.model.Priority"/></label></label>
       </div> 
       <div class="col-sm-6">
-        <label>Resolution: <input type="text" ng-model="ticketDetails.model.Resolution"/></label></label>
+        <label>Resolution: <input name="resolution" type="text" ng-model="ticketDetails.model.Resolution"/></label></label>
       </div> 
       <br>
       <br>
       <div class="col-sm-12">
         <label>
-          Description: <textarea class="form-control" type="text" ng-model="ticketDetails.model.Description"></textarea>
+          Description: <textarea name="assignedTo" class="form-control" type="text" ng-model="ticketDetails.model.Description"></textarea>
         </label>
       </div>
       <div class="col-sm-12">
         <label>Attachement(s): </label>No Attachements
       </div> 
-    </div>
+    </form>
     <div class="row" ng-switch-when="false">
       <div class="col-sm-6">
         <label>Assign to: </label>{{ticketDetails.model.AssignedTo}}

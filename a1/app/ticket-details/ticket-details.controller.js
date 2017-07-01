@@ -5,10 +5,15 @@
         var ticektDetails = this;
         ticektDetails.$onInit = $onInit;
         ticektDetails.edit = false;
+        ticektDetails.submit = submit;
 
         function $onInit() { 
             ticektDetails.edit = false;
             ticketList(Number($stateParams.ticketId));
+        }
+
+        function submit(form, model){
+            console.log(form, model);
         }
 
         function ticketList(id){
