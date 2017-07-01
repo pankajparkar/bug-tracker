@@ -5,7 +5,7 @@
         var filterByService = this, filter = {
             name: null
         };
-        filterByService.getNames = getNames;
+        
         filterByService.getFilter = getFilter;
         filterByService.setSelectedName = setSelectedName;
 
@@ -20,11 +20,6 @@
             $rootScope.$emit('filterChanged')
         };
         
-        function getNames(){
-            return $http.get('/api/names.json').then(function(response){
-                return response.data;
-            });
-        }
     }
 
     angular.module('bug-tracker')

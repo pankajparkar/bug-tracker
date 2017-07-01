@@ -15,7 +15,9 @@
             <label>Assign to:</label>
           </div>
           <div class="col-sm-9">
-            <input class="form-control" type="text" name="assignedTo" ng-model="ticketDetails.model.Assigned" />
+            <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.AssignedTo" 
+              ng-options="name.name as name.name for name in ticketDetails.names track by name.name">
+            </select>
           </div>
         </div>
       </div>
@@ -25,7 +27,9 @@
             <label>Status: </label>
           </div>
           <div class="col-sm-9">
-            <input class="form-control" name="status" type="text" ng-model="ticketDetails.model.Status"/>
+            <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.AssignedTo" 
+              ng-options="status.Id as status.Description for status in ticketDetails.statuses track by status.name">
+            </select>
           </div>
         </div>
       </div> 
@@ -35,7 +39,9 @@
             <label>Type: </label>
           </div>
           <div class="col-sm-9">
-            <input name="type" class="form-control" type="text" ng-model="ticketDetails.model.Type"/>
+            <select class="form-control" name="type" ng-model="ticketDetails.model.Type" 
+              ng-options="type.Description as type.Description for type in ticketDetails.ticketTypes track by type.Description">
+            </select>
           </div>
         </div>
       </div> 
@@ -61,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-12">
+      <div class="col-sm-6">
         <div class="row form-group">
           <div class="col-sm-3">
             <label>Attachement(s): </label>

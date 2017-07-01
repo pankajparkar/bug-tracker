@@ -1,7 +1,7 @@
 (function(window, angular, undefined){
-    FilterByController.$inject = ['filterByService'];
+    FilterByController.$inject = ['filterByService', 'commonService'];
 
-    function FilterByController(filterByService) {
+    function FilterByController(filterByService, commonService) {
         var filterBy = this;
 
         filterBy.setFilterName = setFilterName;
@@ -13,7 +13,7 @@
         }
 
         function getFilterNames(){
-            return filterByService.getNames().then(function(names){
+            return commonService.getNames().then(function(names){
                 filterBy.names = names;
             });
         };

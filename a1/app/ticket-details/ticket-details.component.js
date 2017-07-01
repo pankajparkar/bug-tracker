@@ -2,7 +2,7 @@
     angular.module('bug-tracker')
         .component('ticketDetails', {
             templateUrl: '/app/ticket-details/ticket-details.component.html',
-            controller: 'ticektDetailsController',
+            controller: 'ticketDetailsController',
             controllerAs: 'ticketDetails'
         });
 })(window, angular);
