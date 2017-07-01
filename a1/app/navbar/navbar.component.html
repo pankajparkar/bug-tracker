@@ -26,7 +26,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
-          <a>Hello, Pankaj Parkar</a>
+          <a ng-if="navbar.isAutheticated()">Hello, {{navbar.getUserName()}}</a>
+          <a ng-if="!navbar.isAutheticated()" ui-sref="login">Login</a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->

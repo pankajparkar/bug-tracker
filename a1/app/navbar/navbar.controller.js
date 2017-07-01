@@ -1,8 +1,10 @@
 (function(window, angular, undefined){
-    NavbarController.$inject = [];
+    NavbarController.$inject = ['authService'];
 
-    function NavbarController() {
+    function NavbarController(authService) {
         var navbar = this;
+        navbar.isAutheticated = authService.isAutheticated;
+        navbar.getUserName = authService.getUserName;
     }
 
     angular.module('bug-tracker')

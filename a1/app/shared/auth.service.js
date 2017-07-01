@@ -5,6 +5,7 @@
         authService.isAutheticated = isAutheticated;
         authService.login = login;
         authService.logout = logout;
+        authService.getUserName = getUserName;
 
         //setting up user object
         function login(user){
@@ -16,6 +17,11 @@
         //set current user to blank
         function logout(response){
             currentUser = undefined;
+        }
+
+        //set current user to blank
+        function getUserName(response){
+            return currentUser && currentUser.name;
         }
         
         //check user is present or not
