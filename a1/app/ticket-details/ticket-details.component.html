@@ -3,7 +3,7 @@
     <h3 class="panel-title" style="height: 25px;">
       <b>{{ticketDetails.model.TicketNumber}}</b>: {{ticketDetails.model.Title}}
       <button class="btn btn-primary btn-sm pull-right" ng-click="ticketDetails.edit = !ticketDetails.edit">
-        Edit 
+        <span ng-bind="ticketDetails.edit ? 'Save': 'Edit'"></span> 
       </button>
     </h3>
   </div>
@@ -16,7 +16,7 @@
           </div>
           <div class="col-sm-9">
             <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.AssignedTo" 
-              ng-options="name.name as name.name for name in ticketDetails.names track by name.name">
+              ng-options="item.name as item.name for item in ticketDetails.names track by item.name">
             </select>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <label>Status: </label>
           </div>
           <div class="col-sm-9">
-            <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.AssignedTo" 
+            <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.Status" 
               ng-options="status.Id as status.Description for status in ticketDetails.statuses track by status.name">
             </select>
           </div>
