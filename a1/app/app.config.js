@@ -4,6 +4,7 @@
     function getStates(){
         return [
             {name: 'welcome', url: '/welcome', component: 'welcome'},
+            {name: 'login', url: '/login', component: 'login'},
 
             { name: 'dashboard', url: '/dashboard', component: 'dashboard' },
             { name: 'dashboard.ticket-list', url: '/ticket-list', component: 'ticketList'},
