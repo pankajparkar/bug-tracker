@@ -1,11 +1,12 @@
 (function(window, angular, undefined){
-    AuthService.$inject = ['$http'];
-    function AuthService($http){
+    AuthService.$inject = ['$http', '$state'];
+    function AuthService($http, $state){
         var authService = this, currentUser;
         authService.isAutheticated = isAutheticated;
         authService.login = login;
         authService.logout = logout;
         authService.getUserName = getUserName;
+        authService.checkUserLogin = checkUserLogin;
 
         //setting up user object
         function login(user){
@@ -27,6 +28,13 @@
         //check user is present or not
         function isAutheticated(response){
             return !!currentUser;
+        }
+
+        function checkUserLogin(){
+            if(!!currentUser) return true;
+            if($state.current.name !== "login") {
+                return $state.go('login')
+            } 
         }
 
     }
