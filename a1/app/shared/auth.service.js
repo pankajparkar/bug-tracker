@@ -32,9 +32,7 @@
 
         function checkUserLogin(){
             if(!!currentUser) return true;
-            if($state.current.name !== "login") {
-                return $state.go('login')
-            } 
+            return $state.go('login');
         }
 
     }

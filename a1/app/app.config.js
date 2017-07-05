@@ -1,5 +1,4 @@
 (function(window, angular, undefined){
-    ConfigBlock.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
     var authGuardResolve = {
         checkUserLogin: ['authService', function checkAuth(authService){
@@ -26,13 +25,18 @@
         ]
     }
 
-    function ConfigBlock($stateProvider, $urlRouterProvider, $locationProvider){
+    ConfigBlock.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$qProvider'];
+
+    function ConfigBlock($stateProvider, $urlRouterProvider, $locationProvider, $qProvider){
         var states = getStates();
         states.forEach(function(state){
             $stateProvider.state(state);
         });
         $urlRouterProvider.when('', '/welcome');
         $locationProvider.hashPrefix('');
+
+        //to ignore rejection errro of ui-router 
+        $qProvider.errorOnUnhandledRejections(false)
     }
 
     function runBlock($state){
