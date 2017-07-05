@@ -18,6 +18,7 @@
         //set current user to blank
         function logout(response){
             currentUser = undefined;
+            $state.go('login');
         }
 
         //set current user to blank

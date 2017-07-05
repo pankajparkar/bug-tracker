@@ -29,6 +29,9 @@
           <a ng-if="navbar.isAutheticated()">Hello, {{navbar.getUserName()}}</a>
           <a ng-if="!navbar.isAutheticated()" ui-sref="login">Login</a>
         </li>
+        <li>
+          <a ng-if="navbar.isAutheticated()" href="" class="glyphicon glyphicon-off" ng-click="navbar.logout()"></a>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
