@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../shared/auth.service';
+import { LocalStorageService } from '../shared/localstorage.service';
 
 @Component({
     selector: 'navbar',
@@ -10,15 +11,23 @@ import { AuthService } from '../shared/auth.service';
 })
 
 export class NavbarComponent implements OnInit {
-    isAutheticated: Function;
-    getUserName: Function;
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(
+        private authService: AuthService, 
+        private router: Router,
+        private localStorageService: LocalStorageService
+    ) { }
 
-
-    ngOnInit() { 
-        this.isAutheticated = this.authService.isAutheticated;
-        this.getUserName = this.authService.getUserName;
+    ngOnInit() { }
+    
+    //set current user to blank
+    getUserName(){
+        let obj = this.localStorageService.getObject('user');
+        return obj && obj.name;
     }
+
+    isAutheticated() {
+        return this.authService.isAutheticated();
+    };
 
     logout(){
         this.authService.logout();

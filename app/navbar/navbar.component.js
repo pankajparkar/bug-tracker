@@ -12,15 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("../shared/auth.service");
+var localstorage_service_1 = require("../shared/localstorage.service");
 var NavbarComponent = (function () {
-    function NavbarComponent(authService, router) {
+    function NavbarComponent(authService, router, localStorageService) {
         this.authService = authService;
         this.router = router;
+        this.localStorageService = localStorageService;
     }
-    NavbarComponent.prototype.ngOnInit = function () {
-        this.isAutheticated = this.authService.isAutheticated;
-        this.getUserName = this.authService.getUserName;
+    NavbarComponent.prototype.ngOnInit = function () { };
+    //set current user to blank
+    NavbarComponent.prototype.getUserName = function () {
+        var obj = this.localStorageService.getObject('user');
+        return obj && obj.name;
     };
+    NavbarComponent.prototype.isAutheticated = function () {
+        return this.authService.isAutheticated();
+    };
+    ;
     NavbarComponent.prototype.logout = function () {
         this.authService.logout();
         this.router.navigate(['login']);
@@ -30,7 +38,9 @@ var NavbarComponent = (function () {
             selector: 'navbar',
             templateUrl: '/app/navbar/navbar.component.html',
         }),
-        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+        __metadata("design:paramtypes", [auth_service_1.AuthService,
+            router_1.Router,
+            localstorage_service_1.LocalStorageService])
     ], NavbarComponent);
     return NavbarComponent;
 }());

@@ -31,6 +31,7 @@ var utility_service_1 = require("./shared/utility.service");
 var auth_service_1 = require("./shared/auth.service");
 var common_service_1 = require("./shared/common.service");
 var authguard_service_1 = require("./shared/authguard.service");
+var localstorage_service_1 = require("./shared/localstorage.service");
 var group_by_pipe_1 = require("./shared/group-by.pipe");
 var AppModule = (function () {
     function AppModule() {
@@ -50,7 +51,7 @@ var AppModule = (function () {
             providers: [
                 ticket_service_1.TicketService, utility_service_1.UtilityService,
                 filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService,
-                auth_service_1.AuthService, common_service_1.CommonService, authguard_service_1.AuthGuardService
+                auth_service_1.AuthService, common_service_1.CommonService, authguard_service_1.AuthGuardService, localstorage_service_1.LocalStorageService
             ],
             bootstrap: [app_component_1.AppComponent]
         })

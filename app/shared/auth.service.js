@@ -11,35 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var localstorage_service_1 = require("./localstorage.service");
+var userKey = 'user';
 var AuthService = (function () {
-    function AuthService(router) {
+    function AuthService(router, localStorageService) {
         this.router = router;
+        this.localStorageService = localStorageService;
     }
-    AuthService_1 = AuthService;
     AuthService.prototype.login = function (user) {
-        AuthService_1.currentUser = user;
         //TODO: Add more fields by default
-        AuthService_1.currentUser.LastLoginDate = new Date();
+        user.LastLoginDate = new Date();
+        this.localStorageService.set(userKey, JSON.stringify(user));
     };
     //set current user to blank
     AuthService.prototype.logout = function () {
-        AuthService_1.currentUser = undefined;
-    };
-    //set current user to blank
-    AuthService.prototype.getUserName = function () {
-        console.log(AuthService_1.currentUser);
-        return AuthService_1.currentUser && AuthService_1.currentUser.name;
+        this.localStorageService.set(userKey, "");
     };
     //check user is present or not
     AuthService.prototype.isAutheticated = function () {
-        return !!AuthService_1.currentUser;
+        return !!this.localStorageService.getObject(userKey);
     };
-    AuthService = AuthService_1 = __decorate([
+    AuthService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [router_1.Router])
+        __metadata("design:paramtypes", [router_1.Router, localstorage_service_1.LocalStorageService])
     ], AuthService);
     return AuthService;
-    var AuthService_1;
 }());
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map
