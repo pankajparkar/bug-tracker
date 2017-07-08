@@ -1,0 +1,5 @@
+{
+ "injectChanges" : true,
+  "files" : ["./**/*.{.html, htm, css, js, ts}","*.html"],
+  "server" : { "baseDir":"./"}
+}
