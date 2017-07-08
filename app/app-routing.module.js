@@ -15,11 +15,12 @@ var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
 var login_component_1 = require("./login/login.component");
+var authguard_service_1 = require("./shared/authguard.service");
 var routes = [
-    { path: 'welcome', component: welcome_component_1.WelcomeComponent },
+    { path: 'welcome', component: welcome_component_1.WelcomeComponent, canActivate: [authguard_service_1.AuthGuardService] },
     { path: 'login', component: login_component_1.LoginComponent },
     {
-        path: 'dashboard', component: dashboard_component_1.DashboardComponent,
+        path: 'dashboard', component: dashboard_component_1.DashboardComponent, canActivate: [authguard_service_1.AuthGuardService],
         children: [
             { path: 'ticket-list', component: ticket_list_component_1.TicketListComponent },
             { path: 'ticket-kanban', component: ticket_kanban_component_1.TicketKanbanComponent },
@@ -27,7 +28,7 @@ var routes = [
             { path: '', redirectTo: 'ticket-list', pathMatch: "full" }
         ]
     },
-    { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'profile', component: profile_component_1.ProfileComponent, canActivate: [authguard_service_1.AuthGuardService] },
     //fallbacks to default route
     { path: '', redirectTo: "welcome", pathMatch: 'full' },
     { path: '**', redirectTo: 'welcome', pathMatch: "full" }

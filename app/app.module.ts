@@ -25,6 +25,7 @@ import { TicketService } from './ticket/ticket.service';
 import { UtilityService } from './shared/utility.service';
 import { AuthService } from './shared/auth.service';
 import { CommonService } from './shared/common.service';
+import { AuthGuardService } from './shared/authguard.service';
 import { GroupByPipe } from './shared/group-by.pipe';
 
 @NgModule({
@@ -40,7 +41,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
     providers: [
         TicketService, UtilityService, 
         FilterByService, TicketDetailsService,
-        AuthService, CommonService
+        AuthService, CommonService, AuthGuardService
     ],
     bootstrap: [AppComponent]
 })
