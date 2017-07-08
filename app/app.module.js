@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var forms_1 = require("@angular/forms");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app-routing.module");
@@ -35,7 +36,10 @@ var AppModule = (function () {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
+            imports: [
+                platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule,
+                forms_1.FormsModule
+            ],
             declarations: [
                 app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
                 sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe

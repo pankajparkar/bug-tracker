@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -26,7 +27,10 @@ import { CommonService } from './shared/common.service';
 import { GroupByPipe } from './shared/group-by.pipe';
 
 @NgModule({
-    imports: [BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule],
+    imports: [
+        BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule,
+        FormsModule
+    ],
     declarations: [
         AppComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent, TicketItemComponent,
         SidebarComponent, NavbarComponent, FilterByNameComponent, DashboardComponent, ProfileComponent, GroupByPipe

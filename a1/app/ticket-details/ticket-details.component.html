@@ -1,22 +1,22 @@
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title" style="height: 25px;">
-      <b>{{model?.TicketNumber}}</b>: {{model?.Title}}
-      <button class="btn btn-primary btn-sm pull-right" ng-click="edit = !edit">
-        <span ng-bind="edit ? 'Save': 'Edit'"></span> 
+      <b>{{ticketDetails.model.TicketNumber}}</b>: {{ticketDetails.model.Title}}
+      <button class="btn btn-primary btn-sm pull-right" ng-click="ticketDetails.edit = !ticketDetails.edit">
+        <span ng-bind="ticketDetails.edit ? 'Save': 'Edit'"></span> 
       </button>
     </h3>
   </div>
-  <div class="panel-body" ng-switch="edit">
-    <form class="row" name="detailsForm" ng-switch-when="true" (ngSubmit)="submit()">
+  <div class="panel-body">
+    <form class="row" name="detailsForm" *ngIf="edit else nonEdit;" (ngSubmit)="submit()">
       <div class="col-sm-6">
         <div class="row form-group">
           <div class="col-sm-3">
             <label>Assign to:</label>
           </div>
           <div class="col-sm-9">
-            <select class="form-control" name="assignedTo" ng-model="model?.AssignedTo" 
-              ng-options="item.name as item.name for item in names track by item.name">
+            <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.AssignedTo" 
+              ng-options="item.name as item.name for item in ticketDetails.names track by item.name">
             </select>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <label>Status: </label>
           </div>
           <div class="col-sm-9">
-            <select class="form-control" name="assignedTo" ng-model="model?.Status" 
+            <select class="form-control" name="assignedTo" ng-model="ticketDetails.model.Status" 
               ng-options="status.Id as status.Description for status in ticketDetails.statuses track by status.name">
             </select>
           </div>
@@ -39,7 +39,7 @@
             <label>Type: </label>
           </div>
           <div class="col-sm-9">
-            <select class="form-control" name="type" ng-model="model?.Type" 
+            <select class="form-control" name="type" ng-model="ticketDetails.model.Type" 
               ng-options="type.Description as type.Description for type in ticketDetails.ticketTypes track by type.Description">
             </select>
           </div>
@@ -51,7 +51,7 @@
             <label>Priority: </label>
           </div>
           <div class="col-sm-9">
-            <input class="form-control" name="priority" type="text" ng-model="model?.Priority"/>
+            <input class="form-control" name="priority" type="text" ng-model="ticketDetails.model.Priority"/>
           </div>
         </div>
       </div> 
@@ -63,7 +63,7 @@
             <label>Description:</label>
           </div>
           <div class="col-sm-10">
-            <textarea name="assignedTo" class="form-control" type="text" ng-model="model?.Description"></textarea>
+            <textarea name="assignedTo" class="form-control" type="text" ng-model="ticketDetails.model.Description"></textarea>
           </div>
         </div>
       </div>
@@ -78,33 +78,36 @@
         </div>
       </div> 
     </form>
-    <div class="row" ng-switch-when="false">
-      <div class="col-sm-6">
-        <label>Assign to: </label>{{model?.AssignedTo}}
-      </div> 
-      <div class="col-sm-6">
-        <label>Status: </label>{{model?.Status}}
-      </div> 
-      <div class="col-sm-6">
-        <label>Type: </label>
-        <span class="glyphicon" [ngClass]="{
-            'glyphicon-tags': model?.Type == 'Feature',
-            'glyphicon-flash':model?model.Type == 'Bug',
-            'glyphicon-arrow-down': model?.Type == 'Minor'
-        }"></span>
-        {{model?.Type}}
-      </div> 
-      <div class="col-sm-6">
-        <label>Priority: </label>{{model?.Priority}}
+    <ng-template #nonEdit>
+      <div class="row" ng-switch-when="false">  
+          <div class="col-sm-6">
+            <label>Assign to: </label>{{ticketDetails.model.AssignedTo}}
+          </div> 
+          <div class="col-sm-6">
+            <label>Status: </label>{{ticketDetails.model.Status}}
+          </div> 
+          <div class="col-sm-6">
+            <label>Type: </label>
+            <span class="glyphicon" [ngClass]="{
+                'glyphicon-tags': ticketDetails.model.Type == 'Feature',
+                'glyphicon-flash': ticketDetails.model.Type == 'Bug',
+                'glyphicon-arrow-down': ticketDetails.model.Type == 'Minor'
+            }"></span>
+            {{ticketDetails.model.Type}}
+          </div> 
+          <div class="col-sm-6">
+            <label>Priority: </label>{{ticketDetails.model.Priority}}
+          </div>
+          <br>
+          <br>
+          <div class="col-sm-12">
+            <label>Description: </label>{{ticketDetails.model.Description}}
+          </div>
+          <div class="col-sm-12">
+            <label>Attachements: </label>No Attachements
+          </div> 
       </div>
-      <br>
-      <br>
-      <div class="col-sm-12">
-        <label>Description: </label>{{model?.Description}}
-      </div>
-      <div class="col-sm-12">
-        <label>Attachements: </label>No Attachements
-      </div> 
-    </div>
+    </ng-template>
+    
   </div>
 </div>
