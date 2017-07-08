@@ -7,8 +7,8 @@
       </button>
     </h3>
   </div>
-  <div class="panel-body">
-    <form class="row" name="detailsForm" *ngIf="edit else nonEdit;" (ngSubmit)="submit()">
+  <div class="panel-body" ng-switch="ticketDetails.edit">
+    <form class="row" name="detailsForm" ng-switch-when="true" ng-submit="ticketDetails.submit()">
       <div class="col-sm-6">
         <div class="row form-group">
           <div class="col-sm-3">
@@ -78,36 +78,33 @@
         </div>
       </div> 
     </form>
-    <ng-template #nonEdit>
-      <div class="row" ng-switch-when="false">  
-          <div class="col-sm-6">
-            <label>Assign to: </label>{{ticketDetails.model.AssignedTo}}
-          </div> 
-          <div class="col-sm-6">
-            <label>Status: </label>{{ticketDetails.model.Status}}
-          </div> 
-          <div class="col-sm-6">
-            <label>Type: </label>
-            <span class="glyphicon" [ngClass]="{
-                'glyphicon-tags': ticketDetails.model.Type == 'Feature',
-                'glyphicon-flash': ticketDetails.model.Type == 'Bug',
-                'glyphicon-arrow-down': ticketDetails.model.Type == 'Minor'
-            }"></span>
-            {{ticketDetails.model.Type}}
-          </div> 
-          <div class="col-sm-6">
-            <label>Priority: </label>{{ticketDetails.model.Priority}}
-          </div>
-          <br>
-          <br>
-          <div class="col-sm-12">
-            <label>Description: </label>{{ticketDetails.model.Description}}
-          </div>
-          <div class="col-sm-12">
-            <label>Attachements: </label>No Attachements
-          </div> 
+    <div class="row" ng-switch-when="false">
+      <div class="col-sm-6">
+        <label>Assign to: </label>{{ticketDetails.model.AssignedTo}}
+      </div> 
+      <div class="col-sm-6">
+        <label>Status: </label>{{ticketDetails.model.Status}}
+      </div> 
+      <div class="col-sm-6">
+        <label>Type: </label>
+        <span class="glyphicon" [ngClass]="{
+            'glyphicon-tags': ticketDetails.model.Type == 'Feature',
+            'glyphicon-flash': ticketDetails.model.Type == 'Bug',
+            'glyphicon-arrow-down': ticketDetails.model.Type == 'Minor'
+        }"></span>
+        {{ticketDetails.model.Type}}
+      </div> 
+      <div class="col-sm-6">
+        <label>Priority: </label>{{ticketDetails.model.Priority}}
       </div>
-    </ng-template>
-    
+      <br>
+      <br>
+      <div class="col-sm-12">
+        <label>Description: </label>{{ticketDetails.model.Description}}
+      </div>
+      <div class="col-sm-12">
+        <label>Attachements: </label>No Attachements
+      </div> 
+    </div>
   </div>
 </div>
