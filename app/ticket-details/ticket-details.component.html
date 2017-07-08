@@ -17,7 +17,7 @@
           </div>
           <div class="col-sm-9">
             <select class="form-control" name="assignedTo" [(ngModel)]="model.AssignedTo">
-              <option *ngFor="let name of names"></option>
+              <option *ngFor="let name of names">{{name.name}}</option>
             </select>
           </div>
         </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="col-sm-9">
             <select class="form-control" name="assignedTo" [(ngModel)]="model.Status">
-              <option *ngFor="let status of statuses"></option>
+              <option [ngValue]="status.Description" *ngFor="let status of statuses">{{status.Description}}</option>
             </select>
           </div>
         </div>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-sm-9">
             <select class="form-control" name="type" [(ngModel)]="model.Type">
-              <option *ngFor="let type of ticketTypes"></option>
+              <option [ngValue]="type.Id" *ngFor="let type of types">{{type.Description}}</option>
             </select>
           </div>
         </div>
