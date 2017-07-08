@@ -14,16 +14,34 @@ var StarComponent = (function () {
     function StarComponent() {
         this.items = [];
     }
-    StarComponent.prototype.ngOnChanges = function (changes) {
-        this.items = [];
-        for (var i = 1; i <= 10; i++) {
-            this.items.push({ highlight: i <= changes.stars });
+    Object.defineProperty(StarComponent.prototype, "ratings", {
+        get: function () {
+            return this._ratings;
+        },
+        set: function (value) {
+            this.items = [];
+            this._ratings = value;
+            for (var i = 1; i <= 10; i++) {
+                this.items.push({ highlight: i <= value });
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    StarComponent.prototype.onchange = function (index) {
+        if (!this.isDisabled) {
+            this.ratings = +1;
         }
     };
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Object)
-    ], StarComponent.prototype, "stars", void 0);
+        __metadata("design:type", Boolean)
+    ], StarComponent.prototype, "isDisabled", void 0);
+    __decorate([
+        core_1.Input('ratings'),
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [Number])
+    ], StarComponent.prototype, "ratings", null);
     StarComponent = __decorate([
         core_1.Component({
             selector: 'star',

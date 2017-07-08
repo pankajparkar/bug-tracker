@@ -21,6 +21,7 @@ import { FilterByService } from './filter-by/filter-by.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { StarComponent } from './star/star.component';
 import { TicketService } from './ticket/ticket.service';
 import { UtilityService } from './shared/utility.service';
 import { AuthService } from './shared/auth.service';
@@ -37,7 +38,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
     declarations: [
         AppComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent, TicketItemComponent,
         SidebarComponent, NavbarComponent, FilterByNameComponent, DashboardComponent, ProfileComponent, GroupByPipe,
-        LoginComponent
+        LoginComponent, StarComponent
     ],
     providers: [
         TicketService, UtilityService, 

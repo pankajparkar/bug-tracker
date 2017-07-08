@@ -52,7 +52,7 @@
             <label>Priority: </label>
           </div>
           <div class="col-sm-9">
-            <input class="form-control" name="priority" type="text" [(ngModel)]="model.Priority"/>
+            <star [ratings]="model.Priority"></star>
           </div>
         </div>
       </div> 
@@ -97,7 +97,8 @@
           {{model.Type}}
         </div> 
         <div class="col-sm-6">
-          <label>Priority: </label>{{model.Priority}}
+          <label>Priority: </label>
+          <star [ratings]="model.Priority" [isDisabled]="true"></star>
         </div>
         <br>
         <br>

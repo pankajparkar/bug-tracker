@@ -1,5 +1,6 @@
-<div class="row">
-  <i *ngFor="let item of items" class="glyphicon" 
-    [ngClass]="{'glyphicon-star': item.highlight, 'glyphicon-star-empty': item.highlight}">
+<span>
+  <i *ngFor="let item of items; let index = index" class="glyphicon" 
+      (click)="!isDisabled && ratings = index + 1"
+      [ngClass]="{'glyphicon-star': item.highlight, 'glyphicon-star-empty': !item.highlight}">
   </i>
-</div>
+</span>

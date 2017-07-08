@@ -26,6 +26,7 @@ var filter_by_service_1 = require("./filter-by/filter-by.service");
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
+var star_component_1 = require("./star/star.component");
 var ticket_service_1 = require("./ticket/ticket.service");
 var utility_service_1 = require("./shared/utility.service");
 var auth_service_1 = require("./shared/auth.service");
@@ -46,7 +47,7 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
                 sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe,
-                login_component_1.LoginComponent
+                login_component_1.LoginComponent, star_component_1.StarComponent
             ],
             providers: [
                 ticket_service_1.TicketService, utility_service_1.UtilityService,
