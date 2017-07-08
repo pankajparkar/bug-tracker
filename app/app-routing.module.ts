@@ -22,13 +22,15 @@ const routes: Routes = [
     ]
   },
   { path: 'profile', component: ProfileComponent },
+
+  //fallbacks to default route
   { path: '', redirectTo: "welcome", pathMatch: 'full' },
   { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   exports: [RouterModule]
 })

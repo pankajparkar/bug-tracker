@@ -28,6 +28,7 @@ var routes = [
         ]
     },
     { path: 'profile', component: profile_component_1.ProfileComponent },
+    //fallbacks to default route
     { path: '', redirectTo: "welcome", pathMatch: 'full' },
     { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
@@ -37,7 +38,7 @@ var AppRoutingModule = (function () {
     AppRoutingModule = __decorate([
         core_1.NgModule({
             imports: [
-                router_1.RouterModule.forRoot(routes)
+                router_1.RouterModule.forRoot(routes, { useHash: true })
             ],
             exports: [router_1.RouterModule]
         })
