@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
             padding: 10px;
         }   
         .child-content{
-            max-height: 475px;
+            max-height: 500px;
             overflow-y: auto;
         }
     `]

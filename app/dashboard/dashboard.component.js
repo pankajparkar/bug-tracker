@@ -24,7 +24,7 @@ var DashboardComponent = (function () {
         core_1.Component({
             selector: 'dashboard',
             templateUrl: '/app/dashboard/dashboard.component.html',
-            styles: ["\n        :host .row.content{\n            background: rgba(236, 236, 236, 0.15);\n            box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 1px 11px 0 rgba(0,0,0,0.19);\n            padding: 10px;\n        }   \n        .child-content{\n            max-height: 475px;\n            overflow-y: auto;\n        }\n    "]
+            styles: ["\n        :host .row.content{\n            background: rgba(236, 236, 236, 0.15);\n            box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 1px 11px 0 rgba(0,0,0,0.19);\n            padding: 10px;\n        }   \n        .child-content{\n            max-height: 500px;\n            overflow-y: auto;\n        }\n    "]
         }),
         __metadata("design:paramtypes", [common_1.Location])
     ], DashboardComponent);
