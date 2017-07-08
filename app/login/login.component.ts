@@ -6,9 +6,10 @@ import { AuthService } from './../shared/auth.service';
 @Component({
     selector: 'login',
     templateUrl: '/app/login/login.component.html',
+    styleUrls: ['./app/login/login.component.css']
 })
-export class StarComponent{
-    user: any;
+export class LoginComponent{
+    user: any = {};
     constructor(
         private authService: AuthService, private router: Router
     ){

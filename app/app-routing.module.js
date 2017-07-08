@@ -14,8 +14,10 @@ var ticket_details_component_1 = require("./ticket-details/ticket-details.compon
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
+var login_component_1 = require("./login/login.component");
 var routes = [
     { path: 'welcome', component: welcome_component_1.WelcomeComponent },
+    { path: 'login', component: login_component_1.LoginComponent },
     {
         path: 'dashboard', component: dashboard_component_1.DashboardComponent,
         children: [

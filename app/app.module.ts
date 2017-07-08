@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TicketListComponent } from './ticket/ticket-list.component';
@@ -33,7 +34,8 @@ import { GroupByPipe } from './shared/group-by.pipe';
     ],
     declarations: [
         AppComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent, TicketItemComponent,
-        SidebarComponent, NavbarComponent, FilterByNameComponent, DashboardComponent, ProfileComponent, GroupByPipe
+        SidebarComponent, NavbarComponent, FilterByNameComponent, DashboardComponent, ProfileComponent, GroupByPipe,
+        LoginComponent
     ],
     providers: [
         TicketService, UtilityService, 

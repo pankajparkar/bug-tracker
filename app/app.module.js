@@ -12,6 +12,7 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var app_component_1 = require("./app.component");
+var login_component_1 = require("./login/login.component");
 var app_routing_module_1 = require("./app-routing.module");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
 var ticket_list_component_1 = require("./ticket/ticket-list.component");
@@ -42,7 +43,8 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
-                sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
+                sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe,
+                login_component_1.LoginComponent
             ],
             providers: [
                 ticket_service_1.TicketService, utility_service_1.UtilityService,

@@ -7,9 +7,11 @@ import { TicketDetailsComponent } from './ticket-details/ticket-details.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
+  { path: 'login', component: LoginComponent },
   { 
     path: 'dashboard', component: DashboardComponent, 
     children : [

@@ -12,24 +12,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var auth_service_1 = require("./../shared/auth.service");
-var StarComponent = (function () {
-    function StarComponent(authService, router) {
+var LoginComponent = (function () {
+    function LoginComponent(authService, router) {
         this.authService = authService;
         this.router = router;
+        this.user = {};
     }
-    StarComponent.prototype.submit = function () {
+    LoginComponent.prototype.submit = function () {
         this.authService.login(this.user);
         this.router.navigate(['welcome']);
     };
     ;
-    StarComponent = __decorate([
+    LoginComponent = __decorate([
         core_1.Component({
             selector: 'login',
             templateUrl: '/app/login/login.component.html',
+            styleUrls: ['./app/login/login.component.css']
         }),
         __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
-    ], StarComponent);
-    return StarComponent;
+    ], LoginComponent);
+    return LoginComponent;
 }());
-exports.StarComponent = StarComponent;
+exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map
