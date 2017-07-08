@@ -34,12 +34,6 @@ var AuthService = (function () {
     AuthService.prototype.isAutheticated = function () {
         return !!AuthService_1.currentUser;
     };
-    AuthService.prototype.checkUserLogin = function () {
-        if (!!AuthService_1.currentUser)
-            return true;
-        this.router.navigate(['login']);
-        return false;
-    };
     AuthService = AuthService_1 = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [router_1.Router])

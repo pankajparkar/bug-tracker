@@ -29,10 +29,4 @@ export class AuthService{
     isAutheticated(){
         return !!AuthService.currentUser;
     }
-
-    checkUserLogin(){
-        if(!!AuthService.currentUser) return true;
-        this.router.navigate(['login']);
-        return false;
-    }
 }

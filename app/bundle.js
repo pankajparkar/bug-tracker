@@ -15,10 +15,13 @@ var ticket_details_component_1 = require("./ticket-details/ticket-details.compon
 var dashboard_component_1 = require("./dashboard/dashboard.component");
 var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
+var login_component_1 = require("./login/login.component");
+var authguard_service_1 = require("./shared/authguard.service");
 var routes = [
-    { path: 'welcome', component: welcome_component_1.WelcomeComponent },
+    { path: 'welcome', component: welcome_component_1.WelcomeComponent, canActivate: [authguard_service_1.AuthGuardService] },
+    { path: 'login', component: login_component_1.LoginComponent },
     {
-        path: 'dashboard', component: dashboard_component_1.DashboardComponent,
+        path: 'dashboard', component: dashboard_component_1.DashboardComponent, canActivate: [authguard_service_1.AuthGuardService],
         children: [
             { path: 'ticket-list', component: ticket_list_component_1.TicketListComponent },
             { path: 'ticket-kanban', component: ticket_kanban_component_1.TicketKanbanComponent },
@@ -26,26 +29,27 @@ var routes = [
             { path: '', redirectTo: 'ticket-list', pathMatch: "full" }
         ]
     },
-    { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'profile', component: profile_component_1.ProfileComponent, canActivate: [authguard_service_1.AuthGuardService] },
+    //fallbacks to default route
     { path: '', redirectTo: "welcome", pathMatch: 'full' },
     { path: '**', redirectTo: 'welcome', pathMatch: "full" }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
+    AppRoutingModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                router_1.RouterModule.forRoot(routes, { useHash: true })
+            ],
+            exports: [router_1.RouterModule]
+        })
+    ], AppRoutingModule);
     return AppRoutingModule;
 }());
-AppRoutingModule = __decorate([
-    core_1.NgModule({
-        imports: [
-            router_1.RouterModule.forRoot(routes, { useHash: true })
-        ],
-        exports: [router_1.RouterModule]
-    })
-], AppRoutingModule);
 exports.AppRoutingModule = AppRoutingModule;
 
-},{"./dashboard/dashboard.component":4,"./profile/profile.component":9,"./ticket-details/ticket-details.component":13,"./ticket/ticket-kanban.component":16,"./ticket/ticket-list.component":17,"./welcome/welcome.component":19,"@angular/core":22,"@angular/router":27}],2:[function(require,module,exports){
+},{"./dashboard/dashboard.component":4,"./login/login.component":7,"./profile/profile.component":10,"./shared/authguard.service":12,"./ticket-details/ticket-details.component":17,"./ticket/ticket-kanban.component":20,"./ticket/ticket-list.component":21,"./welcome/welcome.component":23,"@angular/core":26,"@angular/router":31}],2:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -59,17 +63,17 @@ var AppComponent = (function () {
     function AppComponent() {
         this.name = 'Title';
     }
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            templateUrl: './app/app.component.html',
+        })
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        templateUrl: './app/app.component.html',
-    })
-], AppComponent);
 exports.AppComponent = AppComponent;
 
-},{"@angular/core":22}],3:[function(require,module,exports){
+},{"@angular/core":26}],3:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -81,8 +85,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var forms_1 = require("@angular/forms");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var app_component_1 = require("./app.component");
+var login_component_1 = require("./login/login.component");
 var app_routing_module_1 = require("./app-routing.module");
 var sidebar_component_1 = require("./sidebar/sidebar.component");
 var ticket_list_component_1 = require("./ticket/ticket-list.component");
@@ -98,30 +104,38 @@ var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
 var ticket_service_1 = require("./ticket/ticket.service");
 var utility_service_1 = require("./shared/utility.service");
+var auth_service_1 = require("./shared/auth.service");
+var common_service_1 = require("./shared/common.service");
+var authguard_service_1 = require("./shared/authguard.service");
 var group_by_pipe_1 = require("./shared/group-by.pipe");
 var AppModule = (function () {
     function AppModule() {
         this.name = 'Title';
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule,
+                forms_1.FormsModule
+            ],
+            declarations: [
+                app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
+                sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe,
+                login_component_1.LoginComponent
+            ],
+            providers: [
+                ticket_service_1.TicketService, utility_service_1.UtilityService,
+                filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService,
+                auth_service_1.AuthService, common_service_1.CommonService, authguard_service_1.AuthGuardService
+            ],
+            bootstrap: [app_component_1.AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
-        declarations: [
-            app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
-            sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
-        ],
-        providers: [
-            ticket_service_1.TicketService, utility_service_1.UtilityService,
-            filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService
-        ],
-        bootstrap: [app_component_1.AppComponent]
-    })
-], AppModule);
 exports.AppModule = AppModule;
 
-},{"./app-routing.module":1,"./app.component":2,"./dashboard/dashboard.component":4,"./filter-by/filter-by.component":5,"./filter-by/filter-by.service":6,"./navbar/navbar.component":8,"./profile/profile.component":9,"./shared/group-by.pipe":10,"./shared/utility.service":11,"./sidebar/sidebar.component":12,"./ticket-details/ticket-details.component":13,"./ticket-details/ticket-details.service":14,"./ticket/ticket-item.component":15,"./ticket/ticket-kanban.component":16,"./ticket/ticket-list.component":17,"./ticket/ticket.service":18,"./welcome/welcome.component":19,"@angular/core":22,"@angular/http":24,"@angular/platform-browser":26,"@ng-bootstrap/ng-bootstrap":28}],4:[function(require,module,exports){
+},{"./app-routing.module":1,"./app.component":2,"./dashboard/dashboard.component":4,"./filter-by/filter-by.component":5,"./filter-by/filter-by.service":6,"./login/login.component":7,"./navbar/navbar.component":9,"./profile/profile.component":10,"./shared/auth.service":11,"./shared/authguard.service":12,"./shared/common.service":13,"./shared/group-by.pipe":14,"./shared/utility.service":15,"./sidebar/sidebar.component":16,"./ticket-details/ticket-details.component":17,"./ticket-details/ticket-details.service":18,"./ticket/ticket-item.component":19,"./ticket/ticket-kanban.component":20,"./ticket/ticket-list.component":21,"./ticket/ticket.service":22,"./welcome/welcome.component":23,"@angular/core":26,"@angular/forms":27,"@angular/http":28,"@angular/platform-browser":30,"@ng-bootstrap/ng-bootstrap":32}],4:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -144,18 +158,18 @@ var DashboardComponent = (function () {
         return this.location.path().indexOf('/dashboard/ticket-details/') > -1;
     };
     DashboardComponent.prototype.ngOnInit = function () { };
+    DashboardComponent = __decorate([
+        core_1.Component({
+            selector: 'dashboard',
+            templateUrl: '/app/dashboard/dashboard.component.html'
+        }),
+        __metadata("design:paramtypes", [common_1.Location])
+    ], DashboardComponent);
     return DashboardComponent;
 }());
-DashboardComponent = __decorate([
-    core_1.Component({
-        selector: 'dashboard',
-        templateUrl: '/app/dashboard/dashboard.component.html'
-    }),
-    __metadata("design:paramtypes", [common_1.Location])
-], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
 
-},{"@angular/common":20,"@angular/core":22}],5:[function(require,module,exports){
+},{"@angular/common":24,"@angular/core":26}],5:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -169,31 +183,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var filter_by_service_1 = require("./filter-by.service");
+var common_service_1 = require("./../shared/common.service");
 var FilterByNameComponent = (function () {
-    function FilterByNameComponent(filterByService) {
+    function FilterByNameComponent(filterByService, commonService) {
         this.filterByService = filterByService;
-        this.items = [{ name: "Alex" }, { name: "John" }, { name: "Tom" }];
+        this.commonService = commonService;
     }
+    FilterByNameComponent.prototype.getNames = function () {
+        var _this = this;
+        //created a promis that depends on it
+        return new Promise(function (resolve, reject) {
+            _this.commonService.getNames().subscribe(function (names) {
+                _this.items = names;
+                resolve();
+            });
+        });
+    };
     FilterByNameComponent.prototype.setFilterName = function (item) {
         this.items.forEach(function (i) { return i.active = false; });
         var value = item ? item.name : item;
         this.filterByService.emitFilterNameValue(value);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
+        this.getNames().then(this.setFilterName.bind(this));
         this.filterName$ = this.filterByService.filterNameObservable();
     };
+    FilterByNameComponent = __decorate([
+        core_1.Component({
+            selector: 'filter-by',
+            templateUrl: '/app/filter-by/filter-by.component.html',
+        }),
+        __metadata("design:paramtypes", [filter_by_service_1.FilterByService,
+            common_service_1.CommonService])
+    ], FilterByNameComponent);
     return FilterByNameComponent;
 }());
-FilterByNameComponent = __decorate([
-    core_1.Component({
-        selector: 'filter-by',
-        templateUrl: '/app/filter-by/filter-by.component.html',
-    }),
-    __metadata("design:paramtypes", [filter_by_service_1.FilterByService])
-], FilterByNameComponent);
 exports.FilterByNameComponent = FilterByNameComponent;
 
-},{"./filter-by.service":6,"@angular/core":22}],6:[function(require,module,exports){
+},{"./../shared/common.service":13,"./filter-by.service":6,"@angular/core":26}],6:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -217,23 +244,15 @@ var FilterByService = (function () {
     FilterByService.prototype.filterNameObservable = function () {
         return this.filterName$.asObservable();
     };
+    FilterByService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], FilterByService);
     return FilterByService;
 }());
-FilterByService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], FilterByService);
 exports.FilterByService = FilterByService;
 
-},{"@angular/core":22,"rxjs/BehaviorSubject":29}],7:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
-var app_module_1 = require("./app.module");
-var platform = platform_browser_dynamic_1.platformBrowserDynamic();
-platform.bootstrapModule(app_module_1.AppModule);
-
-},{"./app.module":3,"@angular/platform-browser-dynamic":25}],8:[function(require,module,exports){
+},{"@angular/core":26,"rxjs/BehaviorSubject":33}],7:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -246,22 +265,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var NavbarComponent = (function () {
-    function NavbarComponent() {
+var router_1 = require("@angular/router");
+var auth_service_1 = require("./../shared/auth.service");
+var LoginComponent = (function () {
+    function LoginComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
+        this.user = {};
     }
-    NavbarComponent.prototype.ngOnInit = function () { };
+    LoginComponent.prototype.submit = function () {
+        this.authService.login(this.user);
+        this.router.navigate(['welcome']);
+    };
+    ;
+    LoginComponent = __decorate([
+        core_1.Component({
+            selector: 'login',
+            templateUrl: '/app/login/login.component.html',
+            styleUrls: ['./app/login/login.component.css']
+        }),
+        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+    ], LoginComponent);
+    return LoginComponent;
+}());
+exports.LoginComponent = LoginComponent;
+
+},{"./../shared/auth.service":11,"@angular/core":26,"@angular/router":31}],8:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
+var app_module_1 = require("./app.module");
+var platform = platform_browser_dynamic_1.platformBrowserDynamic();
+platform.bootstrapModule(app_module_1.AppModule);
+
+},{"./app.module":3,"@angular/platform-browser-dynamic":29}],9:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../shared/auth.service");
+var NavbarComponent = (function () {
+    function NavbarComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    NavbarComponent.prototype.ngOnInit = function () {
+        this.isAutheticated = this.authService.isAutheticated;
+        this.getUserName = this.authService.getUserName;
+    };
+    NavbarComponent.prototype.logout = function () {
+        this.authService.logout();
+        this.router.navigate(['login']);
+    };
+    NavbarComponent = __decorate([
+        core_1.Component({
+            selector: 'navbar',
+            templateUrl: '/app/navbar/navbar.component.html',
+        }),
+        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+    ], NavbarComponent);
     return NavbarComponent;
 }());
-NavbarComponent = __decorate([
-    core_1.Component({
-        selector: 'navbar',
-        templateUrl: '/app/navbar/navbar.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], NavbarComponent);
 exports.NavbarComponent = NavbarComponent;
 
-},{"@angular/core":22}],9:[function(require,module,exports){
+},{"../shared/auth.service":11,"@angular/core":26,"@angular/router":31}],10:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -278,18 +354,136 @@ var ProfileComponent = (function () {
     function ProfileComponent() {
     }
     ProfileComponent.prototype.ngOnInit = function () { };
+    ProfileComponent = __decorate([
+        core_1.Component({
+            selector: 'profile',
+            templateUrl: '/app/profile/profile.component.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], ProfileComponent);
     return ProfileComponent;
 }());
-ProfileComponent = __decorate([
-    core_1.Component({
-        selector: 'profile',
-        templateUrl: '/app/profile/profile.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
 
-},{"@angular/core":22}],10:[function(require,module,exports){
+},{"@angular/core":26}],11:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var AuthService = (function () {
+    function AuthService(router) {
+        this.router = router;
+    }
+    AuthService_1 = AuthService;
+    AuthService.prototype.login = function (user) {
+        AuthService_1.currentUser = user;
+        //TODO: Add more fields by default
+        AuthService_1.currentUser.LastLoginDate = new Date();
+    };
+    //set current user to blank
+    AuthService.prototype.logout = function () {
+        AuthService_1.currentUser = undefined;
+    };
+    //set current user to blank
+    AuthService.prototype.getUserName = function () {
+        console.log(AuthService_1.currentUser);
+        return AuthService_1.currentUser && AuthService_1.currentUser.name;
+    };
+    //check user is present or not
+    AuthService.prototype.isAutheticated = function () {
+        return !!AuthService_1.currentUser;
+    };
+    AuthService = AuthService_1 = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], AuthService);
+    return AuthService;
+    var AuthService_1;
+}());
+exports.AuthService = AuthService;
+
+},{"@angular/core":26,"@angular/router":31}],12:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var auth_service_1 = require("./auth.service");
+var AuthGuardService = (function () {
+    function AuthGuardService(router, authService) {
+        this.router = router;
+        this.authService = authService;
+    }
+    AuthGuardService.prototype.canActivate = function () {
+        var isUserLoggedin = this.authService.isAutheticated();
+        if (!isUserLoggedin)
+            this.router.navigate(['login']);
+        return isUserLoggedin;
+    };
+    AuthGuardService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [router_1.Router, auth_service_1.AuthService])
+    ], AuthGuardService);
+    return AuthGuardService;
+}());
+exports.AuthGuardService = AuthGuardService;
+
+},{"./auth.service":11,"@angular/core":26,"@angular/router":31}],13:[function(require,module,exports){
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var CommonService = (function () {
+    function CommonService(http) {
+        this.http = http;
+    }
+    CommonService.prototype.getTicketTypes = function () {
+        return this.http.get('/api/ticket-types.json').map(this.unWrapData);
+    };
+    CommonService.prototype.getNames = function () {
+        return this.http.get('/api/names.json').map(this.unWrapData);
+    };
+    CommonService.prototype.getTicketStatuses = function () {
+        return this.http.get('/api/ticket-status.json').map(this.unWrapData);
+    };
+    CommonService.prototype.unWrapData = function (data) {
+        return data.json();
+    };
+    CommonService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], CommonService);
+    return CommonService;
+}());
+exports.CommonService = CommonService;
+
+},{"@angular/core":26,"@angular/http":28}],14:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -321,16 +515,16 @@ var GroupByPipe = (function () {
         });
         return groupedBy;
     };
+    GroupByPipe = __decorate([
+        core_1.Pipe({
+            name: 'groupBy'
+        })
+    ], GroupByPipe);
     return GroupByPipe;
 }());
-GroupByPipe = __decorate([
-    core_1.Pipe({
-        name: 'groupBy'
-    })
-], GroupByPipe);
 exports.GroupByPipe = GroupByPipe;
 
-},{"@angular/core":22}],11:[function(require,module,exports){
+},{"@angular/core":26}],15:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -361,15 +555,15 @@ var UtilityService = (function () {
         });
         return groupedBy;
     };
+    UtilityService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], UtilityService);
     return UtilityService;
 }());
-UtilityService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], UtilityService);
 exports.UtilityService = UtilityService;
 
-},{"@angular/core":22}],12:[function(require,module,exports){
+},{"@angular/core":26}],16:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -391,18 +585,18 @@ var SidebarComponent = (function () {
             { name: 'Kanban View', url: ['/dashboard', 'ticket-kanban'] }
         ];
     };
+    SidebarComponent = __decorate([
+        core_1.Component({
+            selector: 'sidebar',
+            templateUrl: '/app/sidebar/sidebar.component.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], SidebarComponent);
     return SidebarComponent;
 }());
-SidebarComponent = __decorate([
-    core_1.Component({
-        selector: 'sidebar',
-        templateUrl: '/app/sidebar/sidebar.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], SidebarComponent);
 exports.SidebarComponent = SidebarComponent;
 
-},{"@angular/core":22}],13:[function(require,module,exports){
+},{"@angular/core":26}],17:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -417,33 +611,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var ticket_details_service_1 = require("./ticket-details.service");
-var utility_service_1 = require("../shared/utility.service");
+var common_service_1 = require("../shared/common.service");
 var TicketDetailsComponent = (function () {
-    function TicketDetailsComponent(ticketDetailsService, utilityService, activatedRoute) {
+    function TicketDetailsComponent(ticketDetailsService, commonService, activatedRoute) {
         this.ticketDetailsService = ticketDetailsService;
-        this.utilityService = utilityService;
+        this.commonService = commonService;
         this.activatedRoute = activatedRoute;
     }
+    TicketDetailsComponent.prototype.getStatuses = function () {
+        var _this = this;
+        this.commonService.getTicketStatuses().subscribe(function (statuses) { return _this.statuses = statuses; });
+    };
+    TicketDetailsComponent.prototype.getNames = function () {
+        var _this = this;
+        this.commonService.getNames().subscribe(function (names) { return _this.names = names; });
+    };
+    TicketDetailsComponent.prototype.getTicketTypes = function () {
+        var _this = this;
+        this.commonService.getTicketTypes().subscribe(function (types) { return _this.types = types; });
+    };
     TicketDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.getStatuses();
+        this.getNames();
+        this.getTicketTypes();
         var ticketId = this.activatedRoute.snapshot.params['ticketId'];
         this.ticketDetailsService.getTicketDetails(ticketId).subscribe(function (tickets) { return _this.model = tickets.filter(function (t) { return t.Id === Number(ticketId); })[0]; });
         //We will make an service/API call to retrieve correct ticket.
     };
+    TicketDetailsComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-details',
+            templateUrl: '/app/ticket-details/ticket-details.component.html',
+        }),
+        __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
+            common_service_1.CommonService,
+            router_1.ActivatedRoute])
+    ], TicketDetailsComponent);
     return TicketDetailsComponent;
 }());
-TicketDetailsComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-details',
-        templateUrl: '/app/ticket-details/ticket-details.component.html',
-    }),
-    __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
-        utility_service_1.UtilityService,
-        router_1.ActivatedRoute])
-], TicketDetailsComponent);
 exports.TicketDetailsComponent = TicketDetailsComponent;
 
-},{"../shared/utility.service":11,"./ticket-details.service":14,"@angular/core":22,"@angular/router":27}],14:[function(require,module,exports){
+},{"../shared/common.service":13,"./ticket-details.service":18,"@angular/core":26,"@angular/router":31}],18:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -467,15 +676,15 @@ var TicketDetailsService = (function () {
         return this.http.get('/api/tickets.json')
             .map(function (data) { return data.json(); });
     };
+    TicketDetailsService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TicketDetailsService);
     return TicketDetailsService;
 }());
-TicketDetailsService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], TicketDetailsService);
 exports.TicketDetailsService = TicketDetailsService;
 
-},{"@angular/core":22,"@angular/http":24,"rxjs/add/operator/filter":39,"rxjs/add/operator/map":40}],15:[function(require,module,exports){
+},{"@angular/core":26,"@angular/http":28,"rxjs/add/operator/filter":43,"rxjs/add/operator/map":44}],19:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -491,21 +700,21 @@ var core_1 = require("@angular/core");
 var TicketItemComponent = (function () {
     function TicketItemComponent() {
     }
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], TicketItemComponent.prototype, "ticket", void 0);
+    TicketItemComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-item',
+            template: "\n        <span class=\"glyphicon\" [ngClass]=\"{\n            'glyphicon-tags': ticket.Type == 'Feature',\n            'glyphicon-flash': ticket.Type == 'Bug',\n            'glyphicon-arrow-down': ticket.Type == 'Minor'\n        }\"></span>\n        <a [routerLink]=\"['../ticket-details', ticket.Id]\">{{ticket.TicketNumber}}</a> {{ticket.Title}}\n        <span class=\"pull-right\">\n          <small>\n            Priority\n          </small>\n            <span class=\"label label-default\">{{ticket.Priority}}</span>\n        </span>\n    "
+        })
+    ], TicketItemComponent);
     return TicketItemComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TicketItemComponent.prototype, "ticket", void 0);
-TicketItemComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-item',
-        template: "\n        <span class=\"glyphicon\" [ngClass]=\"{\n            'glyphicon-tags': ticket.Type == 'Feature',\n            'glyphicon-flash': ticket.Type == 'Bug',\n            'glyphicon-arrow-down': ticket.Type == 'Minor'\n        }\"></span>\n        <a [routerLink]=\"['../ticket-details', ticket.Id]\">{{ticket.TicketNumber}}</a> {{ticket.Title}}\n        <span class=\"pull-right\">\n          <small>\n            Priority\n          </small>\n            <span class=\"label label-default\">{{ticket.Priority}}</span>\n        </span>\n    "
-    })
-], TicketItemComponent);
 exports.TicketItemComponent = TicketItemComponent;
 
-},{"@angular/core":22}],16:[function(require,module,exports){
+},{"@angular/core":26}],20:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -520,14 +729,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ticket_service_1 = require("./ticket.service");
 var utility_service_1 = require("../shared/utility.service");
+var common_service_1 = require("../shared/common.service");
 var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var TicketKanbanComponent = (function () {
-    function TicketKanbanComponent(ticketService, utilityService, filterByService) {
+    function TicketKanbanComponent(ticketService, commonService, utilityService, filterByService) {
         this.ticketService = ticketService;
+        this.commonService = commonService;
         this.utilityService = utilityService;
         this.filterByService = filterByService;
-        this.statuses = [{ Id: 1, Name: "Todo" }, { Id: 2, Name: "In Progress" }, { Id: 3, Name: "Complete" }];
     }
+    TicketKanbanComponent.prototype.getStatuses = function () {
+        var _this = this;
+        this.commonService.getTicketStatuses().subscribe(function (statuses) { return _this.statuses = statuses; });
+    };
     TicketKanbanComponent.prototype.filterTicketsByStatus = function () {
         this.todoItems = this.tickets.filter(function (ticket) { return ticket.Status === 1; });
         this.inProgressItems = this.tickets.filter(function (ticket) { return ticket.Status === 2; });
@@ -535,7 +749,6 @@ var TicketKanbanComponent = (function () {
     };
     TicketKanbanComponent.prototype.ticketList = function (name) {
         var _this = this;
-        console.log(name);
         this.ticketService.getTicketList().subscribe(function (tickets) {
             _this.tickets = tickets;
             if (name)
@@ -546,22 +759,24 @@ var TicketKanbanComponent = (function () {
     TicketKanbanComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.getStatuses();
         this.filterName$.subscribe(function (name) { return _this.ticketList(name); });
     };
+    TicketKanbanComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-kanban',
+            templateUrl: '/app/ticket/ticket-kanban.component.html',
+        }),
+        __metadata("design:paramtypes", [ticket_service_1.TicketService,
+            common_service_1.CommonService,
+            utility_service_1.UtilityService,
+            filter_by_service_1.FilterByService])
+    ], TicketKanbanComponent);
     return TicketKanbanComponent;
 }());
-TicketKanbanComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-kanban',
-        templateUrl: '/app/ticket/ticket-kanban.component.html',
-    }),
-    __metadata("design:paramtypes", [ticket_service_1.TicketService,
-        utility_service_1.UtilityService,
-        filter_by_service_1.FilterByService])
-], TicketKanbanComponent);
 exports.TicketKanbanComponent = TicketKanbanComponent;
 
-},{"../shared/utility.service":11,"./../filter-by/filter-by.service":6,"./ticket.service":18,"@angular/core":22}],17:[function(require,module,exports){
+},{"../shared/common.service":13,"../shared/utility.service":15,"./../filter-by/filter-by.service":6,"./ticket.service":22,"@angular/core":26}],21:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -591,20 +806,20 @@ var TicketListComponent = (function () {
         this.filterName$ = this.filterByService.filterNameObservable();
         this.ticketList();
     };
+    TicketListComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-list',
+            templateUrl: '/app/ticket/ticket-list.component.html',
+        }),
+        __metadata("design:paramtypes", [ticket_service_1.TicketService,
+            utility_service_1.UtilityService,
+            filter_by_service_1.FilterByService])
+    ], TicketListComponent);
     return TicketListComponent;
 }());
-TicketListComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-list',
-        templateUrl: '/app/ticket/ticket-list.component.html',
-    }),
-    __metadata("design:paramtypes", [ticket_service_1.TicketService,
-        utility_service_1.UtilityService,
-        filter_by_service_1.FilterByService])
-], TicketListComponent);
 exports.TicketListComponent = TicketListComponent;
 
-},{"../shared/utility.service":11,"./../filter-by/filter-by.service":6,"./ticket.service":18,"@angular/core":22}],18:[function(require,module,exports){
+},{"../shared/utility.service":15,"./../filter-by/filter-by.service":6,"./ticket.service":22,"@angular/core":26}],22:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -627,15 +842,15 @@ var TicketService = (function () {
         return this.http.get('/api/tickets.json')
             .map(function (data) { return data.json(); });
     };
+    TicketService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TicketService);
     return TicketService;
 }());
-TicketService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], TicketService);
 exports.TicketService = TicketService;
 
-},{"@angular/core":22,"@angular/http":24,"rxjs/add/operator/map":40}],19:[function(require,module,exports){
+},{"@angular/core":26,"@angular/http":28,"rxjs/add/operator/map":44}],23:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -653,20 +868,20 @@ var WelcomeComponent = (function () {
     }
     WelcomeComponent.prototype.ngOnInit = function () {
     };
+    WelcomeComponent = __decorate([
+        core_1.Component({
+            selector: 'welcome',
+            templateUrl: '/app/welcome/welcome.component.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], WelcomeComponent);
     return WelcomeComponent;
 }());
-WelcomeComponent = __decorate([
-    core_1.Component({
-        selector: 'welcome',
-        templateUrl: '/app/welcome/welcome.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], WelcomeComponent);
 exports.WelcomeComponent = WelcomeComponent;
 
-},{"@angular/core":22}],20:[function(require,module,exports){
+},{"@angular/core":26}],24:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -682,7 +897,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -2100,7 +2315,7 @@ NgClass.propDecorators = {
  *                                   ngModuleFactory: moduleFactory;">
  * </ng-container>
  * ```
- * # Example
+ * ## Example
  *
  * {\@example common/ngComponentOutlet/ts/module.ts region='SimpleExample'}
  *
@@ -2477,13 +2692,13 @@ function getTypeNameForDebugging(type) {
  *  - `then` template is the inline template of `ngIf` unless bound to a different value.
  *  - `else` template is blank unless it is bound.
  *
- * # Most common usage
+ * ## Most common usage
  *
  * The most common usage of the `ngIf` directive is to conditionally show the inline template as
  * seen in this example:
  * {\@example common/ngIf/ts/module.ts region='NgIfSimple'}
  *
- * # Showing an alternative template using `else`
+ * ## Showing an alternative template using `else`
  *
  * If it is necessary to display a template when the `expression` is falsy use the `else` template
  * binding as shown. Note that the `else` binding points to a `<ng-template>` labeled `#elseBlock`.
@@ -2492,7 +2707,7 @@ function getTypeNameForDebugging(type) {
  *
  * {\@example common/ngIf/ts/module.ts region='NgIfElse'}
  *
- * # Using non-inlined `then` template
+ * ## Using non-inlined `then` template
  *
  * Usually the `then` template is the inlined template of the `ngIf`, but it can be changed using
  * a binding (just like `else`). Because `then` and `else` are bindings, the template references can
@@ -2500,7 +2715,7 @@ function getTypeNameForDebugging(type) {
  *
  * {\@example common/ngIf/ts/module.ts region='NgIfThenElse'}
  *
- * # Storing conditional result in a variable
+ * ## Storing conditional result in a variable
  *
  * A common pattern is that we need to show a set of properties from the same object. If the
  * object is undefined, then we have to use the safe-traversal-operator `?.` to guard against
@@ -3201,7 +3416,7 @@ NgStyle.propDecorators = {
  *
  * Note: using the key `$implicit` in the context object will set it's value as default.
  *
- * # Example
+ * ## Example
  *
  * {\@example common/ngTemplateOutlet/ts/module.ts region='NgTemplateOutlet'}
  *
@@ -4611,7 +4826,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 
 exports.NgLocaleLocalization = NgLocaleLocalization;
 exports.NgLocalization = NgLocalization;
@@ -4666,9 +4881,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/core":22}],21:[function(require,module,exports){
+},{"@angular/core":26}],25:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -4684,7 +4899,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -4703,7 +4918,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -31254,10 +31469,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/core":22}],22:[function(require,module,exports){
+},{"@angular/core":26}],26:[function(require,module,exports){
 (function (global){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -31273,7 +31488,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -32125,7 +32340,7 @@ var Version = (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('4.1.2');
+var VERSION = new Version('4.1.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -34166,21 +34381,42 @@ var ApplicationInitStatus = (function () {
      */
     function ApplicationInitStatus(appInits) {
         var _this = this;
+        this.appInits = appInits;
+        this.initialized = false;
         this._done = false;
-        var asyncInitPromises = [];
-        if (appInits) {
-            for (var i = 0; i < appInits.length; i++) {
-                var initResult = appInits[i]();
+        this._donePromise = new Promise(function (res, rej) {
+            _this.resolve = res;
+            _this.reject = rej;
+        });
+    }
+    /**
+     * \@internal
+     * @return {?}
+     */
+    ApplicationInitStatus.prototype.runInitializers = function () {
+        var _this = this;
+        if (this.initialized) {
+            return;
+        }
+        var /** @type {?} */ asyncInitPromises = [];
+        var /** @type {?} */ complete = function () {
+            _this._done = true;
+            _this.resolve();
+        };
+        if (this.appInits) {
+            for (var /** @type {?} */ i = 0; i < this.appInits.length; i++) {
+                var /** @type {?} */ initResult = this.appInits[i]();
                 if (isPromise(initResult)) {
                     asyncInitPromises.push(initResult);
                 }
             }
         }
-        this._donePromise = Promise.all(asyncInitPromises).then(function () { _this._done = true; });
+        Promise.all(asyncInitPromises).then(function () { complete(); }).catch(function (e) { _this.reject(e); });
         if (asyncInitPromises.length === 0) {
-            this._done = true;
+            complete();
         }
-    }
+        this.initialized = true;
+    };
     Object.defineProperty(ApplicationInitStatus.prototype, "done", {
         /**
          * @return {?}
@@ -36022,6 +36258,7 @@ var PlatformRef_ = (function (_super) {
             ((ngZone)).onError.subscribe({ next: function (error) { exceptionHandler.handleError(error); } });
             return _callAndReportToErrorHandler(exceptionHandler, function () {
                 var /** @type {?} */ initStatus = moduleRef.injector.get(ApplicationInitStatus);
+                initStatus.runInitializers();
                 return initStatus.donePromise.then(function () {
                     _this._moduleDoBootstrap(moduleRef);
                     return moduleRef;
@@ -45585,9 +45822,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"rxjs/Observable":32,"rxjs/Subject":35,"rxjs/observable/merge":55,"rxjs/operator/share":73}],23:[function(require,module,exports){
+},{"rxjs/Observable":36,"rxjs/Subject":39,"rxjs/observable/merge":59,"rxjs/operator/share":77}],27:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -45603,7 +45840,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -51421,7 +51658,7 @@ FormBuilder.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -51629,9 +51866,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/core":22,"@angular/platform-browser":26,"rxjs/observable/forkJoin":51,"rxjs/observable/fromPromise":54,"rxjs/operator/map":66}],24:[function(require,module,exports){
+},{"@angular/core":26,"@angular/platform-browser":30,"rxjs/observable/forkJoin":55,"rxjs/observable/fromPromise":58,"rxjs/operator/map":70}],28:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -51647,7 +51884,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -53797,7 +54034,7 @@ JsonpModule.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 
 exports.BrowserXhr = BrowserXhr;
 exports.JSONPBackend = JSONPBackend;
@@ -53838,9 +54075,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/core":22,"@angular/platform-browser":26,"rxjs/Observable":32}],25:[function(require,module,exports){
+},{"@angular/core":26,"@angular/platform-browser":30,"rxjs/Observable":36}],29:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -53856,7 +54093,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -53985,7 +54222,7 @@ var CachedResourceLoader = (function (_super) {
 /**
  * @stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -54013,9 +54250,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/common":20,"@angular/compiler":21,"@angular/core":22,"@angular/platform-browser":26}],26:[function(require,module,exports){
+},{"@angular/common":24,"@angular/compiler":25,"@angular/core":26,"@angular/platform-browser":30}],30:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -54031,7 +54268,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -56200,22 +56437,26 @@ var TRANSITION_ID = new _angular_core.InjectionToken('TRANSITION_ID');
 /**
  * @param {?} transitionId
  * @param {?} document
+ * @param {?} injector
  * @return {?}
  */
-function bootstrapListenerFactory(transitionId, document) {
-    var /** @type {?} */ factory = function () {
-        var /** @type {?} */ dom = getDOM();
-        var /** @type {?} */ styles = Array.prototype.slice.apply(dom.querySelectorAll(document, "style[ng-transition]"));
-        styles.filter(function (el) { return dom.getAttribute(el, 'ng-transition') === transitionId; })
-            .forEach(function (el) { return dom.remove(el); });
+function appInitializerFactory(transitionId, document, injector) {
+    return function () {
+        // Wait for all application initializers to be completed before removing the styles set by
+        // the server.
+        injector.get(_angular_core.ApplicationInitStatus).donePromise.then(function () {
+            var /** @type {?} */ dom = getDOM();
+            var /** @type {?} */ styles = Array.prototype.slice.apply(dom.querySelectorAll(document, "style[ng-transition]"));
+            styles.filter(function (el) { return dom.getAttribute(el, 'ng-transition') === transitionId; })
+                .forEach(function (el) { return dom.remove(el); });
+        });
     };
-    return factory;
 }
 var SERVER_TRANSITION_PROVIDERS = [
     {
         provide: _angular_core.APP_INITIALIZER,
-        useFactory: bootstrapListenerFactory,
-        deps: [TRANSITION_ID, DOCUMENT],
+        useFactory: appInitializerFactory,
+        deps: [TRANSITION_ID, DOCUMENT, _angular_core.Injector],
         multi: true
     },
 ];
@@ -58450,7 +58691,7 @@ var By = (function () {
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 
 exports.BrowserModule = BrowserModule;
 exports.platformBrowser = platformBrowser;
@@ -58493,7 +58734,7 @@ exports.ɵb = _document;
 exports.ɵa = errorHandler;
 exports.ɵh = GenericBrowserDomAdapter;
 exports.ɵg = SERVER_TRANSITION_PROVIDERS;
-exports.ɵf = bootstrapListenerFactory;
+exports.ɵf = appInitializerFactory;
 exports.ɵc = _createNgProbe;
 exports.ɵd = EventManagerPlugin;
 exports.ɵe = DomSanitizerImpl;
@@ -58503,9 +58744,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/common":20,"@angular/core":22}],27:[function(require,module,exports){
+},{"@angular/common":24,"@angular/core":26}],31:[function(require,module,exports){
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */(function (global, factory) {
@@ -58520,7 +58761,7 @@ var __extends = (undefined && undefined.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /**
- * @license Angular v4.1.2
+ * @license Angular v4.1.3
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */ /**
@@ -59026,7 +59267,10 @@ function wrapIntoObservable(value) {
         return value;
     }
     if (_angular_core.ɵisPromise(value)) {
-        return rxjs_observable_fromPromise.fromPromise(value);
+        // Use `Promise.resolve()` to wrap promise-like instances.
+        // Required ie when a Resolver returns a AngularJS `$q` promise to correctly trigger the
+        // change detection.
+        return rxjs_observable_fromPromise.fromPromise(Promise.resolve(value));
     }
     return rxjs_observable_of.of(value);
 }
@@ -64532,7 +64776,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new _angular_core.Version('4.1.2');
+var VERSION = new _angular_core.Version('4.1.3');
 
 exports.RouterLink = RouterLink;
 exports.RouterLinkWithHref = RouterLinkWithHref;
@@ -64590,7 +64834,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 })));
 
 
-},{"@angular/common":20,"@angular/core":22,"@angular/platform-browser":26,"rxjs/BehaviorSubject":29,"rxjs/Observable":32,"rxjs/Subject":35,"rxjs/observable/from":52,"rxjs/observable/fromPromise":54,"rxjs/observable/of":56,"rxjs/operator/catch":57,"rxjs/operator/concatAll":58,"rxjs/operator/concatMap":59,"rxjs/operator/every":61,"rxjs/operator/filter":62,"rxjs/operator/first":63,"rxjs/operator/last":64,"rxjs/operator/map":66,"rxjs/operator/mergeAll":68,"rxjs/operator/mergeMap":69,"rxjs/operator/reduce":72,"rxjs/util/EmptyError":77}],28:[function(require,module,exports){
+},{"@angular/common":24,"@angular/core":26,"@angular/platform-browser":30,"rxjs/BehaviorSubject":33,"rxjs/Observable":36,"rxjs/Subject":39,"rxjs/observable/from":56,"rxjs/observable/fromPromise":58,"rxjs/observable/of":60,"rxjs/operator/catch":61,"rxjs/operator/concatAll":62,"rxjs/operator/concatMap":63,"rxjs/operator/every":65,"rxjs/operator/filter":66,"rxjs/operator/first":67,"rxjs/operator/last":68,"rxjs/operator/map":70,"rxjs/operator/mergeAll":72,"rxjs/operator/mergeMap":73,"rxjs/operator/reduce":76,"rxjs/util/EmptyError":81}],32:[function(require,module,exports){
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("@angular/core"), require("@angular/common"), require("@angular/forms"), require("rxjs/observable/fromEvent"), require("rxjs/operator/do"), require("rxjs/operator/let"));
@@ -64889,6 +65133,7 @@ var NgbDate = (function () {
             return this.year > other.year;
         }
     };
+    NgbDate.prototype.toStruct = function () { return { year: this.year, month: this.month, day: this.day }; };
     NgbDate.prototype.toString = function () { return this.year + "-" + this.month + "-" + this.day; };
     return NgbDate;
 }());
@@ -65004,7 +65249,7 @@ var PopupService = (function () {
             return new ContentRef([viewRef.rootNodes], viewRef);
         }
         else {
-            return new ContentRef([[this._renderer.createText(null, "" + content)]]);
+            return new ContentRef([[this._renderer.createText("" + content)]]);
         }
     };
     return PopupService;
@@ -65089,51 +65334,51 @@ var Positioning = (function () {
     };
     Positioning.prototype.positionElements = function (hostElement, targetElement, placement, appendToBody) {
         var hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
-        var shiftWidth = {
-            left: hostElPosition.left,
-            center: hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2,
-            right: hostElPosition.left + hostElPosition.width
-        };
-        var shiftHeight = {
-            top: hostElPosition.top,
-            center: hostElPosition.top + hostElPosition.height / 2 - targetElement.offsetHeight / 2,
-            bottom: hostElPosition.top + hostElPosition.height
-        };
         var targetElBCR = targetElement.getBoundingClientRect();
         var placementPrimary = placement.split('-')[0] || 'top';
         var placementSecondary = placement.split('-')[1] || 'center';
         var targetElPosition = {
-            height: targetElBCR.height || targetElement.offsetHeight,
-            width: targetElBCR.width || targetElement.offsetWidth,
-            top: 0,
-            bottom: targetElBCR.height || targetElement.offsetHeight,
-            left: 0,
-            right: targetElBCR.width || targetElement.offsetWidth
+            'height': targetElBCR.height || targetElement.offsetHeight,
+            'width': targetElBCR.width || targetElement.offsetWidth,
+            'top': 0,
+            'bottom': targetElBCR.height || targetElement.offsetHeight,
+            'left': 0,
+            'right': targetElBCR.width || targetElement.offsetWidth
         };
         switch (placementPrimary) {
             case 'top':
                 targetElPosition.top = hostElPosition.top - targetElement.offsetHeight;
-                targetElPosition.bottom += hostElPosition.top - targetElement.offsetHeight;
-                targetElPosition.left = shiftWidth[placementSecondary];
-                targetElPosition.right += shiftWidth[placementSecondary];
                 break;
             case 'bottom':
-                targetElPosition.top = shiftHeight[placementPrimary];
-                targetElPosition.bottom += shiftHeight[placementPrimary];
-                targetElPosition.left = shiftWidth[placementSecondary];
-                targetElPosition.right += shiftWidth[placementSecondary];
+                targetElPosition.top = hostElPosition.top + hostElPosition.height;
                 break;
             case 'left':
-                targetElPosition.top = shiftHeight[placementSecondary];
-                targetElPosition.bottom += shiftHeight[placementSecondary];
                 targetElPosition.left = hostElPosition.left - targetElement.offsetWidth;
-                targetElPosition.right += hostElPosition.left - targetElement.offsetWidth;
                 break;
             case 'right':
-                targetElPosition.top = shiftHeight[placementSecondary];
-                targetElPosition.bottom += shiftHeight[placementSecondary];
-                targetElPosition.left = shiftWidth[placementPrimary];
-                targetElPosition.right += shiftWidth[placementPrimary];
+                targetElPosition.left = hostElPosition.left + hostElPosition.width;
+                break;
+        }
+        switch (placementSecondary) {
+            case 'top':
+                targetElPosition.top = hostElPosition.top;
+                break;
+            case 'bottom':
+                targetElPosition.top = hostElPosition.top + hostElPosition.height - targetElement.offsetHeight;
+                break;
+            case 'left':
+                targetElPosition.left = hostElPosition.left;
+                break;
+            case 'right':
+                targetElPosition.left = hostElPosition.left + hostElPosition.width - targetElement.offsetWidth;
+                break;
+            case 'center':
+                if (placementPrimary === 'top' || placementPrimary === 'bottom') {
+                    targetElPosition.left = hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2;
+                }
+                else {
+                    targetElPosition.top = hostElPosition.top + hostElPosition.height / 2 - targetElement.offsetHeight / 2;
+                }
                 break;
         }
         targetElPosition.top = Math.round(targetElPosition.top);
@@ -65739,7 +65984,7 @@ var NgbTypeaheadModule = NgbTypeaheadModule_1 = (function () {
 NgbTypeaheadModule = NgbTypeaheadModule_1 = __decorate([
     core_1.NgModule({
         declarations: [typeahead_1.NgbTypeahead, highlight_1.NgbHighlight, typeahead_window_1.NgbTypeaheadWindow],
-        exports: [typeahead_1.NgbTypeahead],
+        exports: [typeahead_1.NgbTypeahead, highlight_1.NgbHighlight],
         imports: [common_1.CommonModule],
         entryComponents: [typeahead_window_1.NgbTypeaheadWindow]
     })
@@ -66323,6 +66568,7 @@ var NgbRatingConfig = (function () {
     function NgbRatingConfig() {
         this.max = 10;
         this.readonly = false;
+        this.resettable = false;
     }
     return NgbRatingConfig;
 }());
@@ -66499,6 +66745,7 @@ var NgbTypeaheadWindow = (function () {
         this.selectEvent = new core_1.EventEmitter();
         this.activeChangeEvent = new core_1.EventEmitter();
     }
+    NgbTypeaheadWindow.prototype._getResultContext = function (result) { return { result: result, term: this.term, formatter: this.formatter }; };
     NgbTypeaheadWindow.prototype.getActive = function () { return this.results[this.activeIdx]; };
     NgbTypeaheadWindow.prototype.markActive = function (activeIdx) {
         this.activeIdx = activeIdx;
@@ -66572,7 +66819,7 @@ NgbTypeaheadWindow = __decorate([
         selector: 'ngb-typeahead-window',
         exportAs: 'ngbTypeaheadWindow',
         host: { 'class': 'dropdown-menu', 'style': 'display: block', 'role': 'listbox', '[id]': 'id' },
-        template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <button type=\"button\" class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngOutletContext]=\"{result: result, term: term, formatter: formatter}\"></ng-template>\n      </button>\n    </ng-template>\n  "
+        template: "\n    <ng-template #rt let-result=\"result\" let-term=\"term\" let-formatter=\"formatter\">\n      <ngb-highlight [result]=\"formatter(result)\" [term]=\"term\"></ngb-highlight>\n    </ng-template>\n    <ng-template ngFor [ngForOf]=\"results\" let-result let-idx=\"index\">\n      <button type=\"button\" class=\"dropdown-item\" role=\"option\"\n        [id]=\"id + '-' + idx\"\n        [class.active]=\"idx === activeIdx\"\n        (mouseenter)=\"markActive(idx)\"\n        (click)=\"select(result)\">\n          <ng-template [ngTemplateOutlet]=\"resultTemplate || rt\"\n          [ngOutletContext]=\"_getResultContext(result)\"></ng-template>\n      </button>\n    </ng-template>\n  "
     })
 ], NgbTypeaheadWindow);
 exports.NgbTypeaheadWindow = NgbTypeaheadWindow;
@@ -66922,19 +67169,38 @@ var NgbActiveLabel = (function () {
         this._elRef = _elRef;
     }
     Object.defineProperty(NgbActiveLabel.prototype, "active", {
-        set: function (isActive) { this._renderer.setElementClass(this._elRef.nativeElement, 'active', isActive); },
+        set: function (isActive) {
+            if (isActive) {
+                this._renderer.addClass(this._elRef.nativeElement, 'active');
+            }
+            else {
+                this._renderer.removeClass(this._elRef.nativeElement, 'active');
+            }
+        },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(NgbActiveLabel.prototype, "disabled", {
         set: function (isDisabled) {
-            this._renderer.setElementClass(this._elRef.nativeElement, 'disabled', isDisabled);
+            if (isDisabled) {
+                this._renderer.addClass(this._elRef.nativeElement, 'disabled');
+            }
+            else {
+                this._renderer.removeClass(this._elRef.nativeElement, 'disabled');
+            }
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(NgbActiveLabel.prototype, "focused", {
-        set: function (isFocused) { this._renderer.setElementClass(this._elRef.nativeElement, 'focus', isFocused); },
+        set: function (isFocused) {
+            if (isFocused) {
+                this._renderer.addClass(this._elRef.nativeElement, 'focus');
+            }
+            else {
+                this._renderer.removeClass(this._elRef.nativeElement, 'focus');
+            }
+        },
         enumerable: true,
         configurable: true
     });
@@ -66942,7 +67208,7 @@ var NgbActiveLabel = (function () {
 }());
 NgbActiveLabel = __decorate([
     core_1.Directive({ selector: 'label.btn' }),
-    __metadata("design:paramtypes", [core_1.Renderer, core_1.ElementRef])
+    __metadata("design:paramtypes", [core_1.Renderer2, core_1.ElementRef])
 ], NgbActiveLabel);
 exports.NgbActiveLabel = NgbActiveLabel;
 /**
@@ -66967,7 +67233,7 @@ var NgbRadio = (function () {
         set: function (value) {
             this._value = value;
             var stringValue = value ? value.toString() : '';
-            this._renderer.setElementProperty(this._element.nativeElement, 'value', stringValue);
+            this._renderer.setProperty(this._element.nativeElement, 'value', stringValue);
             if (this._group) {
                 this._group.onRadioValueUpdate();
             }
@@ -67057,7 +67323,7 @@ NgbRadio = __decorate([
     }),
     __param(0, core_1.Optional()), __param(1, core_1.Optional()),
     __metadata("design:paramtypes", [NgbRadioGroup, NgbActiveLabel,
-        core_1.Renderer, core_1.ElementRef])
+        core_1.Renderer2, core_1.ElementRef])
 ], NgbRadio);
 exports.NgbRadio = NgbRadio;
 
@@ -67108,6 +67374,11 @@ exports.NgbSlide = NgbSlide;
  */
 var NgbCarousel = (function () {
     function NgbCarousel(config) {
+        /**
+         * A carousel slide event fired when the slide transition is completed.
+         * See NgbSlideEvent for payload details
+         */
+        this.slide = new core_1.EventEmitter();
         this.interval = config.interval;
         this.wrap = config.wrap;
         this.keyboard = config.keyboard;
@@ -67122,7 +67393,7 @@ var NgbCarousel = (function () {
      * Navigate to a slide with the specified identifier.
      */
     NgbCarousel.prototype.select = function (slideId) {
-        this.cycleToSelected(slideId);
+        this.cycleToSelected(slideId, this._getSlideEventDirection(this.activeId, slideId));
         this._restartTimer();
     };
     /**
@@ -67147,11 +67418,14 @@ var NgbCarousel = (function () {
      * Restarts cycling through the carousel slides from left to right.
      */
     NgbCarousel.prototype.cycle = function () { this._startTimer(); };
-    NgbCarousel.prototype.cycleToNext = function () { this.cycleToSelected(this._getNextSlide(this.activeId)); };
-    NgbCarousel.prototype.cycleToPrev = function () { this.cycleToSelected(this._getPrevSlide(this.activeId)); };
-    NgbCarousel.prototype.cycleToSelected = function (slideIdx) {
+    NgbCarousel.prototype.cycleToNext = function () { this.cycleToSelected(this._getNextSlide(this.activeId), NgbSlideEventDirection.LEFT); };
+    NgbCarousel.prototype.cycleToPrev = function () { this.cycleToSelected(this._getPrevSlide(this.activeId), NgbSlideEventDirection.RIGHT); };
+    NgbCarousel.prototype.cycleToSelected = function (slideIdx, direction) {
         var selectedSlide = this._getSlideById(slideIdx);
         if (selectedSlide) {
+            if (selectedSlide.id !== this.activeId) {
+                this.slide.emit({ prev: this.activeId, current: selectedSlide.id, direction: direction });
+            }
             this.activeId = selectedSlide.id;
         }
     };
@@ -67197,6 +67471,11 @@ var NgbCarousel = (function () {
         return isFirstSlide ? (this.wrap ? slideArr[slideArr.length - 1].id : slideArr[0].id) :
             slideArr[currentSlideIdx - 1].id;
     };
+    NgbCarousel.prototype._getSlideEventDirection = function (currentActiveSlideId, nextActiveSlideId) {
+        var currentActiveSlideIdx = this._getSlideIdxById(currentActiveSlideId);
+        var nextActiveSlideIdx = this._getSlideIdxById(nextActiveSlideId);
+        return currentActiveSlideIdx > nextActiveSlideIdx ? NgbSlideEventDirection.RIGHT : NgbSlideEventDirection.LEFT;
+    };
     return NgbCarousel;
 }());
 __decorate([
@@ -67219,6 +67498,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], NgbCarousel.prototype, "activeId", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], NgbCarousel.prototype, "slide", void 0);
 NgbCarousel = __decorate([
     core_1.Component({
         selector: 'ngb-carousel',
@@ -67232,11 +67515,19 @@ NgbCarousel = __decorate([
             '(keydown.arrowLeft)': 'keyPrev()',
             '(keydown.arrowRight)': 'keyNext()'
         },
-        template: "\n    <ol class=\"carousel-indicators\">\n      <li *ngFor=\"let slide of slides\" [id]=\"slide.id\" [class.active]=\"slide.id === activeId\" (click)=\"cycleToSelected(slide.id)\"></li>\n    </ol>\n    <div class=\"carousel-inner\">\n      <div *ngFor=\"let slide of slides\" class=\"carousel-item\" [class.active]=\"slide.id === activeId\">\n        <ng-template [ngTemplateOutlet]=\"slide.tplRef\"></ng-template>\n      </div>\n    </div>\n    <a class=\"left carousel-control-prev\" role=\"button\" (click)=\"cycleToPrev()\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control-next\" role=\"button\" (click)=\"cycleToNext()\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n    "
+        template: "\n    <ol class=\"carousel-indicators\">\n      <li *ngFor=\"let slide of slides\" [id]=\"slide.id\" [class.active]=\"slide.id === activeId\" \n          (click)=\"cycleToSelected(slide.id, _getSlideEventDirection(activeId, slide.id))\"></li>\n    </ol>\n    <div class=\"carousel-inner\">\n      <div *ngFor=\"let slide of slides\" class=\"carousel-item\" [class.active]=\"slide.id === activeId\">\n        <ng-template [ngTemplateOutlet]=\"slide.tplRef\"></ng-template>\n      </div>\n    </div>\n    <a class=\"left carousel-control-prev\" role=\"button\" (click)=\"cycleToPrev()\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control-next\" role=\"button\" (click)=\"cycleToNext()\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n    "
     }),
     __metadata("design:paramtypes", [carousel_config_1.NgbCarouselConfig])
 ], NgbCarousel);
 exports.NgbCarousel = NgbCarousel;
+/**
+ * Enum to define the carousel slide event direction
+ */
+var NgbSlideEventDirection;
+(function (NgbSlideEventDirection) {
+    NgbSlideEventDirection[NgbSlideEventDirection["LEFT"] = 'left'] = "LEFT";
+    NgbSlideEventDirection[NgbSlideEventDirection["RIGHT"] = 'right'] = "RIGHT";
+})(NgbSlideEventDirection = exports.NgbSlideEventDirection || (exports.NgbSlideEventDirection = {}));
 exports.NGB_CAROUSEL_DIRECTIVES = [NgbCarousel, NgbSlide];
 
 
@@ -67386,6 +67677,11 @@ var NgbInputDatepicker = (function () {
         this._calendar = _calendar;
         this._cRef = null;
         /**
+         * Placement of a datepicker popup. Accepts: "top", "bottom", "left", "right", "bottom-left",
+         * "bottom-right" etc.
+         */
+        this.placement = 'bottom-left';
+        /**
          * An event fired when navigation happens and currently displayed month changes.
          * See NgbDatepickerNavigateEvent for the payload info.
          */
@@ -67395,7 +67691,7 @@ var NgbInputDatepicker = (function () {
         this._validatorChange = function () { };
         this._zoneSubscription = ngZone.onStable.subscribe(function () {
             if (_this._cRef) {
-                positioning_1.positionElements(_this._elRef.nativeElement, _this._cRef.location.nativeElement, 'bottom-left');
+                positioning_1.positionElements(_this._elRef.nativeElement, _this._cRef.location.nativeElement, _this.placement);
             }
         });
     }
@@ -67404,7 +67700,7 @@ var NgbInputDatepicker = (function () {
     NgbInputDatepicker.prototype.registerOnValidatorChange = function (fn) { this._validatorChange = fn; };
     ;
     NgbInputDatepicker.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elRef.nativeElement, 'disabled', isDisabled);
         if (this.isOpen()) {
             this._cRef.instance.setDisabledState(isDisabled);
         }
@@ -67431,7 +67727,7 @@ var NgbInputDatepicker = (function () {
     };
     NgbInputDatepicker.prototype.manualDateChange = function (value) {
         this._model = this._service.toValidDate(this._parserFormatter.parse(value), null);
-        this._onChange(this._model ? { year: this._model.year, month: this._model.month, day: this._model.day } : value);
+        this._onChange(this._model ? this._model.toStruct() : (value === '' ? null : value));
         this._writeModelValue(this._model);
     };
     NgbInputDatepicker.prototype.isOpen = function () { return !!this._cRef; };
@@ -67493,6 +67789,10 @@ var NgbInputDatepicker = (function () {
             this._validatorChange();
         }
     };
+    NgbInputDatepicker.prototype.ngOnDestroy = function () {
+        this.close();
+        this._zoneSubscription.unsubscribe();
+    };
     NgbInputDatepicker.prototype._applyDatepickerInputs = function (datepickerInstance) {
         var _this = this;
         ['dayTemplate', 'displayMonths', 'firstDayOfWeek', 'markDisabled', 'minDate', 'maxDate', 'navigation',
@@ -67505,15 +67805,15 @@ var NgbInputDatepicker = (function () {
         datepickerInstance.startDate = this.startDate || this._model;
     };
     NgbInputDatepicker.prototype._applyPopupStyling = function (nativeElement) {
-        this._renderer.setElementClass(nativeElement, 'dropdown-menu', true);
-        this._renderer.setElementStyle(nativeElement, 'padding', '0');
+        this._renderer.addClass(nativeElement, 'dropdown-menu');
+        this._renderer.setStyle(nativeElement, 'padding', '0');
     };
     NgbInputDatepicker.prototype._subscribeForDatepickerOutputs = function (datepickerInstance) {
         var _this = this;
         datepickerInstance.navigate.subscribe(function (date) { return _this.navigate.emit(date); });
     };
     NgbInputDatepicker.prototype._writeModelValue = function (model) {
-        this._renderer.setElementProperty(this._elRef.nativeElement, 'value', this._parserFormatter.format(model));
+        this._renderer.setProperty(this._elRef.nativeElement, 'value', this._parserFormatter.format(model));
         if (this.isOpen()) {
             this._cRef.instance.writeValue(model);
             this._onTouched();
@@ -67555,6 +67855,10 @@ __decorate([
 ], NgbInputDatepicker.prototype, "outsideDays", void 0);
 __decorate([
     core_1.Input(),
+    __metadata("design:type", Object)
+], NgbInputDatepicker.prototype, "placement", void 0);
+__decorate([
+    core_1.Input(),
     __metadata("design:type", Boolean)
 ], NgbInputDatepicker.prototype, "showWeekdays", void 0);
 __decorate([
@@ -67577,7 +67881,7 @@ NgbInputDatepicker = __decorate([
         providers: [NGB_DATEPICKER_VALUE_ACCESSOR, NGB_DATEPICKER_VALIDATOR, datepicker_service_1.NgbDatepickerService]
     }),
     __metadata("design:paramtypes", [ngb_date_parser_formatter_1.NgbDateParserFormatter, core_1.ElementRef, core_1.ViewContainerRef,
-        core_1.Renderer, core_1.ComponentFactoryResolver, core_1.NgZone,
+        core_1.Renderer2, core_1.ComponentFactoryResolver, core_1.NgZone,
         datepicker_service_1.NgbDatepickerService, ngb_calendar_1.NgbCalendar])
 ], NgbInputDatepicker);
 exports.NgbInputDatepicker = NgbInputDatepicker;
@@ -67610,6 +67914,14 @@ var NgbDatepickerMonthView = (function () {
         if (!this.isDisabled(day) && !this.isHidden(day)) {
             this.select.emit(ngb_date_1.NgbDate.from(day.date));
         }
+    };
+    NgbDatepickerMonthView.prototype._getDayContext = function (day, month) {
+        return {
+            date: { year: day.date.year, month: day.date.month, day: day.date.day },
+            currentMonth: month.number,
+            disabled: this.isDisabled(day),
+            selected: this.isSelected(day.date)
+        };
     };
     NgbDatepickerMonthView.prototype.isDisabled = function (day) { return this.disabled || day.disabled; };
     NgbDatepickerMonthView.prototype.isSelected = function (date) { return this.selectedDate && this.selectedDate.equals(date); };
@@ -67659,7 +67971,7 @@ NgbDatepickerMonthView = __decorate([
         selector: 'ngb-datepicker-month-view',
         host: { 'class': 'd-block' },
         styles: ["\n    .ngb-dp-weekday, .ngb-dp-week-number {\n      line-height: 2rem;\n    }\n    .ngb-dp-day, .ngb-dp-weekday, .ngb-dp-week-number {\n      width: 2rem;\n      height: 2rem;      \n    }\n    .ngb-dp-day {\n      cursor: pointer;\n    }\n    .ngb-dp-day.disabled, .ngb-dp-day.hidden {\n      cursor: default;\n    }\n  "],
-        template: "\n    <div *ngIf=\"showWeekdays\" class=\"ngb-dp-week d-flex\">\n      <div *ngIf=\"showWeekNumbers\" class=\"ngb-dp-weekday\"></div>\n      <div *ngFor=\"let w of month.weekdays\" class=\"ngb-dp-weekday small text-center text-info font-italic\">\n        {{ i18n.getWeekdayShortName(w) }}\n      </div>\n    </div>\n    <ng-template ngFor let-week [ngForOf]=\"month.weeks\">\n      <div *ngIf=\"!isCollapsed(week)\" class=\"ngb-dp-week d-flex\">\n        <div *ngIf=\"showWeekNumbers\" class=\"ngb-dp-week-number small text-center font-italic text-muted\">{{ week.number }}</div>\n        <div *ngFor=\"let day of week.days\" (click)=\"doSelect(day)\" class=\"ngb-dp-day\" [class.disabled]=\"isDisabled(day)\"\n         [class.hidden]=\"isHidden(day)\">\n          <ng-template [ngIf]=\"!isHidden(day)\">\n            <ng-template [ngTemplateOutlet]=\"dayTemplate\"\n            [ngOutletContext]=\"{date: {year: day.date.year, month: day.date.month, day: day.date.day},\n              currentMonth: month.number,\n              disabled: isDisabled(day),\n              selected: isSelected(day.date)}\">\n            </ng-template>\n          </ng-template>\n        </div>\n      </div>\n    </ng-template>\n  "
+        template: "\n    <div *ngIf=\"showWeekdays\" class=\"ngb-dp-week d-flex\">\n      <div *ngIf=\"showWeekNumbers\" class=\"ngb-dp-weekday\"></div>\n      <div *ngFor=\"let w of month.weekdays\" class=\"ngb-dp-weekday small text-center text-info font-italic\">\n        {{ i18n.getWeekdayShortName(w) }}\n      </div>\n    </div>\n    <ng-template ngFor let-week [ngForOf]=\"month.weeks\">\n      <div *ngIf=\"!isCollapsed(week)\" class=\"ngb-dp-week d-flex\">\n        <div *ngIf=\"showWeekNumbers\" class=\"ngb-dp-week-number small text-center font-italic text-muted\">{{ week.number }}</div>\n        <div *ngFor=\"let day of week.days\" (click)=\"doSelect(day)\" class=\"ngb-dp-day\" [class.disabled]=\"isDisabled(day)\"\n         [class.hidden]=\"isHidden(day)\">\n          <ng-template [ngIf]=\"!isHidden(day)\">\n            <ng-template [ngTemplateOutlet]=\"dayTemplate\"\n            [ngOutletContext]=\"_getDayContext(day, month)\">\n            </ng-template>\n          </ng-template>\n        </div>\n      </div>\n    </ng-template>\n  "
     }),
     __metadata("design:paramtypes", [datepicker_i18n_1.NgbDatepickerI18n])
 ], NgbDatepickerMonthView);
@@ -68355,22 +68667,22 @@ var NgbModalWindow = (function () {
     NgbModalWindow.prototype.dismiss = function (reason) { this.dismissEvent.emit(reason); };
     NgbModalWindow.prototype.ngOnInit = function () {
         this._elWithFocus = document.activeElement;
-        this._renderer.setElementClass(document.body, 'modal-open', true);
+        this._renderer.addClass(document.body, 'modal-open');
     };
     NgbModalWindow.prototype.ngAfterViewInit = function () {
         if (!this._elRef.nativeElement.contains(document.activeElement)) {
-            this._renderer.invokeElementMethod(this._elRef.nativeElement, 'focus', []);
+            this._elRef.nativeElement['focus'].apply(this._elRef.nativeElement, []);
         }
     };
     NgbModalWindow.prototype.ngOnDestroy = function () {
         if (this._elWithFocus && document.body.contains(this._elWithFocus)) {
-            this._renderer.invokeElementMethod(this._elWithFocus, 'focus', []);
+            this._elWithFocus['focus'].apply(this._elWithFocus, []);
         }
         else {
-            this._renderer.invokeElementMethod(document.body, 'focus', []);
+            document.body['focus'].apply(document.body, []);
         }
         this._elWithFocus = null;
-        this._renderer.setElementClass(document.body, 'modal-open', false);
+        this._renderer.removeClass(document.body, 'modal-open');
     };
     return NgbModalWindow;
 }());
@@ -68407,7 +68719,7 @@ NgbModalWindow = __decorate([
         },
         template: "\n    <div [class]=\"'modal-dialog' + (size ? ' modal-' + size : '')\" role=\"document\">\n        <div class=\"modal-content\"><ng-content></ng-content></div>\n    </div>\n    "
     }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer2])
 ], NgbModalWindow);
 exports.NgbModalWindow = NgbModalWindow;
 
@@ -68744,10 +69056,12 @@ var NgbPopover = (function () {
             this._windowRef.instance.placement = this.placement;
             this._windowRef.instance.title = this.popoverTitle;
             this._windowRef.instance.id = this._ngbPopoverWindowId;
-            this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ngbPopoverWindowId);
+            this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ngbPopoverWindowId);
             if (this.container === 'body') {
                 window.document.querySelector(this.container).appendChild(this._windowRef.location.nativeElement);
             }
+            // position popover along the element
+            positioning_1.positionElements(this._elementRef.nativeElement, this._windowRef.location.nativeElement, this.placement, this.container === 'body');
             // we need to manually invoke change detection since events registered via
             // Renderer::listen() are not picked up by change detection with the OnPush strategy
             this._windowRef.changeDetectorRef.markForCheck();
@@ -68759,7 +69073,7 @@ var NgbPopover = (function () {
      */
     NgbPopover.prototype.close = function () {
         if (this._windowRef) {
-            this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-describedby', null);
+            this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
             this._popupService.close();
             this._windowRef = null;
             this.hidden.emit();
@@ -68820,7 +69134,7 @@ __decorate([
 ], NgbPopover.prototype, "hidden", void 0);
 NgbPopover = __decorate([
     core_1.Directive({ selector: '[ngbPopover]', exportAs: 'ngbPopover' }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer, core_1.Injector,
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer2, core_1.Injector,
         core_1.ComponentFactoryResolver, core_1.ViewContainerRef, popover_config_1.NgbPopoverConfig,
         core_1.NgZone])
 ], NgbPopover);
@@ -68967,6 +69281,8 @@ var NgbRating = (function () {
         }
         this.hover.emit(value);
     };
+    NgbRating.prototype.handleBlur = function () { this.onTouched(); };
+    NgbRating.prototype.handleClick = function (value) { this.update(this.resettable && this.rate === value ? 0 : value); };
     NgbRating.prototype.handleKeyDown = function (event) {
         if (Key[util_1.toString(event.which)]) {
             event.preventDefault();
@@ -69013,6 +69329,7 @@ var NgbRating = (function () {
         }
         if (internalChange) {
             this.onChange(this.rate);
+            this.onTouched();
         }
         this._updateState(this.rate);
     };
@@ -69050,6 +69367,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], NgbRating.prototype, "readonly", void 0);
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], NgbRating.prototype, "resettable", void 0);
+__decorate([
     core_1.Input(), core_1.ContentChild(core_1.TemplateRef),
     __metadata("design:type", core_1.TemplateRef)
 ], NgbRating.prototype, "starTemplate", void 0);
@@ -69078,10 +69399,11 @@ NgbRating = __decorate([
             '[attr.aria-valuenow]': 'nextRate',
             '[attr.aria-valuetext]': 'ariaValueText()',
             '[attr.aria-disabled]': 'readonly ? true : null',
-            '(mouseleave)': 'reset()',
-            '(keydown)': 'handleKeyDown($event)'
+            '(blur)': 'handleBlur()',
+            '(keydown)': 'handleKeyDown($event)',
+            '(mouseleave)': 'reset()'
         },
-        template: "\n    <ng-template #t let-fill=\"fill\">{{ fill === 100 ? '&#9733;' : '&#9734;' }}</ng-template>\n    <ng-template ngFor [ngForOf]=\"contexts\" let-index=\"index\">\n      <span class=\"sr-only\">({{ index < nextRate ? '*' : ' ' }})</span>\n      <span (mouseenter)=\"enter(index + 1)\" (click)=\"update(index + 1)\" [style.cursor]=\"readonly || disabled ? 'default' : 'pointer'\">\n        <ng-template [ngTemplateOutlet]=\"starTemplate || t\" [ngOutletContext]=\"contexts[index]\"></ng-template>\n      </span>\n    </ng-template>\n  ",
+        template: "\n    <ng-template #t let-fill=\"fill\">{{ fill === 100 ? '&#9733;' : '&#9734;' }}</ng-template>\n    <ng-template ngFor [ngForOf]=\"contexts\" let-index=\"index\">\n      <span class=\"sr-only\">({{ index < nextRate ? '*' : ' ' }})</span>\n      <span (mouseenter)=\"enter(index + 1)\" (click)=\"handleClick(index + 1)\" [style.cursor]=\"readonly || disabled ? 'default' : 'pointer'\">\n        <ng-template [ngTemplateOutlet]=\"starTemplate || t\" [ngOutletContext]=\"contexts[index]\"></ng-template>\n      </span>\n    </ng-template>\n  ",
         providers: [NGB_RATING_VALUE_ACCESSOR]
     }),
     __metadata("design:paramtypes", [rating_config_1.NgbRatingConfig, core_1.ChangeDetectorRef])
@@ -69505,10 +69827,12 @@ var NgbTooltip = (function () {
             this._windowRef = this._popupService.open(this._ngbTooltip, context);
             this._windowRef.instance.placement = this.placement;
             this._windowRef.instance.id = this._ngbTooltipWindowId;
-            this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ngbTooltipWindowId);
+            this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ngbTooltipWindowId);
             if (this.container === 'body') {
                 window.document.querySelector(this.container).appendChild(this._windowRef.location.nativeElement);
             }
+            // position tooltip along the element
+            positioning_1.positionElements(this._elementRef.nativeElement, this._windowRef.location.nativeElement, this.placement, this.container === 'body');
             // we need to manually invoke change detection since events registered via
             // Renderer::listen() - to be determined if this is a bug in the Angular itself
             this._windowRef.changeDetectorRef.markForCheck();
@@ -69520,7 +69844,7 @@ var NgbTooltip = (function () {
      */
     NgbTooltip.prototype.close = function () {
         if (this._windowRef != null) {
-            this._renderer.setElementAttribute(this._elementRef.nativeElement, 'aria-describedby', null);
+            this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
             this._popupService.close();
             this._windowRef = null;
             this.hidden.emit();
@@ -69578,7 +69902,7 @@ __decorate([
 ], NgbTooltip.prototype, "ngbTooltip", null);
 NgbTooltip = __decorate([
     core_1.Directive({ selector: '[ngbTooltip]', exportAs: 'ngbTooltip' }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer, core_1.Injector,
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer2, core_1.Injector,
         core_1.ComponentFactoryResolver, core_1.ViewContainerRef, tooltip_config_1.NgbTooltipConfig,
         core_1.NgZone])
 ], NgbTooltip);
@@ -69740,7 +70064,7 @@ var NgbTypeahead = (function () {
     NgbTypeahead.prototype.registerOnTouched = function (fn) { this._onTouched = fn; };
     NgbTypeahead.prototype.writeValue = function (value) { this._writeInputValue(this._formatItemForInput(value)); };
     NgbTypeahead.prototype.setDisabledState = function (isDisabled) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'disabled', isDisabled);
     };
     NgbTypeahead.prototype.dismissPopup = function () {
         if (this.isPopupOpen()) {
@@ -69815,7 +70139,7 @@ var NgbTypeahead = (function () {
             var formattedVal = this._formatItemForInput(this._windowRef.instance.getActive());
             if (userInputLowerCase === formattedVal.substr(0, this._userInput.length).toLowerCase()) {
                 this._writeInputValue(this._userInput + formattedVal.substr(this._userInput.length));
-                this._renderer.invokeElementMethod(this._elementRef.nativeElement, 'setSelectionRange', [this._userInput.length, formattedVal.length]);
+                this._elementRef.nativeElement['setSelectionRange'].apply(this._elementRef.nativeElement, [this._userInput.length, formattedVal.length]);
             }
             else {
                 this.writeValue(this._windowRef.instance.getActive());
@@ -69826,7 +70150,7 @@ var NgbTypeahead = (function () {
         return item && this.inputFormatter ? this.inputFormatter(item) : util_1.toString(item);
     };
     NgbTypeahead.prototype._writeInputValue = function (value) {
-        this._renderer.setElementProperty(this._elementRef.nativeElement, 'value', value);
+        this._renderer.setProperty(this._elementRef.nativeElement, 'value', value);
     };
     NgbTypeahead.prototype._subscribeToUserInput = function (userInput$) {
         var _this = this;
@@ -69913,7 +70237,7 @@ NgbTypeahead = __decorate([
         },
         providers: [NGB_TYPEAHEAD_VALUE_ACCESSOR]
     }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.ViewContainerRef, core_1.Renderer,
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.ViewContainerRef, core_1.Renderer2,
         core_1.Injector, core_1.ComponentFactoryResolver, typeahead_config_1.NgbTypeaheadConfig,
         core_1.NgZone])
 ], NgbTypeahead);
@@ -69939,7 +70263,7 @@ var Trigger = (function () {
 }());
 exports.Trigger = Trigger;
 var DEFAULT_ALIASES = {
-    hover: ['mouseenter', 'mouseleave']
+    'hover': ['mouseenter', 'mouseleave']
 };
 function parseTriggers(triggers, aliases) {
     if (aliases === void 0) { aliases = DEFAULT_ALIASES; }
@@ -70400,6 +70724,7 @@ exports.NgbTooltipModule = tooltip_module_2.NgbTooltipModule;
 exports.NgbTooltipConfig = tooltip_module_2.NgbTooltipConfig;
 exports.NgbTooltip = tooltip_module_2.NgbTooltip;
 var typeahead_module_2 = __webpack_require__(24);
+exports.NgbHighlight = typeahead_module_2.NgbHighlight;
 exports.NgbTypeaheadModule = typeahead_module_2.NgbTypeaheadModule;
 exports.NgbTypeaheadConfig = typeahead_module_2.NgbTypeaheadConfig;
 exports.NgbTypeahead = typeahead_module_2.NgbTypeahead;
@@ -70442,7 +70767,7 @@ exports.NgbModule = NgbModule;
 /******/ ]);
 });
 
-},{"@angular/common":20,"@angular/core":22,"@angular/forms":23,"rxjs/observable/fromEvent":53,"rxjs/operator/do":60,"rxjs/operator/let":65}],29:[function(require,module,exports){
+},{"@angular/common":24,"@angular/core":26,"@angular/forms":27,"rxjs/observable/fromEvent":57,"rxjs/operator/do":64,"rxjs/operator/let":69}],33:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -70492,7 +70817,7 @@ var BehaviorSubject = (function (_super) {
 }(Subject_1.Subject));
 exports.BehaviorSubject = BehaviorSubject;
 
-},{"./Subject":35,"./util/ObjectUnsubscribedError":78}],30:[function(require,module,exports){
+},{"./Subject":39,"./util/ObjectUnsubscribedError":82}],34:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -70529,7 +70854,7 @@ var InnerSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.InnerSubscriber = InnerSubscriber;
 
-},{"./Subscriber":37}],31:[function(require,module,exports){
+},{"./Subscriber":41}],35:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('./Observable');
 /**
@@ -70657,7 +70982,7 @@ var Notification = (function () {
 }());
 exports.Notification = Notification;
 
-},{"./Observable":32}],32:[function(require,module,exports){
+},{"./Observable":36}],36:[function(require,module,exports){
 "use strict";
 var root_1 = require('./util/root');
 var toSubscriber_1 = require('./util/toSubscriber');
@@ -70787,7 +71112,7 @@ var Observable = (function () {
 }());
 exports.Observable = Observable;
 
-},{"./symbol/observable":75,"./util/root":86,"./util/toSubscriber":88}],33:[function(require,module,exports){
+},{"./symbol/observable":79,"./util/root":90,"./util/toSubscriber":92}],37:[function(require,module,exports){
 "use strict";
 exports.empty = {
     closed: true,
@@ -70796,7 +71121,7 @@ exports.empty = {
     complete: function () { }
 };
 
-},{}],34:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -70827,7 +71152,7 @@ var OuterSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.OuterSubscriber = OuterSubscriber;
 
-},{"./Subscriber":37}],35:[function(require,module,exports){
+},{"./Subscriber":41}],39:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -70988,7 +71313,7 @@ var AnonymousSubject = (function (_super) {
 }(Subject));
 exports.AnonymousSubject = AnonymousSubject;
 
-},{"./Observable":32,"./SubjectSubscription":36,"./Subscriber":37,"./Subscription":38,"./symbol/rxSubscriber":76,"./util/ObjectUnsubscribedError":78}],36:[function(require,module,exports){
+},{"./Observable":36,"./SubjectSubscription":40,"./Subscriber":41,"./Subscription":42,"./symbol/rxSubscriber":80,"./util/ObjectUnsubscribedError":82}],40:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71029,7 +71354,7 @@ var SubjectSubscription = (function (_super) {
 }(Subscription_1.Subscription));
 exports.SubjectSubscription = SubjectSubscription;
 
-},{"./Subscription":38}],37:[function(require,module,exports){
+},{"./Subscription":42}],41:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71279,7 +71604,7 @@ var SafeSubscriber = (function (_super) {
     return SafeSubscriber;
 }(Subscriber));
 
-},{"./Observer":33,"./Subscription":38,"./symbol/rxSubscriber":76,"./util/isFunction":82}],38:[function(require,module,exports){
+},{"./Observer":37,"./Subscription":42,"./symbol/rxSubscriber":80,"./util/isFunction":86}],42:[function(require,module,exports){
 "use strict";
 var isArray_1 = require('./util/isArray');
 var isObject_1 = require('./util/isObject');
@@ -71433,19 +71758,19 @@ var Subscription = (function () {
 }());
 exports.Subscription = Subscription;
 
-},{"./util/UnsubscriptionError":79,"./util/errorObject":80,"./util/isArray":81,"./util/isFunction":82,"./util/isObject":83,"./util/tryCatch":89}],39:[function(require,module,exports){
+},{"./util/UnsubscriptionError":83,"./util/errorObject":84,"./util/isArray":85,"./util/isFunction":86,"./util/isObject":87,"./util/tryCatch":93}],43:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var filter_1 = require('../../operator/filter');
 Observable_1.Observable.prototype.filter = filter_1.filter;
 
-},{"../../Observable":32,"../../operator/filter":62}],40:[function(require,module,exports){
+},{"../../Observable":36,"../../operator/filter":66}],44:[function(require,module,exports){
 "use strict";
 var Observable_1 = require('../../Observable');
 var map_1 = require('../../operator/map');
 Observable_1.Observable.prototype.map = map_1.map;
 
-},{"../../Observable":32,"../../operator/map":66}],41:[function(require,module,exports){
+},{"../../Observable":36,"../../operator/map":70}],45:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71516,7 +71841,7 @@ var ArrayLikeObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.ArrayLikeObservable = ArrayLikeObservable;
 
-},{"../Observable":32,"./EmptyObservable":44,"./ScalarObservable":50}],42:[function(require,module,exports){
+},{"../Observable":36,"./EmptyObservable":48,"./ScalarObservable":54}],46:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71639,7 +71964,7 @@ var ArrayObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.ArrayObservable = ArrayObservable;
 
-},{"../Observable":32,"../util/isScheduler":85,"./EmptyObservable":44,"./ScalarObservable":50}],43:[function(require,module,exports){
+},{"../Observable":36,"../util/isScheduler":89,"./EmptyObservable":48,"./ScalarObservable":54}],47:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71802,7 +72127,7 @@ var RefCountSubscriber = (function (_super) {
     return RefCountSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Observable":32,"../Subject":35,"../Subscriber":37,"../Subscription":38}],44:[function(require,module,exports){
+},{"../Observable":36,"../Subject":39,"../Subscriber":41,"../Subscription":42}],48:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71884,7 +72209,7 @@ var EmptyObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.EmptyObservable = EmptyObservable;
 
-},{"../Observable":32}],45:[function(require,module,exports){
+},{"../Observable":36}],49:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -71997,7 +72322,7 @@ var ForkJoinSubscriber = (function (_super) {
     return ForkJoinSubscriber;
 }(OuterSubscriber_1.OuterSubscriber));
 
-},{"../Observable":32,"../OuterSubscriber":34,"../util/isArray":81,"../util/subscribeToResult":87,"./EmptyObservable":44}],46:[function(require,module,exports){
+},{"../Observable":36,"../OuterSubscriber":38,"../util/isArray":85,"../util/subscribeToResult":91,"./EmptyObservable":48}],50:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72138,7 +72463,7 @@ var FromEventObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.FromEventObservable = FromEventObservable;
 
-},{"../Observable":32,"../Subscription":38,"../util/errorObject":80,"../util/isFunction":82,"../util/tryCatch":89}],47:[function(require,module,exports){
+},{"../Observable":36,"../Subscription":42,"../util/errorObject":84,"../util/isFunction":86,"../util/tryCatch":93}],51:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72261,7 +72586,7 @@ var FromObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.FromObservable = FromObservable;
 
-},{"../Observable":32,"../operator/observeOn":71,"../symbol/iterator":74,"../symbol/observable":75,"../util/isArray":81,"../util/isPromise":84,"./ArrayLikeObservable":41,"./ArrayObservable":42,"./IteratorObservable":48,"./PromiseObservable":49}],48:[function(require,module,exports){
+},{"../Observable":36,"../operator/observeOn":75,"../symbol/iterator":78,"../symbol/observable":79,"../util/isArray":85,"../util/isPromise":88,"./ArrayLikeObservable":45,"./ArrayObservable":46,"./IteratorObservable":52,"./PromiseObservable":53}],52:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72425,7 +72750,7 @@ function sign(value) {
     return valueAsNumber < 0 ? -1 : 1;
 }
 
-},{"../Observable":32,"../symbol/iterator":74,"../util/root":86}],49:[function(require,module,exports){
+},{"../Observable":36,"../symbol/iterator":78,"../util/root":90}],53:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72547,7 +72872,7 @@ function dispatchError(arg) {
     }
 }
 
-},{"../Observable":32,"../util/root":86}],50:[function(require,module,exports){
+},{"../Observable":36,"../util/root":90}],54:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72606,37 +72931,37 @@ var ScalarObservable = (function (_super) {
 }(Observable_1.Observable));
 exports.ScalarObservable = ScalarObservable;
 
-},{"../Observable":32}],51:[function(require,module,exports){
+},{"../Observable":36}],55:[function(require,module,exports){
 "use strict";
 var ForkJoinObservable_1 = require('./ForkJoinObservable');
 exports.forkJoin = ForkJoinObservable_1.ForkJoinObservable.create;
 
-},{"./ForkJoinObservable":45}],52:[function(require,module,exports){
+},{"./ForkJoinObservable":49}],56:[function(require,module,exports){
 "use strict";
 var FromObservable_1 = require('./FromObservable');
 exports.from = FromObservable_1.FromObservable.create;
 
-},{"./FromObservable":47}],53:[function(require,module,exports){
+},{"./FromObservable":51}],57:[function(require,module,exports){
 "use strict";
 var FromEventObservable_1 = require('./FromEventObservable');
 exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 
-},{"./FromEventObservable":46}],54:[function(require,module,exports){
+},{"./FromEventObservable":50}],58:[function(require,module,exports){
 "use strict";
 var PromiseObservable_1 = require('./PromiseObservable');
 exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
 
-},{"./PromiseObservable":49}],55:[function(require,module,exports){
+},{"./PromiseObservable":53}],59:[function(require,module,exports){
 "use strict";
 var merge_1 = require('../operator/merge');
 exports.merge = merge_1.mergeStatic;
 
-},{"../operator/merge":67}],56:[function(require,module,exports){
+},{"../operator/merge":71}],60:[function(require,module,exports){
 "use strict";
 var ArrayObservable_1 = require('./ArrayObservable');
 exports.of = ArrayObservable_1.ArrayObservable.of;
 
-},{"./ArrayObservable":42}],57:[function(require,module,exports){
+},{"./ArrayObservable":46}],61:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72703,7 +73028,7 @@ var CatchSubscriber = (function (_super) {
     return CatchSubscriber;
 }(OuterSubscriber_1.OuterSubscriber));
 
-},{"../OuterSubscriber":34,"../util/subscribeToResult":87}],58:[function(require,module,exports){
+},{"../OuterSubscriber":38,"../util/subscribeToResult":91}],62:[function(require,module,exports){
 "use strict";
 var mergeAll_1 = require('./mergeAll');
 /* tslint:disable:max-line-length */
@@ -72760,7 +73085,7 @@ function concatAll() {
 }
 exports.concatAll = concatAll;
 
-},{"./mergeAll":68}],59:[function(require,module,exports){
+},{"./mergeAll":72}],63:[function(require,module,exports){
 "use strict";
 var mergeMap_1 = require('./mergeMap');
 /* tslint:disable:max-line-length */
@@ -72831,7 +73156,7 @@ function concatMap(project, resultSelector) {
 }
 exports.concatMap = concatMap;
 
-},{"./mergeMap":69}],60:[function(require,module,exports){
+},{"./mergeMap":73}],64:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -72945,7 +73270,7 @@ var DoSubscriber = (function (_super) {
     return DoSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":37}],61:[function(require,module,exports){
+},{"../Subscriber":41}],65:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73014,7 +73339,7 @@ var EverySubscriber = (function (_super) {
     return EverySubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":37}],62:[function(require,module,exports){
+},{"../Subscriber":41}],66:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73108,7 +73433,7 @@ var FilterSubscriber = (function (_super) {
     return FilterSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":37}],63:[function(require,module,exports){
+},{"../Subscriber":41}],67:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73261,7 +73586,7 @@ var FirstSubscriber = (function (_super) {
     return FirstSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":37,"../util/EmptyError":77}],64:[function(require,module,exports){
+},{"../Subscriber":41,"../util/EmptyError":81}],68:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73381,7 +73706,7 @@ var LastSubscriber = (function (_super) {
     return LastSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":37,"../util/EmptyError":77}],65:[function(require,module,exports){
+},{"../Subscriber":41,"../util/EmptyError":81}],69:[function(require,module,exports){
 "use strict";
 /**
  * @param func
@@ -73394,7 +73719,7 @@ function letProto(func) {
 }
 exports.letProto = letProto;
 
-},{}],66:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73482,7 +73807,7 @@ var MapSubscriber = (function (_super) {
     return MapSubscriber;
 }(Subscriber_1.Subscriber));
 
-},{"../Subscriber":37}],67:[function(require,module,exports){
+},{"../Subscriber":41}],71:[function(require,module,exports){
 "use strict";
 var ArrayObservable_1 = require('../observable/ArrayObservable');
 var mergeAll_1 = require('./mergeAll');
@@ -73627,7 +73952,7 @@ function mergeStatic() {
 }
 exports.mergeStatic = mergeStatic;
 
-},{"../observable/ArrayObservable":42,"../util/isScheduler":85,"./mergeAll":68}],68:[function(require,module,exports){
+},{"../observable/ArrayObservable":46,"../util/isScheduler":89,"./mergeAll":72}],72:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73739,7 +74064,7 @@ var MergeAllSubscriber = (function (_super) {
 }(OuterSubscriber_1.OuterSubscriber));
 exports.MergeAllSubscriber = MergeAllSubscriber;
 
-},{"../OuterSubscriber":34,"../util/subscribeToResult":87}],69:[function(require,module,exports){
+},{"../OuterSubscriber":38,"../util/subscribeToResult":91}],73:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -73911,7 +74236,7 @@ var MergeMapSubscriber = (function (_super) {
 }(OuterSubscriber_1.OuterSubscriber));
 exports.MergeMapSubscriber = MergeMapSubscriber;
 
-},{"../OuterSubscriber":34,"../util/subscribeToResult":87}],70:[function(require,module,exports){
+},{"../OuterSubscriber":38,"../util/subscribeToResult":91}],74:[function(require,module,exports){
 "use strict";
 var ConnectableObservable_1 = require('../observable/ConnectableObservable');
 /* tslint:disable:max-line-length */
@@ -73969,7 +74294,7 @@ var MulticastOperator = (function () {
 }());
 exports.MulticastOperator = MulticastOperator;
 
-},{"../observable/ConnectableObservable":43}],71:[function(require,module,exports){
+},{"../observable/ConnectableObservable":47}],75:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -74045,7 +74370,7 @@ var ObserveOnMessage = (function () {
 }());
 exports.ObserveOnMessage = ObserveOnMessage;
 
-},{"../Notification":31,"../Subscriber":37}],72:[function(require,module,exports){
+},{"../Notification":35,"../Subscriber":41}],76:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -74169,7 +74494,7 @@ var ReduceSubscriber = (function (_super) {
 }(Subscriber_1.Subscriber));
 exports.ReduceSubscriber = ReduceSubscriber;
 
-},{"../Subscriber":37}],73:[function(require,module,exports){
+},{"../Subscriber":41}],77:[function(require,module,exports){
 "use strict";
 var multicast_1 = require('./multicast');
 var Subject_1 = require('../Subject');
@@ -74194,7 +74519,7 @@ function share() {
 exports.share = share;
 ;
 
-},{"../Subject":35,"./multicast":70}],74:[function(require,module,exports){
+},{"../Subject":39,"./multicast":74}],78:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 function symbolIteratorPonyfill(root) {
@@ -74229,7 +74554,7 @@ function symbolIteratorPonyfill(root) {
 exports.symbolIteratorPonyfill = symbolIteratorPonyfill;
 exports.$$iterator = symbolIteratorPonyfill(root_1.root);
 
-},{"../util/root":86}],75:[function(require,module,exports){
+},{"../util/root":90}],79:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 function getSymbolObservable(context) {
@@ -74252,14 +74577,14 @@ function getSymbolObservable(context) {
 exports.getSymbolObservable = getSymbolObservable;
 exports.$$observable = getSymbolObservable(root_1.root);
 
-},{"../util/root":86}],76:[function(require,module,exports){
+},{"../util/root":90}],80:[function(require,module,exports){
 "use strict";
 var root_1 = require('../util/root');
 var Symbol = root_1.root.Symbol;
 exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
     Symbol.for('rxSubscriber') : '@@rxSubscriber';
 
-},{"../util/root":86}],77:[function(require,module,exports){
+},{"../util/root":90}],81:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -74288,7 +74613,7 @@ var EmptyError = (function (_super) {
 }(Error));
 exports.EmptyError = EmptyError;
 
-},{}],78:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -74316,7 +74641,7 @@ var ObjectUnsubscribedError = (function (_super) {
 }(Error));
 exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 
-},{}],79:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -74342,44 +74667,44 @@ var UnsubscriptionError = (function (_super) {
 }(Error));
 exports.UnsubscriptionError = UnsubscriptionError;
 
-},{}],80:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 "use strict";
 // typeof any so that it we don't have to cast when comparing a result to the error object
 exports.errorObject = { e: {} };
 
-},{}],81:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 "use strict";
 exports.isArray = Array.isArray || (function (x) { return x && typeof x.length === 'number'; });
 
-},{}],82:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 "use strict";
 function isFunction(x) {
     return typeof x === 'function';
 }
 exports.isFunction = isFunction;
 
-},{}],83:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 "use strict";
 function isObject(x) {
     return x != null && typeof x === 'object';
 }
 exports.isObject = isObject;
 
-},{}],84:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 "use strict";
 function isPromise(value) {
     return value && typeof value.subscribe !== 'function' && typeof value.then === 'function';
 }
 exports.isPromise = isPromise;
 
-},{}],85:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 "use strict";
 function isScheduler(value) {
     return value && typeof value.schedule === 'function';
 }
 exports.isScheduler = isScheduler;
 
-},{}],86:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 (function (global){
 "use strict";
 /**
@@ -74395,7 +74720,7 @@ if (!exports.root) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],87:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 "use strict";
 var root_1 = require('./root');
 var isArray_1 = require('./isArray');
@@ -74474,7 +74799,7 @@ function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
 }
 exports.subscribeToResult = subscribeToResult;
 
-},{"../InnerSubscriber":30,"../Observable":32,"../symbol/iterator":74,"../symbol/observable":75,"./isArray":81,"./isObject":83,"./isPromise":84,"./root":86}],88:[function(require,module,exports){
+},{"../InnerSubscriber":34,"../Observable":36,"../symbol/iterator":78,"../symbol/observable":79,"./isArray":85,"./isObject":87,"./isPromise":88,"./root":90}],92:[function(require,module,exports){
 "use strict";
 var Subscriber_1 = require('../Subscriber');
 var rxSubscriber_1 = require('../symbol/rxSubscriber');
@@ -74495,7 +74820,7 @@ function toSubscriber(nextOrObserver, error, complete) {
 }
 exports.toSubscriber = toSubscriber;
 
-},{"../Observer":33,"../Subscriber":37,"../symbol/rxSubscriber":76}],89:[function(require,module,exports){
+},{"../Observer":37,"../Subscriber":41,"../symbol/rxSubscriber":80}],93:[function(require,module,exports){
 "use strict";
 var errorObject_1 = require('./errorObject');
 var tryCatchTarget;
@@ -74515,5 +74840,5 @@ function tryCatch(fn) {
 exports.tryCatch = tryCatch;
 ;
 
-},{"./errorObject":80}]},{},[7])(7)
+},{"./errorObject":84}]},{},[8])(8)
 });
