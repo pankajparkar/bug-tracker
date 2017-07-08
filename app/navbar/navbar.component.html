@@ -26,10 +26,13 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="active">
-          <a>Hello, Pankaj Parkar</a>
+          <a *ngIf="isAutheticated()">Hello, {{getUserName()}}</a>
+          <a *ngIf="!isAutheticated()" routerLink="login">Login</a>
+        </li>
+        <li>
+          <a *ngIf="isAutheticated()" href="" class="glyphicon glyphicon-off" (click)="logout()"></a>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->
 </nav>
-

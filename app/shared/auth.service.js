@@ -15,35 +15,37 @@ var AuthService = (function () {
     function AuthService(router) {
         this.router = router;
     }
+    AuthService_1 = AuthService;
     AuthService.prototype.login = function (user) {
-        this.currentUser = user;
+        AuthService_1.currentUser = user;
         //TODO: Add more fields by default
-        this.currentUser.LastLoginDate = new Date();
+        AuthService_1.currentUser.LastLoginDate = new Date();
     };
     //set current user to blank
     AuthService.prototype.logout = function () {
-        this.currentUser = undefined;
-        this.router.navigate(['login']);
+        AuthService_1.currentUser = undefined;
     };
     //set current user to blank
     AuthService.prototype.getUserName = function () {
-        return this.currentUser && this.currentUser.name;
+        console.log(AuthService_1.currentUser);
+        return AuthService_1.currentUser && AuthService_1.currentUser.name;
     };
     //check user is present or not
     AuthService.prototype.isAutheticated = function () {
-        return !!this.currentUser;
+        return !!AuthService_1.currentUser;
     };
     AuthService.prototype.checkUserLogin = function () {
-        if (!!this.currentUser)
+        if (!!AuthService_1.currentUser)
             return true;
         this.router.navigate(['login']);
         return false;
     };
-    AuthService = __decorate([
+    AuthService = AuthService_1 = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [router_1.Router])
     ], AuthService);
     return AuthService;
+    var AuthService_1;
 }());
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

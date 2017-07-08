@@ -10,16 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../shared/auth.service");
 var NavbarComponent = (function () {
-    function NavbarComponent() {
+    function NavbarComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
     }
-    NavbarComponent.prototype.ngOnInit = function () { };
+    NavbarComponent.prototype.ngOnInit = function () {
+        this.isAutheticated = this.authService.isAutheticated;
+        this.getUserName = this.authService.getUserName;
+    };
+    NavbarComponent.prototype.logout = function () {
+        this.authService.logout();
+        this.router.navigate(['login']);
+    };
     NavbarComponent = __decorate([
         core_1.Component({
             selector: 'navbar',
             templateUrl: '/app/navbar/navbar.component.html',
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
     ], NavbarComponent);
     return NavbarComponent;
 }());

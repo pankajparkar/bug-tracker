@@ -3,35 +3,35 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService{
-    currentUser: any;
+    static currentUser: any;
 
     constructor(private router: Router){
 
     }
     login(user: any){
-        this.currentUser = user;
+        AuthService.currentUser = user;
         //TODO: Add more fields by default
-        this.currentUser.LastLoginDate = new Date();
+        AuthService.currentUser.LastLoginDate = new Date();
     }
 
     //set current user to blank
     logout(){
-        this.currentUser = undefined;
-        this.router.navigate(['login']);
+        AuthService.currentUser = undefined;
     }
 
     //set current user to blank
     getUserName(){
-        return this.currentUser && this.currentUser.name;
+        console.log(AuthService.currentUser)
+        return AuthService.currentUser && AuthService.currentUser.name;
     }
     
     //check user is present or not
     isAutheticated(){
-        return !!this.currentUser;
+        return !!AuthService.currentUser;
     }
 
     checkUserLogin(){
-        if(!!this.currentUser) return true;
+        if(!!AuthService.currentUser) return true;
         this.router.navigate(['login']);
         return false;
     }
