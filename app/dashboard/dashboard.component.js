@@ -20,14 +20,14 @@ var DashboardComponent = (function () {
         return this.location.path().indexOf('/dashboard/ticket-details/') > -1;
     };
     DashboardComponent.prototype.ngOnInit = function () { };
+    DashboardComponent = __decorate([
+        core_1.Component({
+            selector: 'dashboard',
+            templateUrl: '/app/dashboard/dashboard.component.html'
+        }),
+        __metadata("design:paramtypes", [common_1.Location])
+    ], DashboardComponent);
     return DashboardComponent;
 }());
-DashboardComponent = __decorate([
-    core_1.Component({
-        selector: 'dashboard',
-        templateUrl: '/app/dashboard/dashboard.component.html'
-    }),
-    __metadata("design:paramtypes", [common_1.Location])
-], DashboardComponent);
 exports.DashboardComponent = DashboardComponent;
 //# sourceMappingURL=dashboard.component.js.map

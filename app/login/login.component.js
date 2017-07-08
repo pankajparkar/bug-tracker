@@ -10,22 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/filter");
-var TicketDetailsService = (function () {
-    function TicketDetailsService(http) {
-        this.http = http;
+var router_1 = require("@angular/router");
+var auth_service_1 = require("./../shared/auth.service");
+var StarComponent = (function () {
+    function StarComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
     }
-    TicketDetailsService.prototype.getTicketDetails = function (id) {
-        return this.http.get('/api/tickets.json')
-            .map(function (data) { return data.json(); });
+    StarComponent.prototype.submit = function () {
+        this.authService.login(this.user);
+        this.router.navigate(['welcome']);
     };
-    TicketDetailsService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http])
-    ], TicketDetailsService);
-    return TicketDetailsService;
+    ;
+    StarComponent = __decorate([
+        core_1.Component({
+            selector: 'login',
+            templateUrl: '/app/login/login.component.html',
+        }),
+        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+    ], StarComponent);
+    return StarComponent;
 }());
-exports.TicketDetailsService = TicketDetailsService;
-//# sourceMappingURL=ticket-details.service.js.map
+exports.StarComponent = StarComponent;
+//# sourceMappingURL=login.component.js.map

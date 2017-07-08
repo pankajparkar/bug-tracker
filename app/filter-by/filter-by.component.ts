@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { FilterByService } from './filter-by.service'
+import { CommonService } from './../shared/common.service'
 
 @Component({
     selector: 'filter-by',
@@ -10,8 +12,23 @@ import { FilterByService } from './filter-by.service'
 
 export class FilterByNameComponent implements OnInit {
     filterName$: any;
-    items: any[] = [{name: "Alex"},{name: "John"},{name: "Tom"}];
-    constructor(private filterByService: FilterByService) { }
+    items: any[];
+    constructor(
+        private filterByService: FilterByService,
+        private commonService: CommonService
+    ) { }
+
+    getNames(){
+        //created a promis that depends on it
+        return new Promise((resolve, reject) => {
+            this.commonService.getNames().subscribe(
+                (names) => {
+                    this.items = names;
+                    resolve();
+                }
+            )
+        })
+    }
 
     setFilterName(item: any){
         this.items.forEach(i => i.active = false);
@@ -20,6 +37,7 @@ export class FilterByNameComponent implements OnInit {
     }
 
     ngOnInit() { 
+        this.getNames().then(this.setFilterName.bind(this));
         this.filterName$ = this.filterByService.filterNameObservable();
     }
 }

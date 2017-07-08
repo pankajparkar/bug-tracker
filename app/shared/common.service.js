@@ -11,21 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-require("rxjs/add/operator/map");
-require("rxjs/add/operator/filter");
-var TicketDetailsService = (function () {
-    function TicketDetailsService(http) {
+var CommonService = (function () {
+    function CommonService(http) {
         this.http = http;
     }
-    TicketDetailsService.prototype.getTicketDetails = function (id) {
-        return this.http.get('/api/tickets.json')
-            .map(function (data) { return data.json(); });
+    CommonService.prototype.getTicketTypes = function () {
+        return this.http.get('/api/ticket-types.json').map(this.unWrapData);
     };
-    TicketDetailsService = __decorate([
+    CommonService.prototype.getNames = function () {
+        return this.http.get('/api/names.json').map(this.unWrapData);
+    };
+    CommonService.prototype.getTicketStatuses = function () {
+        return this.http.get('/api/ticket-status.json').map(this.unWrapData);
+    };
+    CommonService.prototype.unWrapData = function (data) {
+        return data.json();
+    };
+    CommonService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http])
-    ], TicketDetailsService);
-    return TicketDetailsService;
+    ], CommonService);
+    return CommonService;
 }());
-exports.TicketDetailsService = TicketDetailsService;
-//# sourceMappingURL=ticket-details.service.js.map
+exports.CommonService = CommonService;
+//# sourceMappingURL=common.service.js.map

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TicketService } from './ticket.service'
 import { UtilityService } from '../shared/utility.service'
+import { CommonService } from '../shared/common.service'
 import { FilterByService } from './../filter-by/filter-by.service';
 
 @Component({
@@ -16,13 +17,20 @@ export class TicketKanbanComponent implements OnInit {
     inProgressItems: any[];
     completedItems: any[];
     filterName$: any;
-    statuses: any[] = [{Id: 1, Name: "Todo"}, {Id: 2, Name: "In Progress"}, { Id: 3, Name: "Complete"}]
+    statuses: any[];
 
     constructor(
         private ticketService: TicketService, 
+        private commonService: CommonService, 
         private utilityService: UtilityService,
         private filterByService: FilterByService
     ) { }
+
+    getStatuses(){
+        this.commonService.getTicketStatuses().subscribe(
+            (statuses) => this.statuses = statuses
+        )
+    }
 
     filterTicketsByStatus(){
         this.todoItems = this.tickets.filter(ticket => ticket.Status === 1);
@@ -31,7 +39,6 @@ export class TicketKanbanComponent implements OnInit {
     }
 
     ticketList(name: string){
-        console.log(name);
         this.ticketService.getTicketList().subscribe(
             tickets => {
                 this.tickets = tickets;
@@ -43,6 +50,7 @@ export class TicketKanbanComponent implements OnInit {
 
     ngOnInit() { 
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.getStatuses();
         this.filterName$.subscribe(
             (name: any) => this.ticketList(name)
         )

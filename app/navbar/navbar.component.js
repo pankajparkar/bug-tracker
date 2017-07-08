@@ -14,14 +14,14 @@ var NavbarComponent = (function () {
     function NavbarComponent() {
     }
     NavbarComponent.prototype.ngOnInit = function () { };
+    NavbarComponent = __decorate([
+        core_1.Component({
+            selector: 'navbar',
+            templateUrl: '/app/navbar/navbar.component.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], NavbarComponent);
     return NavbarComponent;
 }());
-NavbarComponent = __decorate([
-    core_1.Component({
-        selector: 'navbar',
-        templateUrl: '/app/navbar/navbar.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], NavbarComponent);
 exports.NavbarComponent = NavbarComponent;
 //# sourceMappingURL=navbar.component.js.map

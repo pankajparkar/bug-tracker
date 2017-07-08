@@ -26,26 +26,29 @@ var profile_component_1 = require("./profile/profile.component");
 var welcome_component_1 = require("./welcome/welcome.component");
 var ticket_service_1 = require("./ticket/ticket.service");
 var utility_service_1 = require("./shared/utility.service");
+var auth_service_1 = require("./shared/auth.service");
+var common_service_1 = require("./shared/common.service");
 var group_by_pipe_1 = require("./shared/group-by.pipe");
 var AppModule = (function () {
     function AppModule() {
         this.name = 'Title';
     }
+    AppModule = __decorate([
+        core_1.NgModule({
+            imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
+            declarations: [
+                app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
+                sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
+            ],
+            providers: [
+                ticket_service_1.TicketService, utility_service_1.UtilityService,
+                filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService,
+                auth_service_1.AuthService, common_service_1.CommonService
+            ],
+            bootstrap: [app_component_1.AppComponent]
+        })
+    ], AppModule);
     return AppModule;
 }());
-AppModule = __decorate([
-    core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule],
-        declarations: [
-            app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
-            sidebar_component_1.SidebarComponent, navbar_component_1.NavbarComponent, filter_by_component_1.FilterByNameComponent, dashboard_component_1.DashboardComponent, profile_component_1.ProfileComponent, group_by_pipe_1.GroupByPipe
-        ],
-        providers: [
-            ticket_service_1.TicketService, utility_service_1.UtilityService,
-            filter_by_service_1.FilterByService, ticket_details_service_1.TicketDetailsService
-        ],
-        bootstrap: [app_component_1.AppComponent]
-    })
-], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

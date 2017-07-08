@@ -15,18 +15,18 @@ var SidebarComponent = (function () {
     }
     SidebarComponent.prototype.ngOnInit = function () {
         this.list = [
-            { name: 'List View', url: ['/dashboard', 'ticket-list'] },
-            { name: 'Kanban View', url: ['/dashboard', 'ticket-kanban'] }
+            { name: 'List View', sref: 'dashboard.ticket-list' },
+            { name: 'Kanban View', sref: 'dashboard.ticket-kanban' }
         ];
     };
+    SidebarComponent = __decorate([
+        core_1.Component({
+            selector: 'sidebar',
+            templateUrl: '/app/sidebar/sidebar.component.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], SidebarComponent);
     return SidebarComponent;
 }());
-SidebarComponent = __decorate([
-    core_1.Component({
-        selector: 'sidebar',
-        templateUrl: '/app/sidebar/sidebar.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], SidebarComponent);
 exports.SidebarComponent = SidebarComponent;
 //# sourceMappingURL=sidebar.component.js.map

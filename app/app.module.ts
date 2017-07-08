@@ -21,6 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { TicketService } from './ticket/ticket.service';
 import { UtilityService } from './shared/utility.service';
+import { AuthService } from './shared/auth.service';
+import { CommonService } from './shared/common.service';
 import { GroupByPipe } from './shared/group-by.pipe';
 
 @NgModule({
@@ -31,7 +33,8 @@ import { GroupByPipe } from './shared/group-by.pipe';
     ],
     providers: [
         TicketService, UtilityService, 
-        FilterByService, TicketDetailsService
+        FilterByService, TicketDetailsService,
+        AuthService, CommonService
     ],
     bootstrap: [AppComponent]
 })

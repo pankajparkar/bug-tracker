@@ -12,14 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ticket_service_1 = require("./ticket.service");
 var utility_service_1 = require("../shared/utility.service");
+var common_service_1 = require("../shared/common.service");
 var filter_by_service_1 = require("./../filter-by/filter-by.service");
 var TicketKanbanComponent = (function () {
-    function TicketKanbanComponent(ticketService, utilityService, filterByService) {
+    function TicketKanbanComponent(ticketService, commonService, utilityService, filterByService) {
         this.ticketService = ticketService;
+        this.commonService = commonService;
         this.utilityService = utilityService;
         this.filterByService = filterByService;
-        this.statuses = [{ Id: 1, Name: "Todo" }, { Id: 2, Name: "In Progress" }, { Id: 3, Name: "Complete" }];
     }
+    TicketKanbanComponent.prototype.getStatuses = function () {
+        var _this = this;
+        this.commonService.getTicketStatuses().subscribe(function (statuses) { return _this.statuses = statuses; });
+    };
     TicketKanbanComponent.prototype.filterTicketsByStatus = function () {
         this.todoItems = this.tickets.filter(function (ticket) { return ticket.Status === 1; });
         this.inProgressItems = this.tickets.filter(function (ticket) { return ticket.Status === 2; });
@@ -27,7 +32,6 @@ var TicketKanbanComponent = (function () {
     };
     TicketKanbanComponent.prototype.ticketList = function (name) {
         var _this = this;
-        console.log(name);
         this.ticketService.getTicketList().subscribe(function (tickets) {
             _this.tickets = tickets;
             if (name)
@@ -38,18 +42,20 @@ var TicketKanbanComponent = (function () {
     TicketKanbanComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.getStatuses();
         this.filterName$.subscribe(function (name) { return _this.ticketList(name); });
     };
+    TicketKanbanComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-kanban',
+            templateUrl: '/app/ticket/ticket-kanban.component.html',
+        }),
+        __metadata("design:paramtypes", [ticket_service_1.TicketService,
+            common_service_1.CommonService,
+            utility_service_1.UtilityService,
+            filter_by_service_1.FilterByService])
+    ], TicketKanbanComponent);
     return TicketKanbanComponent;
 }());
-TicketKanbanComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-kanban',
-        templateUrl: '/app/ticket/ticket-kanban.component.html',
-    }),
-    __metadata("design:paramtypes", [ticket_service_1.TicketService,
-        utility_service_1.UtilityService,
-        filter_by_service_1.FilterByService])
-], TicketKanbanComponent);
 exports.TicketKanbanComponent = TicketKanbanComponent;
 //# sourceMappingURL=ticket-kanban.component.js.map
