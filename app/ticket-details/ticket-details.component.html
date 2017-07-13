@@ -16,8 +16,8 @@
             <label>Assign to:</label>
           </div>
           <div class="col-sm-9">
-            <select class="form-control" name="assignedTo" [(ngModel)]="model.AssignedTo">
-              <option *ngFor="let name of names">{{name.name}}</option>
+            <select class="form-control" name="assignedTo" (ngModel)="model.AssignedTo">
+              <option [ngValue]="name.Id" *ngFor="let name of names">{{name.Name}}</option>
             </select>
           </div>
         </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="col-sm-9">
             <select class="form-control" name="assignedTo" [(ngModel)]="model.Status">
-              <option [ngValue]="status.Description" *ngFor="let status of statuses">{{status.Description}}</option>
+              <option [ngValue]="status.Id" *ngFor="let status of statuses">{{status.Description}}</option>
             </select>
           </div>
         </div>

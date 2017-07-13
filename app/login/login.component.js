@@ -23,15 +23,15 @@ var LoginComponent = (function () {
         this.router.navigate(['welcome']);
     };
     ;
-    LoginComponent = __decorate([
-        core_1.Component({
-            selector: 'login',
-            templateUrl: '/app/login/login.component.html',
-            styleUrls: ['./app/login/login.component.css']
-        }),
-        __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
-    ], LoginComponent);
     return LoginComponent;
 }());
+LoginComponent = __decorate([
+    core_1.Component({
+        selector: 'login',
+        templateUrl: '/app/login/login.component.html',
+        styleUrls: ['./app/login/login.component.css']
+    }),
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

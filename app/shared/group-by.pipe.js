@@ -29,12 +29,12 @@ var GroupByPipe = (function () {
         });
         return groupedBy;
     };
-    GroupByPipe = __decorate([
-        core_1.Pipe({
-            name: 'groupBy'
-        })
-    ], GroupByPipe);
     return GroupByPipe;
 }());
+GroupByPipe = __decorate([
+    core_1.Pipe({
+        name: 'groupBy'
+    })
+], GroupByPipe);
 exports.GroupByPipe = GroupByPipe;
 //# sourceMappingURL=group-by.pipe.js.map

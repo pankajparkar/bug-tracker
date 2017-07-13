@@ -33,22 +33,22 @@ var StarComponent = (function () {
             this.ratings = +1;
         }
     };
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Boolean)
-    ], StarComponent.prototype, "isDisabled", void 0);
-    __decorate([
-        core_1.Input('ratings'),
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [Number])
-    ], StarComponent.prototype, "ratings", null);
-    StarComponent = __decorate([
-        core_1.Component({
-            selector: 'star',
-            templateUrl: '/app/star/star.component.html',
-        })
-    ], StarComponent);
     return StarComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], StarComponent.prototype, "isDisabled", void 0);
+__decorate([
+    core_1.Input('ratings'),
+    __metadata("design:type", Number),
+    __metadata("design:paramtypes", [Number])
+], StarComponent.prototype, "ratings", null);
+StarComponent = __decorate([
+    core_1.Component({
+        selector: 'star',
+        templateUrl: '/app/star/star.component.html',
+    })
+], StarComponent);
 exports.StarComponent = StarComponent;
 //# sourceMappingURL=star.component.js.map

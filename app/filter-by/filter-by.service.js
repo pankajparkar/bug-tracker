@@ -21,11 +21,11 @@ var FilterByService = (function () {
     FilterByService.prototype.filterNameObservable = function () {
         return this.filterName$.asObservable();
     };
-    FilterByService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], FilterByService);
     return FilterByService;
 }());
+FilterByService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], FilterByService);
 exports.FilterByService = FilterByService;
 //# sourceMappingURL=filter-by.service.js.map

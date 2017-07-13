@@ -27,16 +27,16 @@ var TicketListComponent = (function () {
         this.filterName$ = this.filterByService.filterNameObservable();
         this.ticketList();
     };
-    TicketListComponent = __decorate([
-        core_1.Component({
-            selector: 'ticket-list',
-            templateUrl: '/app/ticket/ticket-list.component.html',
-        }),
-        __metadata("design:paramtypes", [ticket_service_1.TicketService,
-            utility_service_1.UtilityService,
-            filter_by_service_1.FilterByService])
-    ], TicketListComponent);
     return TicketListComponent;
 }());
+TicketListComponent = __decorate([
+    core_1.Component({
+        selector: 'ticket-list',
+        templateUrl: '/app/ticket/ticket-list.component.html',
+    }),
+    __metadata("design:paramtypes", [ticket_service_1.TicketService,
+        utility_service_1.UtilityService,
+        filter_by_service_1.FilterByService])
+], TicketListComponent);
 exports.TicketListComponent = TicketListComponent;
 //# sourceMappingURL=ticket-list.component.js.map

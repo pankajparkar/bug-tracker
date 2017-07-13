@@ -13,17 +13,17 @@ var core_1 = require("@angular/core");
 var TicketItemComponent = (function () {
     function TicketItemComponent() {
     }
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Object)
-    ], TicketItemComponent.prototype, "ticket", void 0);
-    TicketItemComponent = __decorate([
-        core_1.Component({
-            selector: 'ticket-item',
-            template: "\n        <span class=\"glyphicon\" [ngClass]=\"{\n            'glyphicon-tags': ticket.Type == 'Feature',\n            'glyphicon-flash': ticket.Type == 'Bug',\n            'glyphicon-arrow-down': ticket.Type == 'Minor'\n        }\"></span>\n        <a [routerLink]=\"['../ticket-details', ticket.Id]\">{{ticket.TicketNumber}}</a> {{ticket.Title}}\n        <span class=\"pull-right\">\n          <small>\n            Priority\n          </small>\n            <span class=\"label label-default\">{{ticket.Priority}}</span>\n        </span>\n    "
-        })
-    ], TicketItemComponent);
     return TicketItemComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], TicketItemComponent.prototype, "ticket", void 0);
+TicketItemComponent = __decorate([
+    core_1.Component({
+        selector: 'ticket-item',
+        template: "\n        <span class=\"glyphicon\" [ngClass]=\"{\n            'glyphicon-tags': ticket.Type == 'Feature',\n            'glyphicon-flash': ticket.Type == 'Bug',\n            'glyphicon-arrow-down': ticket.Type == 'Minor'\n        }\"></span>\n        <a [routerLink]=\"['../ticket-details', ticket.Id]\">{{ticket.TicketNumber}}</a> {{ticket.Title}}\n        <span class=\"pull-right\">\n          <small>\n            Priority\n          </small>\n            <span class=\"label label-default\">{{ticket.Priority}}</span>\n        </span>\n    "
+    })
+], TicketItemComponent);
 exports.TicketItemComponent = TicketItemComponent;
 //# sourceMappingURL=ticket-item.component.js.map

@@ -40,16 +40,16 @@ var TicketDetailsComponent = (function () {
         this.ticketDetailsService.getTicketDetails(ticketId).subscribe(function (tickets) { return _this.model = tickets.filter(function (t) { return t.Id === Number(ticketId); })[0]; });
         //We will make an service/API call to retrieve correct ticket.
     };
-    TicketDetailsComponent = __decorate([
-        core_1.Component({
-            selector: 'ticket-details',
-            templateUrl: '/app/ticket-details/ticket-details.component.html',
-        }),
-        __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
-            common_service_1.CommonService,
-            router_1.ActivatedRoute])
-    ], TicketDetailsComponent);
     return TicketDetailsComponent;
 }());
+TicketDetailsComponent = __decorate([
+    core_1.Component({
+        selector: 'ticket-details',
+        templateUrl: '/app/ticket-details/ticket-details.component.html',
+    }),
+    __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
+        common_service_1.CommonService,
+        router_1.ActivatedRoute])
+], TicketDetailsComponent);
 exports.TicketDetailsComponent = TicketDetailsComponent;
 //# sourceMappingURL=ticket-details.component.js.map

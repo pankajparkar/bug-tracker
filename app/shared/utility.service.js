@@ -28,11 +28,11 @@ var UtilityService = (function () {
         });
         return groupedBy;
     };
-    UtilityService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], UtilityService);
     return UtilityService;
 }());
+UtilityService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], UtilityService);
 exports.UtilityService = UtilityService;
 //# sourceMappingURL=utility.service.js.map

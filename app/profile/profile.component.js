@@ -14,14 +14,14 @@ var ProfileComponent = (function () {
     function ProfileComponent() {
     }
     ProfileComponent.prototype.ngOnInit = function () { };
-    ProfileComponent = __decorate([
-        core_1.Component({
-            selector: 'profile',
-            templateUrl: '/app/profile/profile.component.html',
-        }),
-        __metadata("design:paramtypes", [])
-    ], ProfileComponent);
     return ProfileComponent;
 }());
+ProfileComponent = __decorate([
+    core_1.Component({
+        selector: 'profile',
+        templateUrl: '/app/profile/profile.component.html',
+    }),
+    __metadata("design:paramtypes", [])
+], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map

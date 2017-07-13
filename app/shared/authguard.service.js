@@ -23,11 +23,11 @@ var AuthGuardService = (function () {
             this.router.navigate(['login']);
         return isUserLoggedin;
     };
-    AuthGuardService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [router_1.Router, auth_service_1.AuthService])
-    ], AuthGuardService);
     return AuthGuardService;
 }());
+AuthGuardService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router, auth_service_1.AuthService])
+], AuthGuardService);
 exports.AuthGuardService = AuthGuardService;
 //# sourceMappingURL=authguard.service.js.map

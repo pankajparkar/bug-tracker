@@ -25,11 +25,11 @@ var LocalStorageService = (function () {
     LocalStorageService.prototype.set = function (key, value) {
         window.localStorage.setItem(key, value);
     };
-    LocalStorageService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [])
-    ], LocalStorageService);
     return LocalStorageService;
 }());
+LocalStorageService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], LocalStorageService);
 exports.LocalStorageService = LocalStorageService;
 //# sourceMappingURL=localstorage.service.js.map

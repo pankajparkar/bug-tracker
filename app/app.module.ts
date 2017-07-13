@@ -48,5 +48,4 @@ import { GroupByPipe } from './shared/group-by.pipe';
     bootstrap: [AppComponent]
 })
 export class AppModule{
-    name: string = 'Title';
 }

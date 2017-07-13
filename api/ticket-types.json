@@ -1,4 +1,5 @@
 [
     {"Id": 1, "Description": "Feature"},
-    {"Id": 2, "Description": "Bug"}
+    {"Id": 2, "Description": "Minor"},
+    {"Id": 3, "Description": "Bug"}
 ]
