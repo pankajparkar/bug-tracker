@@ -20,7 +20,7 @@ var TicketItemComponent = (function () {
     TicketItemComponent = __decorate([
         core_1.Component({
             selector: 'ticket-item',
-            template: "\n        <span class=\"glyphicon\" [ngClass]=\"{\n            'glyphicon-tags': ticket.Type == 'Feature',\n            'glyphicon-flash': ticket.Type == 'Bug',\n            'glyphicon-arrow-down': ticket.Type == 'Minor'\n        }\"></span>\n        <a [routerLink]=\"['../ticket-details', ticket.Id]\">{{ticket.TicketNumber}}</a> {{ticket.Title}}\n        <span class=\"pull-right\">\n          <small>\n            Priority\n          </small>\n            <span class=\"label label-default\">{{ticket.Priority}}</span>\n        </span>\n    "
+            templateUrl: '/app/ticket/ticket-item.component.html'
         })
     ], TicketItemComponent);
     return TicketItemComponent;

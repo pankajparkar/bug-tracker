@@ -1,0 +1,12 @@
+<span class="glyphicon" [ngClass]="{
+  'glyphicon-tags': ticket.Type == 1,
+  'glyphicon-flash': ticket.Type == 2,
+  'glyphicon-arrow-down': ticket.Type == 3
+}"></span>
+<a [routerLink]="['../ticket-details', ticket.Id]">{{ticket.TicketNumber}}</a> {{ticket.Title}}
+<span class="pull-right">
+<small>
+  Priority
+</small>
+  <span class="label label-default">{{ticket.Priority}}</span>
+</span>
