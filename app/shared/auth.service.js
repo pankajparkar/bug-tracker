@@ -31,11 +31,11 @@ var AuthService = (function () {
     AuthService.prototype.isAutheticated = function () {
         return !!this.localStorageService.getObject(userKey);
     };
+    AuthService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [router_1.Router, localstorage_service_1.LocalStorageService])
+    ], AuthService);
     return AuthService;
 }());
-AuthService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router, localstorage_service_1.LocalStorageService])
-], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

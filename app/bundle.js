@@ -117,7 +117,7 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, ng_bootstrap_1.NgbModule.forRoot(), http_1.HttpModule,
-                forms_1.FormsModule
+                forms_1.FormsModule, forms_1.ReactiveFormsModule
             ],
             declarations: [
                 app_component_1.AppComponent, ticket_list_component_1.TicketListComponent, ticket_kanban_component_1.TicketKanbanComponent, welcome_component_1.WelcomeComponent, ticket_details_component_1.TicketDetailsComponent, ticket_item_component_1.TicketItemComponent,
@@ -203,7 +203,7 @@ var FilterByNameComponent = (function () {
     };
     FilterByNameComponent.prototype.setFilterName = function (item) {
         this.items.forEach(function (i) { return i.active = false; });
-        var value = item ? item.name : item;
+        var value = item ? item.Name : item;
         this.filterByService.emitFilterNameValue(value);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
@@ -709,12 +709,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var ticket_details_service_1 = require("./ticket-details.service");
 var common_service_1 = require("../shared/common.service");
 var TicketDetailsComponent = (function () {
-    function TicketDetailsComponent(ticketDetailsService, commonService, activatedRoute) {
+    function TicketDetailsComponent(ticketDetailsService, commonService, fb, activatedRoute) {
         this.ticketDetailsService = ticketDetailsService;
         this.commonService = commonService;
+        this.fb = fb;
         this.activatedRoute = activatedRoute;
     }
     TicketDetailsComponent.prototype.getStatuses = function () {
@@ -724,6 +726,15 @@ var TicketDetailsComponent = (function () {
     TicketDetailsComponent.prototype.getNames = function () {
         var _this = this;
         this.commonService.getNames().subscribe(function (names) { return _this.names = names; });
+    };
+    TicketDetailsComponent.prototype.createForm = function () {
+        this.ticketDetailForm = this.fb.group({
+            AssignedTo: [null, forms_1.Validators.required],
+            Status: [null, forms_1.Validators.required],
+            Type: [null, forms_1.Validators.required],
+            Priority: [null, forms_1.Validators.required],
+            Description: [null, forms_1.Validators.required]
+        });
     };
     TicketDetailsComponent.prototype.getTicketTypes = function () {
         var _this = this;
@@ -745,13 +756,14 @@ var TicketDetailsComponent = (function () {
         }),
         __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
             common_service_1.CommonService,
+            forms_1.FormBuilder,
             router_1.ActivatedRoute])
     ], TicketDetailsComponent);
     return TicketDetailsComponent;
 }());
 exports.TicketDetailsComponent = TicketDetailsComponent;
 
-},{"../shared/common.service":13,"./ticket-details.service":20,"@angular/core":28,"@angular/router":33}],20:[function(require,module,exports){
+},{"../shared/common.service":13,"./ticket-details.service":20,"@angular/core":28,"@angular/forms":29,"@angular/router":33}],20:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

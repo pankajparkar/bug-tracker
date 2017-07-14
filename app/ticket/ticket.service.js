@@ -20,11 +20,11 @@ var TicketService = (function () {
         return this.http.get('/api/tickets.json')
             .map(function (data) { return data.json(); });
     };
+    TicketService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], TicketService);
     return TicketService;
 }());
-TicketService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], TicketService);
 exports.TicketService = TicketService;
 //# sourceMappingURL=ticket.service.js.map

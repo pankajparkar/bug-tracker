@@ -11,12 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var forms_1 = require("@angular/forms");
 var ticket_details_service_1 = require("./ticket-details.service");
 var common_service_1 = require("../shared/common.service");
 var TicketDetailsComponent = (function () {
-    function TicketDetailsComponent(ticketDetailsService, commonService, activatedRoute) {
+    function TicketDetailsComponent(ticketDetailsService, commonService, fb, activatedRoute) {
         this.ticketDetailsService = ticketDetailsService;
         this.commonService = commonService;
+        this.fb = fb;
         this.activatedRoute = activatedRoute;
     }
     TicketDetailsComponent.prototype.getStatuses = function () {
@@ -26,6 +28,15 @@ var TicketDetailsComponent = (function () {
     TicketDetailsComponent.prototype.getNames = function () {
         var _this = this;
         this.commonService.getNames().subscribe(function (names) { return _this.names = names; });
+    };
+    TicketDetailsComponent.prototype.createForm = function () {
+        this.ticketDetailForm = this.fb.group({
+            AssignedTo: [null, forms_1.Validators.required],
+            Status: [null, forms_1.Validators.required],
+            Type: [null, forms_1.Validators.required],
+            Priority: [null, forms_1.Validators.required],
+            Description: [null, forms_1.Validators.required]
+        });
     };
     TicketDetailsComponent.prototype.getTicketTypes = function () {
         var _this = this;
@@ -40,16 +51,17 @@ var TicketDetailsComponent = (function () {
         this.ticketDetailsService.getTicketDetails(ticketId).subscribe(function (tickets) { return _this.model = tickets.filter(function (t) { return t.Id === Number(ticketId); })[0]; });
         //We will make an service/API call to retrieve correct ticket.
     };
+    TicketDetailsComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-details',
+            templateUrl: '/app/ticket-details/ticket-details.component.html',
+        }),
+        __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
+            common_service_1.CommonService,
+            forms_1.FormBuilder,
+            router_1.ActivatedRoute])
+    ], TicketDetailsComponent);
     return TicketDetailsComponent;
 }());
-TicketDetailsComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-details',
-        templateUrl: '/app/ticket-details/ticket-details.component.html',
-    }),
-    __metadata("design:paramtypes", [ticket_details_service_1.TicketDetailsService,
-        common_service_1.CommonService,
-        router_1.ActivatedRoute])
-], TicketDetailsComponent);
 exports.TicketDetailsComponent = TicketDetailsComponent;
 //# sourceMappingURL=ticket-details.component.js.map

@@ -19,14 +19,14 @@ var SidebarComponent = (function () {
             { name: 'Kanban View', url: ['/dashboard', 'ticket-kanban'] }
         ];
     };
+    SidebarComponent = __decorate([
+        core_1.Component({
+            selector: 'sidebar',
+            templateUrl: '/app/sidebar/sidebar.component.html',
+        }),
+        __metadata("design:paramtypes", [])
+    ], SidebarComponent);
     return SidebarComponent;
 }());
-SidebarComponent = __decorate([
-    core_1.Component({
-        selector: 'sidebar',
-        templateUrl: '/app/sidebar/sidebar.component.html',
-    }),
-    __metadata("design:paramtypes", [])
-], SidebarComponent);
 exports.SidebarComponent = SidebarComponent;
 //# sourceMappingURL=sidebar.component.js.map

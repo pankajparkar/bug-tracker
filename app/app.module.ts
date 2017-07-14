@@ -33,7 +33,7 @@ import { GroupByPipe } from './shared/group-by.pipe';
 @NgModule({
     imports: [
         BrowserModule, AppRoutingModule, NgbModule.forRoot(), HttpModule,
-        FormsModule
+        FormsModule, ReactiveFormsModule
     ],
     declarations: [
         AppComponent, TicketListComponent, TicketKanbanComponent, WelcomeComponent, TicketDetailsComponent, TicketItemComponent,

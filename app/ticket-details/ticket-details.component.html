@@ -9,106 +9,78 @@
     </h3>
   </div>
   <div class="panel-body" *ngIf="model">
-    <form class="row" name="detailsForm" *ngIf="edit else noEdit;" (ngSubmit)="submit()">
-      <div class="col-sm-6">
-        <div class="row form-group">
-          <div class="col-sm-3">
-            <label>Assign to:</label>
-          </div>
-          <div class="col-sm-9">
-            <select class="form-control" name="assignedTo" [(ngModel)]="model.AssignedTo">
-              <option [ngValue]="name.Id" *ngFor="let name of names">{{name.Name}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="row form-group">
-          <div class="col-sm-3">
-            <label>Status: </label>
-          </div>
-          <div class="col-sm-9">
-            <select class="form-control" name="status" [(ngModel)]="model.Status">
-              <option [ngValue]="status.Id" *ngFor="let status of statuses">{{status.Description}}</option>
-            </select>
+    <form class="row" name="detailsForm" (ngSubmit)="submit()">
+      <fieldset [disabled]="!edit">
+        <div class="col-sm-6">
+          <div class="row form-group">
+            <div class="col-sm-3">
+              <label>Assign to:</label>
+            </div>
+            
+            <div class="col-sm-9">
+              <select class="form-control" name="assignedTo" [(ngModel)]="model.AssignedTo">
+                <option [ngValue]="name.Id" *ngFor="let name of names">{{name.Name}}</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div> 
-      <div class="col-sm-6">
-        <div class="row form-group">
-          <div class="col-sm-3">
-            <label>Type: </label>
+        <div class="col-sm-6">
+          <div class="row form-group">
+            <div class="col-sm-3">
+              <label>Status: </label>
+            </div>
+            <div class="col-sm-9">
+              <select class="form-control" name="status" [(ngModel)]="model.Status">
+                <option [ngValue]="status.Id" *ngFor="let status of statuses">{{status.Description}}</option>
+              </select>
+            </div>
           </div>
-          <div class="col-sm-9">
-            <select class="form-control" name="type" [(ngModel)]="model.Type">
-              <option [ngValue]="type.Id" *ngFor="let type of types">{{type.Description}}</option>
-            </select>
+        </div> 
+        <div class="col-sm-6">
+          <div class="row form-group">
+            <div class="col-sm-3">
+              <label>Type: </label>
+            </div>
+            <div class="col-sm-9">
+              <select class="form-control" name="type" [(ngModel)]="model.Type">
+                <option [ngValue]="type.Id" *ngFor="let type of types">{{type.Description}}</option>
+              </select>
+            </div>
+          </div>
+        </div> 
+        <div class="col-sm-6">
+          <div class="row form-group">
+            <div class="col-sm-3">
+              <label>Priority: </label>
+            </div>
+            <div class="col-sm-9">
+              <star [ratings]="model.Priority"></star>
+            </div>
+          </div>
+        </div> 
+        <br>
+        <br>
+        <div class="col-sm-12">
+          <div class="row form-group">
+            <div class="col-sm-2">
+              <label>Description:</label>
+            </div>
+            <div class="col-sm-10">
+              <textarea name="description" class="form-control" type="text" [(ngModel)]="model.Description"></textarea>
+            </div>
           </div>
         </div>
-      </div> 
-      <div class="col-sm-6">
-        <div class="row form-group">
-          <div class="col-sm-3">
-            <label>Priority: </label>
+        <div class="col-sm-6">
+          <div class="row form-group">
+            <div class="col-sm-3">
+              <label>Attachement(s): </label>
+            </div>
+            <div class="col-sm-9">
+              No Attachements
+            </div>
           </div>
-          <div class="col-sm-9">
-            <star [ratings]="model.Priority"></star>
-          </div>
-        </div>
-      </div> 
-      <br>
-      <br>
-      <div class="col-sm-12">
-        <div class="row form-group">
-          <div class="col-sm-2">
-            <label>Description:</label>
-          </div>
-          <div class="col-sm-10">
-            <textarea name="description" class="form-control" type="text" [(ngModel)]="model.Description"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="row form-group">
-          <div class="col-sm-3">
-            <label>Attachement(s): </label>
-          </div>
-          <div class="col-sm-9">
-            No Attachements
-          </div>
-        </div>
-      </div> 
+        </div> 
+      </fieldset>
     </form>
-    <ng-template #noEdit>
-      <div class="row" ng-switch-when="false">
-        <div class="col-sm-6">
-          <label>Assign to: </label>{{model.AssignedTo}}
-        </div> 
-        <div class="col-sm-6">
-          <label>Status: </label>{{model.Status}}
-        </div> 
-        <div class="col-sm-6">
-          <label>Type: </label>
-          <span class="glyphicon" [ngClass]="{
-              'glyphicon-tags': model.Type == 'Feature',
-              'glyphicon-flash':model.Type == 'Bug',
-              'glyphicon-arrow-down': model.Type == 'Minor'
-          }"></span>
-          {{model.Type}}
-        </div> 
-        <div class="col-sm-6">
-          <label>Priority: </label>
-          <star [ratings]="model.Priority" [isDisabled]="true"></star>
-        </div>
-        <br>
-        <br>
-        <div class="col-sm-12">
-          <label>Description: </label>{{model.Description}}
-        </div>
-        <div class="col-sm-12">
-          <label>Attachements: </label>No Attachements
-        </div> 
-      </div>
-    </ng-template>
   </div>
 </div>

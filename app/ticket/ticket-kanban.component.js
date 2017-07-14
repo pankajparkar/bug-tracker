@@ -45,17 +45,17 @@ var TicketKanbanComponent = (function () {
         this.getStatuses();
         this.filterName$.subscribe(function (name) { return _this.ticketList(name); });
     };
+    TicketKanbanComponent = __decorate([
+        core_1.Component({
+            selector: 'ticket-kanban',
+            templateUrl: '/app/ticket/ticket-kanban.component.html',
+        }),
+        __metadata("design:paramtypes", [ticket_service_1.TicketService,
+            common_service_1.CommonService,
+            utility_service_1.UtilityService,
+            filter_by_service_1.FilterByService])
+    ], TicketKanbanComponent);
     return TicketKanbanComponent;
 }());
-TicketKanbanComponent = __decorate([
-    core_1.Component({
-        selector: 'ticket-kanban',
-        templateUrl: '/app/ticket/ticket-kanban.component.html',
-    }),
-    __metadata("design:paramtypes", [ticket_service_1.TicketService,
-        common_service_1.CommonService,
-        utility_service_1.UtilityService,
-        filter_by_service_1.FilterByService])
-], TicketKanbanComponent);
 exports.TicketKanbanComponent = TicketKanbanComponent;
 //# sourceMappingURL=ticket-kanban.component.js.map

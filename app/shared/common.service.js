@@ -27,11 +27,11 @@ var CommonService = (function () {
     CommonService.prototype.unWrapData = function (data) {
         return data.json();
     };
+    CommonService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], CommonService);
     return CommonService;
 }());
-CommonService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], CommonService);
 exports.CommonService = CommonService;
 //# sourceMappingURL=common.service.js.map

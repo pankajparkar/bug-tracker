@@ -33,16 +33,16 @@ var NavbarComponent = (function () {
         this.authService.logout();
         this.router.navigate(['login']);
     };
+    NavbarComponent = __decorate([
+        core_1.Component({
+            selector: 'navbar',
+            templateUrl: '/app/navbar/navbar.component.html',
+        }),
+        __metadata("design:paramtypes", [auth_service_1.AuthService,
+            router_1.Router,
+            localstorage_service_1.LocalStorageService])
+    ], NavbarComponent);
     return NavbarComponent;
 }());
-NavbarComponent = __decorate([
-    core_1.Component({
-        selector: 'navbar',
-        templateUrl: '/app/navbar/navbar.component.html',
-    }),
-    __metadata("design:paramtypes", [auth_service_1.AuthService,
-        router_1.Router,
-        localstorage_service_1.LocalStorageService])
-], NavbarComponent);
 exports.NavbarComponent = NavbarComponent;
 //# sourceMappingURL=navbar.component.js.map

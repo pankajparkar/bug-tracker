@@ -29,7 +29,7 @@ var FilterByNameComponent = (function () {
     };
     FilterByNameComponent.prototype.setFilterName = function (item) {
         this.items.forEach(function (i) { return i.active = false; });
-        var value = item ? item.name : item;
+        var value = item ? item.Name : item;
         this.filterByService.emitFilterNameValue(value);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
