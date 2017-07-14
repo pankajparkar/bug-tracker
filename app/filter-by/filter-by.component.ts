@@ -32,7 +32,7 @@ export class FilterByNameComponent implements OnInit {
 
     setFilterName(item: any){
         this.items.forEach(i => i.active = false);
-        let value = item? item.name: item;
+        let value = item? item.Name: item;
         this.filterByService.emitFilterNameValue(value);        
     }
 

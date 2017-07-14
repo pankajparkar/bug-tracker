@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TicketDetailsService } from './ticket-details.service';
 import { CommonService } from '../shared/common.service';
@@ -7,18 +8,19 @@ import { CommonService } from '../shared/common.service';
 @Component({
     selector: 'ticket-details',
     templateUrl: '/app/ticket-details/ticket-details.component.html',
-    
 })
-
 export class TicketDetailsComponent implements OnInit {
     model:any;
     statuses: any[];
     names: any[];
     types: any[];
 
+    ticketDetailForm: FormGroup;
+
     constructor(
         private ticketDetailsService: TicketDetailsService, 
         private commonService: CommonService,
+        private fb: FormBuilder,
         private activatedRoute: ActivatedRoute
     ) { }
 
@@ -32,6 +34,16 @@ export class TicketDetailsComponent implements OnInit {
         this.commonService.getNames().subscribe(
             (names: any) => this.names = names
         )
+    }
+
+    createForm(){
+        this.ticketDetailForm = this.fb.group({
+            AssignedTo: [null, Validators.required],
+            Status: [null, Validators.required],
+            Type: [null, Validators.required],
+            Priority: [null, Validators.required],
+            Description: [null, Validators.required]
+        })
     }
 
     getTicketTypes(){

@@ -36,15 +36,15 @@ var FilterByNameComponent = (function () {
         this.getNames().then(this.setFilterName.bind(this));
         this.filterName$ = this.filterByService.filterNameObservable();
     };
+    FilterByNameComponent = __decorate([
+        core_1.Component({
+            selector: 'filter-by',
+            templateUrl: '/app/filter-by/filter-by.component.html',
+        }),
+        __metadata("design:paramtypes", [filter_by_service_1.FilterByService,
+            common_service_1.CommonService])
+    ], FilterByNameComponent);
     return FilterByNameComponent;
 }());
-FilterByNameComponent = __decorate([
-    core_1.Component({
-        selector: 'filter-by',
-        templateUrl: '/app/filter-by/filter-by.component.html',
-    }),
-    __metadata("design:paramtypes", [filter_by_service_1.FilterByService,
-        common_service_1.CommonService])
-], FilterByNameComponent);
 exports.FilterByNameComponent = FilterByNameComponent;
 //# sourceMappingURL=filter-by.component.js.map
