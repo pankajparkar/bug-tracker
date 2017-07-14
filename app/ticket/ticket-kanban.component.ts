@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 import { TicketService } from './ticket.service'
 import { UtilityService } from '../shared/utility.service'
@@ -16,7 +18,8 @@ export class TicketKanbanComponent implements OnInit {
     todoItems: any[];
     inProgressItems: any[];
     completedItems: any[];
-    filterName$: any;
+    filterName$: Observable<string>;
+    filterNameSub$: Subscription;
     statuses: any[];
 
     constructor(
@@ -51,8 +54,12 @@ export class TicketKanbanComponent implements OnInit {
     ngOnInit() { 
         this.filterName$ = this.filterByService.filterNameObservable();
         this.getStatuses();
-        this.filterName$.subscribe(
-            (name: any) => this.ticketList(name)
+        this.filterNameSub$ = this.filterName$.subscribe(
+            (name: any) => this.ticketList(name && name.Id)
         )
+    }
+
+    ngOnDestroy(){
+        this.filterNameSub$.unsubscribe();
     }
 }

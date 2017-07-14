@@ -1,14 +1,14 @@
 [
-    {"Id": 1, "AssignedTo": 1, "Title": "Add feature to file upload", "Description": "Add feature to file upload", "Type": 1, "Priority": 9, "TicketNumber": "PM-1", "Status": 3},
-    {"Id": 2, "AssignedTo": 1, "Title": "Create mockups for file upload UI", "Description": "Create mockups for file upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-2", "Status": 3},
-    {"Id": 3, "AssignedTo": 1, "Title": "Implement backend API for file upload", "Description": "Implement backend API for file upload", "Type": 1, "Priority": 9, "TicketNumber": "PM-3", "Status": 2},
-    {"Id": 4, "AssignedTo": 1, "Title": "Create a front-end for file upload", "Description": "Create a front-end for file upload", "Type": 1, "Priority": 9, "TicketNumber": "PM-4", "Status": 2},
-    {"Id": 5, "AssignedTo": 1, "Title": "Photo cropper bugs", "Description": "Photo cropper bugs", "Type": 1, "Priority": 9, "TicketNumber": "PM-5", "Status": 2},
-    {"Id": 6, "AssignedTo": 2, "Title": "Display uploaded files list on dashboard", "Description": "Display uploaded files list on dashboard", "Type": 1, "Priority": 9, "TicketNumber": "PM-6", "Status": 1},
-    {"Id": 7, "AssignedTo": 2, "Title": "Write API docuementation for file Upload", "Description": "File upload UI", "Type": 2, "Priority": 9, "TicketNumber": "PM-7", "Status": 3},
-    {"Id": 8, "AssignedTo": 2, "Title": "Fix file upload feature bug", "Description": "File upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-8", "Status": 2},
-    {"Id": 9, "AssignedTo": 2, "Title": "Implement best search in product", "Description": "File upload UI", "Type": 3, "Priority": 9, "TicketNumber": "PM-9", "Status": 2},
-    {"Id": 10, "AssignedTo": 2, "Title": "Wrap up fileupload & cropper functionility together", "Description": "File upload UI", "Type": 2, "Priority": 9, "TicketNumber": "PM-10", "Status": 1},
-    {"Id": 11, "AssignedTo": 3, "Title": "Create test cases for file upload feature", "Description": "File upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-11", "Status": 3},
-    {"Id": 12, "AssignedTo": 3, "Title": "Create test cases for photo cropper feature", "Description": "File upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-12", "Status": 3}
+    {"Id": 1, "AssignedTo": 1, "AssignedToName": "Alex", "Title": "Add feature to file upload", "Description": "Add feature to file upload", "Type": 1, "Priority": 9, "TicketNumber": "PM-1", "Status": 3},
+    {"Id": 2, "AssignedTo": 1, "AssignedToName": "Alex", "Title": "Create mockups for file upload UI", "Description": "Create mockups for file upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-2", "Status": 3},
+    {"Id": 3, "AssignedTo": 1, "AssignedToName": "Alex", "Title": "Implement backend API for file upload", "Description": "Implement backend API for file upload", "Type": 1, "Priority": 9, "TicketNumber": "PM-3", "Status": 2},
+    {"Id": 4, "AssignedTo": 1, "AssignedToName": "Alex", "Title": "Create a front-end for file upload", "Description": "Create a front-end for file upload", "Type": 1, "Priority": 9, "TicketNumber": "PM-4", "Status": 2},
+    {"Id": 5, "AssignedTo": 1, "AssignedToName": "Alex", "Title": "Photo cropper bugs", "Description": "Photo cropper bugs", "Type": 1, "Priority": 9, "TicketNumber": "PM-5", "Status": 2},
+    {"Id": 6, "AssignedTo": 2, "AssignedToName": "John", "Title": "Display uploaded files list on dashboard", "Description": "Display uploaded files list on dashboard", "Type": 1, "Priority": 9, "TicketNumber": "PM-6", "Status": 1},
+    {"Id": 7, "AssignedTo": 2, "AssignedToName": "John", "Title": "Write API docuementation for file Upload", "Description": "File upload UI", "Type": 2, "Priority": 9, "TicketNumber": "PM-7", "Status": 3},
+    {"Id": 8, "AssignedTo": 2, "AssignedToName": "John", "Title": "Fix file upload feature bug", "Description": "File upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-8", "Status": 2},
+    {"Id": 9, "AssignedTo": 2, "AssignedToName": "John", "Title": "Implement best search in product", "Description": "File upload UI", "Type": 3, "Priority": 9, "TicketNumber": "PM-9", "Status": 2},
+    {"Id": 10, "AssignedTo": 2, "AssignedToName": "John", "Title": "Wrap up fileupload & cropper functionility together", "Description": "File upload UI", "Type": 2, "Priority": 9, "TicketNumber": "PM-10", "Status": 1},
+    {"Id": 11, "AssignedTo": 3, "AssignedToName": "Tom", "Title": "Create test cases for file upload feature", "Description": "File upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-11", "Status": 3},
+    {"Id": 12, "AssignedTo": 3, "AssignedToName": "Tom", "Title": "Create test cases for photo cropper feature", "Description": "File upload UI", "Type": 1, "Priority": 9, "TicketNumber": "PM-12", "Status": 3}
 ]

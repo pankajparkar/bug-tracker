@@ -43,7 +43,10 @@ var TicketKanbanComponent = (function () {
         var _this = this;
         this.filterName$ = this.filterByService.filterNameObservable();
         this.getStatuses();
-        this.filterName$.subscribe(function (name) { return _this.ticketList(name); });
+        this.filterNameSub$ = this.filterName$.subscribe(function (name) { return _this.ticketList(name && name.Id); });
+    };
+    TicketKanbanComponent.prototype.ngOnDestroy = function () {
+        this.filterNameSub$.unsubscribe();
     };
     TicketKanbanComponent = __decorate([
         core_1.Component({

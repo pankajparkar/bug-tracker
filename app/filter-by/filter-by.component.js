@@ -28,10 +28,7 @@ var FilterByNameComponent = (function () {
         });
     };
     FilterByNameComponent.prototype.setFilterName = function (item) {
-        this.items.forEach(function (i) { return i.active = false; });
         var value = item;
-        if (item && item.Id)
-            value = item.Id;
         this.filterByService.emitFilterNameValue(value);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {

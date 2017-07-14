@@ -1,8 +1,11 @@
-<div class="panel panel-info" *ngFor="let groupedTicket of tickets | groupBy: 'AssignedTo': (filterName$ | async)">
+<div class="panel panel-info" *ngFor="let groupedTicket of tickets | groupBy: 'AssignedToName': (filterName$ | async)?.Name">
   <div class="panel-heading">
     <h3 class="panel-title" (click)="groupedTicket.IsActive = !groupedTicket.IsActive">
       <span class="glyphicon" aria-hidden="true"
-        [ngClass]="{'glyphicon-chevron-up': groupedTicket.IsActive, 'glyphicon-chevron-down': !groupedTicket.IsActive}">
+        [ngClass]="{
+          'glyphicon-chevron-up': groupedTicket.IsActive, 
+          'glyphicon-chevron-down': !groupedTicket.IsActive
+        }">
       </span>
       {{groupedTicket.key}}
       <span class="badge">{{groupedTicket.values.length}}</span>
