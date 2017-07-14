@@ -29,12 +29,22 @@ var FilterByNameComponent = (function () {
     };
     FilterByNameComponent.prototype.setFilterName = function (item) {
         this.items.forEach(function (i) { return i.active = false; });
-        var value = item ? item.Name : item;
+        var value = item;
+        if (item && item.Id)
+            value = item.Id;
         this.filterByService.emitFilterNameValue(value);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
-        this.getNames().then(this.setFilterName.bind(this));
+        var _this = this;
+        this.getNames().then(function () {
+            _this.setFilterName(_this.filterByService.getFilterNameLastValue());
+        });
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.filterNameSub$ = this.filterName$.subscribe();
+    };
+    FilterByNameComponent.prototype.ngOnDestroy = function () {
+        //clearing up stuff
+        this.filterNameSub$.unsubscribe();
     };
     FilterByNameComponent = __decorate([
         core_1.Component({

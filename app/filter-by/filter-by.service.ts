@@ -17,4 +17,8 @@ export class FilterByService {
     filterNameObservable(): Observable<string> {
         return this.filterName$.asObservable();
     }
+
+    getFilterNameLastValue(): string {
+        return this.filterName$.value;
+    }
 }

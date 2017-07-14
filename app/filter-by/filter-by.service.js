@@ -21,6 +21,9 @@ var FilterByService = (function () {
     FilterByService.prototype.filterNameObservable = function () {
         return this.filterName$.asObservable();
     };
+    FilterByService.prototype.getFilterNameLastValue = function () {
+        return this.filterName$.value;
+    };
     FilterByService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [])

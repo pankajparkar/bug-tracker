@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { FilterByService } from './filter-by.service'
 import { CommonService } from './../shared/common.service'
@@ -11,7 +12,8 @@ import { CommonService } from './../shared/common.service'
 })
 
 export class FilterByNameComponent implements OnInit {
-    filterName$: any;
+    filterName$: Observable<string>;
+    filterNameSub$: Subscription;
     items: any[];
     constructor(
         private filterByService: FilterByService,
@@ -32,12 +34,20 @@ export class FilterByNameComponent implements OnInit {
 
     setFilterName(item: any){
         this.items.forEach(i => i.active = false);
-        let value = item? item.Name: item;
+        if(item && item.Id) value = item.Id
         this.filterByService.emitFilterNameValue(value);        
     }
 
     ngOnInit() { 
-        this.getNames().then(this.setFilterName.bind(this));
+        this.getNames().then(() => {
+            this.setFilterName(this.filterByService.getFilterNameLastValue())
+        });
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.filterNameSub$ = this.filterName$.subscribe();
+    }
+
+    ngOnDestroy(){
+        //clearing up stuff
+        this.filterNameSub$.unsubscribe();
     }
 }
