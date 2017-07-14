@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
     <div class="row" *ngIf="user">
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
             <p class=" text-info"><b>Last Login:</b> {{user.LastLoginDate | date: 'longDate'}}</p>
@@ -9,81 +9,101 @@
                     <h3 class="panel-title">{{user.FirstName}} {{user.LastName}}</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <form (ngSubmit)="submit()">
-                            <div class="col-md-3 col-lg-3 " align="center"> 
-                                <img alt="User Pic" src="http://www.manutd.com/sitecore/shell/~/media/374AA068C74A419EBC844D25CDC93EB2.ashx?w=240&h=311&rgn=0,0,2000,2592" class="img-circle img-responsive" /> 
-                            </div>
-                            <div class=" col-md-9 col-lg-9 ">
-                                <table class="table table-user-information">
-                                    <tbody>
-                                        <tr>
-                                            <td>First Name:</td>
-                                            <td>
-                                                <input class="form-control" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Last Name:</td>
-                                            <td>
-                                                <input class="form-control" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Date of Birth</td>
-                                            <td>
-                                                <input class="form-control" type="date"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                        <tr>
-                                            <td>Gender</td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Street Address</td>
-                                            <td>
-                                                <input class="form-control" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>City</td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option>Birmingham</option>
-                                                    <option>Cambridge</option>
-                                                    <option>Derby</option>
-                                                    <option>Liverpool</option>
-                                                    <option>Norwich</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Phone Number</td>
-                                            <td>
-                                                <input type="number" class="form-control" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Pin</td>
-                                            <td>
-                                                <input type="number" class="form-control" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <button type="button" (click)="edit=true" class="btn btn-primary">Edit</button>
-                                <button (click)="edit=false" class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
-                    </div>
+                    <form [formGroup]="profileForm" (ngSubmit)="edit=false;submit(profileForm.values)">
+                        <div class="col-md-3 col-lg-3 " align="center"> 
+                            <img alt="User Pic" src="http://www.manutd.com/sitecore/shell/~/media/374AA068C74A419EBC844D25CDC93EB2.ashx?w=240&h=311&rgn=0,0,2000,2592" class="img-circle img-responsive" /> 
+                        </div>
+                        <div class="col-md-9 col-lg-9 ">
+                            <fieldset [disabled]="!edit">
+                                <div class="table-user-information">
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>First Name:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input formControlName="FirstName" class="form-control" placeholder="Enter First Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>Last Name:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input formControlName="LastName" class="form-control" placeholder="Enter Last Name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>Gender:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select formControlName="Gender" class="form-control">
+                                                <option>Please select Gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>Street Address:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input formControlName="StreetAddress" class="form-control"  placeholder="Enter Stree Address"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>City:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select formControlName="City" class="form-control">
+                                                <option value="">Please select city</option>
+                                                <option>Birmingham</option>
+                                                <option>Cambridge</option>
+                                                <option>Derby</option>
+                                                <option>Liverpool</option>
+                                                <option>Norwich</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>State:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input formControlName="State" class="form-control"  placeholder="Enter State"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>Phone Number:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input formControlName="PhoneNumber" type="number" class="form-control"  placeholder="Enter Phone Number"/>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label>Pin Code:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input formControlName="Pin" type="number" class="form-control"  placeholder="Enter PIN Code"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button *ngIf="!edit" type="button" (click)="edit=true" class="btn btn-primary">Edit</button>
+                            <button 
+                                *ngIf="edit" [disabled]="profileForm.invalid" 
+                                [attr.title]="profileForm.invalid ? 'Please fill all fields': 'Save'"
+                                class="btn btn-primary">
+                                    Save
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> 
