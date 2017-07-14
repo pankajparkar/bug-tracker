@@ -162,8 +162,7 @@ var DashboardComponent = (function () {
     DashboardComponent = __decorate([
         core_1.Component({
             selector: 'dashboard',
-            templateUrl: '/app/dashboard/dashboard.component.html',
-            styles: ["\n        :host .row.content{\n            background: rgba(236, 236, 236, 0.15);\n            box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 1px 11px 0 rgba(0,0,0,0.19);\n            padding: 10px;\n        }   \n        .child-content{\n            max-height: 500px;\n            overflow-y: auto;\n        }\n    "]
+            templateUrl: '/app/dashboard/dashboard.component.html'
         }),
         __metadata("design:paramtypes", [common_1.Location])
     ], DashboardComponent);
@@ -202,13 +201,20 @@ var FilterByNameComponent = (function () {
         });
     };
     FilterByNameComponent.prototype.setFilterName = function (item) {
-        this.items.forEach(function (i) { return i.active = false; });
-        var value = item ? item.Name : item;
+        var value = item;
         this.filterByService.emitFilterNameValue(value);
     };
     FilterByNameComponent.prototype.ngOnInit = function () {
-        this.getNames().then(this.setFilterName.bind(this));
+        var _this = this;
+        this.getNames().then(function () {
+            _this.setFilterName(_this.filterByService.getFilterNameLastValue());
+        });
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.filterNameSub$ = this.filterName$.subscribe();
+    };
+    FilterByNameComponent.prototype.ngOnDestroy = function () {
+        //clearing up stuff
+        this.filterNameSub$.unsubscribe();
     };
     FilterByNameComponent = __decorate([
         core_1.Component({
@@ -245,6 +251,9 @@ var FilterByService = (function () {
     };
     FilterByService.prototype.filterNameObservable = function () {
         return this.filterName$.asObservable();
+    };
+    FilterByService.prototype.getFilterNameLastValue = function () {
+        return this.filterName$.value;
     };
     FilterByService = __decorate([
         core_1.Injectable(),
@@ -296,11 +305,13 @@ exports.LoginComponent = LoginComponent;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
+var core_1 = require("@angular/core");
 var app_module_1 = require("./app.module");
 var platform = platform_browser_dynamic_1.platformBrowserDynamic();
+core_1.enableProdMode();
 platform.bootstrapModule(app_module_1.AppModule);
 
-},{"./app.module":3,"@angular/platform-browser-dynamic":31}],9:[function(require,module,exports){
+},{"./app.module":3,"@angular/core":28,"@angular/platform-browser-dynamic":31}],9:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -871,7 +882,10 @@ var TicketKanbanComponent = (function () {
         var _this = this;
         this.filterName$ = this.filterByService.filterNameObservable();
         this.getStatuses();
-        this.filterName$.subscribe(function (name) { return _this.ticketList(name); });
+        this.filterNameSub$ = this.filterName$.subscribe(function (name) { return _this.ticketList(name && name.Id); });
+    };
+    TicketKanbanComponent.prototype.ngOnDestroy = function () {
+        this.filterNameSub$.unsubscribe();
     };
     TicketKanbanComponent = __decorate([
         core_1.Component({
@@ -900,6 +914,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var Subject_1 = require("rxjs/Subject");
 var ticket_service_1 = require("./ticket.service");
 var utility_service_1 = require("../shared/utility.service");
 var filter_by_service_1 = require("./../filter-by/filter-by.service");
@@ -908,6 +923,7 @@ var TicketListComponent = (function () {
         this.ticketService = ticketService;
         this.utilityService = utilityService;
         this.filterByService = filterByService;
+        this.ngUnsubscribe = new Subject_1.Subject();
     }
     TicketListComponent.prototype.ticketList = function () {
         var _this = this;
@@ -915,12 +931,19 @@ var TicketListComponent = (function () {
     };
     TicketListComponent.prototype.ngOnInit = function () {
         this.filterName$ = this.filterByService.filterNameObservable();
+        this.filterNameSub$ = this.filterName$.subscribe();
         this.ticketList();
+    };
+    TicketListComponent.prototype.ngOnDestroy = function () {
+        //clearing up stuff
+        this.filterNameSub$.unsubscribe();
     };
     TicketListComponent = __decorate([
         core_1.Component({
             selector: 'ticket-list',
             templateUrl: '/app/ticket/ticket-list.component.html',
+            styles: ["\n        .panel.panel-info{\n            background: rgba(236, 236, 236, 0.15);\n            box-shadow: 0 8px 14px 0 rgba(0,0,0,0.2), 0 1px 11px 0 rgba(0,0,0,0.19);\n        }"
+            ]
         }),
         __metadata("design:paramtypes", [ticket_service_1.TicketService,
             utility_service_1.UtilityService,
@@ -930,7 +953,7 @@ var TicketListComponent = (function () {
 }());
 exports.TicketListComponent = TicketListComponent;
 
-},{"../shared/utility.service":16,"./../filter-by/filter-by.service":6,"./ticket.service":24,"@angular/core":28}],24:[function(require,module,exports){
+},{"../shared/utility.service":16,"./../filter-by/filter-by.service":6,"./ticket.service":24,"@angular/core":28,"rxjs/Subject":41}],24:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
