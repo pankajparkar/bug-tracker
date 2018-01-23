@@ -2,9 +2,10 @@
   "name": "angular-kickstart",
   "version": "1.0.0",
   "scripts": {
-    "start": "lite-server",
+    "start": "lite-server && npm run build_prod:watch",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "build_prod:watch": "npm run build_prod -w",
     "build_prod": "browserify -s main app/main.js > app/bundle.js && npm run minify",
     "minify": "uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/bundle.min.js"
   },
